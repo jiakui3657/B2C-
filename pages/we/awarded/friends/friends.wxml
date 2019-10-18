@@ -1,0 +1,44 @@
+<!--pages/we/awarded/friends/friends.wxml-->
+<view class="container">
+  <!-- 状态栏 -->
+  <navbar page-name="邀请有礼" show-home="true"></navbar>
+  <view style="height: {{navHeight}}px;"></view>
+
+  <!-- 标题栏 -->
+  <view class="header">
+    <image lazy-load="true" src="{{imgSrc}}/images/online/we/awarded/sign_bj.png"></image>
+    <image lazy-load="true" class="title" src="{{imgSrc}}/images/online/we/awarded/friends.png"></image>
+  </view>
+
+  <!-- 内容 -->
+  <view class="content">
+    <view class="securities radius">
+      <view class="securities_l"><view><text>￥</text>{{coupons.useDenomination}}</view></view>
+      <view class="securities_r">
+        <view class="name">{{coupons.couponName}}</view>
+        <view class="condition">下单满{{coupons.useAmtLimit}}元立减</view>
+        <view class="time">{{coupons.useStartTime}}至{{coupons.useEndTime}}</view>
+      </view>
+    </view>
+    <view class="bottom_btn" catchtap="use_coupons">立即使用</view>
+  </view>
+
+  <!-- 规则 -->
+  <!-- <view class="rules radius">
+    <view class="rules_title">新人规则</view>
+    <view class="rules_list">
+      <text>1</text>
+      <view>新人福利仅限百万店购新用户参与，新用户是指没有在百万店购下过单的用户。</view>
+    </view>
+    <view class="rules_list">
+      <text>2</text>
+      <view>新人福利每人限领取一次，不可重复领取，优惠券使用条件详见优惠券说明。</view>
+    </view>
+  </view> -->
+
+  <!-- 商品列表 -->
+  <!-- <view class="recommend">
+    <view class="goods_title">为你推荐</view>
+    <jk-goodsList class="goodsList" list="{{goodsList.list}}" />
+  </view> -->
+</view>

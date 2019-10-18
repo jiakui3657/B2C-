@@ -1,0 +1,21 @@
+<!--pages/we/order/logistics_list/logistics_list.wxml-->
+<view class="container">
+  <view class="title" wx:if="{{logistics.list.length == 0}}">快递还未发出请耐心等候...</view>
+  <view class="title" wx:if="{{logistics.list.length > 0}}">{{logistics.list.length}}个包裹{{logistics.list[0].logisticsState == 1 ? '已发出' : '已签收'}}</view>
+
+  <!-- 物流列表 -->
+  <view class="logistics_list passage" wx:for="{{logistics.list}}" wx:key="{{index}}" data-index="{{index}}" catchtap="logistics">
+    <view class="logistics">
+      <view class="code" wx:if="{{item.logisticsState == 1}}" >已发货</view>
+      <view class="code" wx:if="{{item.logisticsState == 2}}" >已签收</view>
+      <view class="serial">{{item.logisticsCompanyName}}：{{item.logisticsNo}}</view>
+    </view>
+    <view class="logistics_address">点击查询具体物流信息</view>
+    <view class="imgs_wrap">
+    <view class="img_list" wx:for="{{item.orderItem}}" wx:key="{{index}}" wx:if="{{index < 4}}">
+      <image lazy-load="true" mode="aspectFit" src="{{item.goodsImg}}"></image>
+      <text>×{{item.goodsNum}}</text>
+    </view>
+    </view>
+  </view>
+</view>

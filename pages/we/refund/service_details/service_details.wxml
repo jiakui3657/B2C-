@@ -1,0 +1,93 @@
+<!--pages/we/refund/service_details/service_details.wxml-->
+<view class="container">
+  <!-- 退款时间 -->
+  <view class="sales_time">
+    <view wx:if="{{detail.refundState==3}}">已完成</view>
+    <view wx:if="{{detail.refundState==4}}">已拒绝</view>
+    <view wx:if="{{detail.refundState==5}}">已取消</view>
+    <text wx:if="{{detail.refundState==3}}">3-5个工作日到账</text>
+  </view>
+
+  <!-- 退款金额 -->
+  <view class="sales_money" wx:if="{{detail.refundState==3}}">
+    <view>退款金额</view>
+    <text>￥{{detail.refundAmount}}</text>
+  </view>
+
+  <!-- 退款进度 -->
+  <view class="progress" wx:if="{{detail.refundState==3}}">
+    <view class="item">
+      <text></text>
+      <image src="{{imgSrc}}/images/online/we/refund/has.png"></image>
+      <view>提交申请</view>
+    </view>
+    <view class="item">
+      <text></text>
+      <image src="{{imgSrc}}/images/online/we/refund/has.png"></image>
+      <view>平台审核</view>
+    </view>
+    <view class="item">
+      <text></text>
+      <image src="{{imgSrc}}/images/online/we/refund/has.png"></image>
+      <view>退款</view>
+    </view>
+    <view class="item">
+      <text></text>
+      <image src="{{imgSrc}}/images/online/we/refund/has.png"></image>
+      <view>完成</view>
+    </view>
+  </view>
+
+  <!-- 退款商品 -->
+  <view class="goods passage">
+    <view class="goods_title">商品信息</view>
+    <view class="goods_content">
+      <view class="goods_logo">
+        <image src="{{detail.tRefundOrderItems[0].goodsImg}}"></image>
+      </view>
+      <view class="goods_r">
+        <view class="goods_name">{{detail.tRefundOrderItems[0].goodsName}}</view>
+        <view class="goods_norms">
+          <text>单价：￥{{detail.tRefundOrderItems[0].goodsSalePrice}}</text>
+          <text>申请数量：{{detail.tRefundOrderItems[0].goodsRefundNum}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退款信息 -->
+  <view class="refund_info passage">
+    <view>
+      服务单号：
+      <text>{{detail.refundOrderNo}}</text>
+    </view>
+    <view>
+      售后类型：
+      <text>{{detail.refundType==1?'仅退款':'退货退款'}}</text>
+    </view>
+    <view>
+      申请时间：
+      <text>{{detail.applyTime}}</text>
+    </view>
+    <view wx:if="{{detail.refundState==3 || detail.refundState==4}}">
+      审核时间：
+      <text>{{detail.auditTime}}</text>
+    </view>
+    <view wx:if="{{detail.refundState==3}}">
+      退款时间：
+      <text>{{detail.refundTime}}</text>
+    </view>
+    <view wx:if="{{detail.refundState==3}}">
+      退款方式：
+      <text>原路退回</text>
+    </view>
+    <view wx:if="{{detail.refundState==4}}">
+      拒绝原因：
+      <text>{{detail.auditFailReason}}</text>
+    </view>
+    <view wx:if="{{detail.refundState==5}}">
+      取消时间：
+      <text>{{detail.cancelTime}}</text>
+    </view>
+  </view>
+</view>

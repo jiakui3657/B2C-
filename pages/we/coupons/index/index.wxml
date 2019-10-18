@@ -1,0 +1,187 @@
+<!--pages/we/coupons/index/index.wxml-->
+<wxs src="util.wxs" module="util" />
+
+<!-- 顶部table切换 -->
+<view class="order_Content">
+  <view class="swiper-tab">
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==0 ? 'on' : ''}}" data-current="0" catchtap="swichNav">未使用({{myCoupon.unusedNum || 0}})</text>
+    </view>
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==1 ? 'on' : ''}}" data-current="1" catchtap="swichNav">已使用({{myCoupon.usedNum || 0}})</text>
+    </view>
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==2 ? 'on' : ''}}" data-current="2" catchtap="swichNav">已过期({{myCoupon.expireNum || 0}})</text>
+    </view>
+    <view class='clear'></view>
+  </view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{scrollHeight}}px;display:{{choice}};padding-bottom: 94rpx;" bindchange="bindChange">
+  <!-- 未使用 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;padding: 0 20rpx;box-sizing: border-box;">
+
+      <!-- 优惠券 -->
+      <!-- <view class="shop_list red {{item.type=='PWAY101'?'red': 'blue'}} passage {{couponsFlag == index ? 'active' : ''}}" wx:for="{{unusedCouponList.list}}" wx:key="{{index}}" wx:if="{{myCoupon.unusedNum > 0}}">
+        <view class="shop_info">
+          <view class="shop_list_l">
+            <view class="shop_list_l_content">
+              <view class="price" wx:if="{{item.type=='PWAY101'}}"><text>￥</text>{{item.useDenomination}}</view>
+              <view class="price" wx:elif="{{item.type=='PWAY102'}}">{{item.discount*10}}<text>折</text></view>
+              <view class="condition">满{{item.useAmtLimit}}元使用</view>
+            </view>
+          </view>
+          <view class="shop_list_r">
+            <view class="shop_list_t">
+              <view class="title"><text wx:if="{{item.type=='PWAY101'}}">满减券</text><text wx:elif="{{item.type=='PWAY102'}}">折扣券</text><view>{{item.couponName}}</view></view>
+              <view class="time">
+                <text>{{util.substr(item.useStartTime, 0, 10)}} - {{util.substr(item.useEndTime, 0, 10)}}</text>
+                <view catchtap="use" data-couponid="{{item.couponId}}">立即使用</view>
+              </view>
+            </view>
+            <view class="shop_list_b" data-index="{{index}}" catchtap="explainToggle">
+              <text>使用说明</text>
+              <view>
+                <image lazy-load="true" src="{{imgSrc}}/images/online/common/white_more.png"></image>
+              </view>
+            </view>
+          </view>
+          <image class="shop_info_bj" lazy-load="true" src="/images/online/we/coupons/coupons2_bj.png"></image>
+          <image wx:if="{{util.remainExpire1Day(item.useStartTime,item.useEndTime)}}" class="expiring" src="{{imgSrc}}/images/online/we/coupons/expiring.png"></image>
+        </view>
+        <view class="shop_explain">{{item.remark}}</view>
+      </view> -->
+
+      <view class="coupons_list passage red {{couponsFlag == index ? 'active' : ''}}" wx:for="{{unusedCouponList.list}}" wx:key="{{index}}">
+        <view class="coupons_list_t">
+          <view class="coupons_info">
+            <view class="coupons_info_l">
+              <view class="coupons_info_price" wx:if="{{item.type=='PWAY101'}}"><text>￥</text>{{item.useDenomination}}</view>
+              <view class="coupons_info_price" wx:elif="{{item.type=='PWAY102'}}">{{item.discount*10}}<text>折</text></view>
+              <view class="coupons_info_limit">满{{item.useAmtLimit}}元可用</view>
+            </view>
+            <view class="coupons_info_r">
+              <view class="coupons_name"><text>{{item.couponSource == 1 ? '百万券' : '店铺券'}}</text>{{item.couponName}}</view>
+              <view class="shop_name">{{item.couponSource == 1 ? '自营店铺' : item.shopName}}</view>
+              <view class="coupons_time">{{item.useStartTime}}-{{item.useEndTime}}<view class="coupons_btn" catchtap="use" data-couponid="{{item.couponId}}" data-couponSource="{{item.couponSource}}">立即使用</view></view>
+            </view>
+          </view>
+          <view class="coupons_list_func">
+            <button open-type="share" data-couponid="{{item.couponId}}" wx:if="{{item.isShared == 1}}" data-couponsource="{{item.couponSource}}">
+              <image lazy-load="true" src="{{imgSrc}}/images/online/common/share.png"></image>
+              <text>分享给好友</text>
+            </button>
+            <view wx:else></view>
+            <view class="coupons_detailed_info" data-index="{{index}}" catchtap="explainToggle">
+              <view>详细信息</view>
+              <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+            </view>
+          </view>
+          <image class="coupons_info_bj" lazy-load="true" src="/images/online/we/coupons/coupons2_bj.png"></image>
+          <view class="coupons_vip" wx:if="{{item.couponType == 2}}">VIP专享</view>
+          <view class="coupons_couple" wx:if="{{item.couponType == 3}}">新客福利</view>
+        </view>
+        <view class="coupons_list_b">
+          <view wx:if="{{item.couponSource == 2}}">适用商品：{{item.categoryNames}}</view>
+          <view>{{item.remark}}</view>
+        </view>
+      </view>
+
+      <!-- 优惠券列表为空 -->
+      <view class="not_online" wx:if="{{myCoupon.unusedNum <= 0}}">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/not.png"></image>
+        <view>还没有优惠券哦~</view>
+        <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 已使用 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;padding: 0 20rpx;box-sizing: border-box;">
+      <!-- 优惠券 -->
+      <view class="coupons_list passage grey {{couponsFlag == index ? 'active' : ''}}" wx:for="{{usedCouponList.list}}" wx:key="{{index}}" wx:if="{{myCoupon.usedNum > 0}}">
+        <view class="coupons_list_t">
+          <view class="coupons_info">
+            <view class="coupons_info_l">
+              <view class="coupons_info_price" wx:if="{{item.type=='PWAY101'}}"><text>￥</text>{{item.useDenomination}}</view>
+              <view class="coupons_info_price" wx:elif="{{item.type=='PWAY102'}}">{{item.discount*10}}<text>折</text></view>
+              <view class="coupons_info_limit">满{{item.useAmtLimit}}元可用</view>
+            </view>
+            <view class="coupons_info_r">
+              <view class="coupons_name"><text>{{item.couponSource == 1 ? '百万券' : '店铺券'}}</text>{{item.couponName}}</view>
+              <view class="shop_name">{{item.couponSource == 1 ? '自营店铺' : item.shopName}}</view>
+              <view class="coupons_time">{{item.useStartTime}}-{{item.useEndTime}}</view>
+            </view>
+          </view>
+          <view class="coupons_list_func">
+            <view></view>
+            <view class="coupons_detailed_info" data-index="{{index}}" catchtap="explainToggle">
+              <view>详细信息</view>
+              <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+            </view>
+          </view>
+          <image class="coupons_info_bj" lazy-load="true" src="/images/online/we/coupons/coupons2_bj.png"></image>
+          <view class="coupons_vip" wx:if="{{item.couponType == 2}}">VIP专享</view>
+          <view class="coupons_couple" wx:if="{{item.couponType == 3}}">新客福利</view>
+        </view>
+        <view class="coupons_list_b">
+          <view wx:if="{{item.couponSource == 2}}">适用商品：{{item.categoryNames}}</view>
+          <view>{{item.remark}}</view>
+        </view>
+      </view>
+      <!-- 优惠券列表为空 -->
+      <view class="not_online" wx:if="{{myCoupon.usedNum <= 0}}">
+        <image src="{{imgSrc}}/images/online/common/not.png"></image>
+        <view>还没有优惠券哦~</view>
+        <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 已过期 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;padding: 0 20rpx;box-sizing: border-box;">
+      <!-- 优惠券 -->
+      <view class="coupons_list passage grey {{couponsFlag == index ? 'active' : ''}}" wx:for="{{expireCouponList.list}}" wx:key="{{index}}" wx:if="{{myCoupon.expireNum > 0}}">
+        <view class="coupons_list_t">
+          <view class="coupons_info">
+            <view class="coupons_info_l">
+              <view class="coupons_info_price" wx:if="{{item.type=='PWAY101'}}"><text>￥</text>{{item.useDenomination}}</view>
+              <view class="coupons_info_price" wx:elif="{{item.type=='PWAY102'}}">{{item.discount*10}}<text>折</text></view>
+              <view class="coupons_info_limit">满{{item.useAmtLimit}}元可用</view>
+            </view>
+            <view class="coupons_info_r">
+              <view class="coupons_name"><text>{{item.couponSource == 1 ? '百万券' : '店铺券'}}</text>{{item.couponName}}</view>
+              <view class="shop_name">{{item.couponSource == 1 ? '自营店铺' : item.shopName}}</view>
+              <view class="coupons_time">{{item.useStartTime}}-{{item.useEndTime}}</view>
+            </view>
+          </view>
+          <view class="coupons_list_func">
+            <view></view>
+            <view class="coupons_detailed_info" data-index="{{index}}" catchtap="explainToggle">
+              <view>详细信息</view>
+              <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+            </view>
+          </view>
+          <image class="coupons_info_bj" lazy-load="true" src="/images/online/we/coupons/coupons2_bj.png"></image>
+          <view class="coupons_vip" wx:if="{{item.couponType == 2}}">VIP专享</view>
+          <view class="coupons_couple" wx:if="{{item.couponType == 3}}">新客福利</view>
+        </view>
+        <view class="coupons_list_b">
+          <view wx:if="{{item.couponSource == 2}}">适用商品：{{item.categoryNames}}</view>
+          <view>{{item.remark}}</view>
+        </view>
+      </view>
+
+      <!-- 优惠券列表为空 -->
+      <view class="not_online" wx:if="{{myCoupon.expireNum <= 0}}">
+        <image src="{{imgSrc}}/images/online/common/not.png"></image>
+        <view>还没有优惠券哦~</view>
+        <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
+
+<!-- 分享按钮 -->
+<view class="share_btn" catchtap="welfare">去领券中心转转>></view>

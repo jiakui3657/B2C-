@@ -1,0 +1,193 @@
+/* pages/home/circle/index/index.wxss */
+page {
+  background: #f4f4f4;
+  font-family: "Microsoft YaHei";
+  box-sizing: border-box;
+}
+
+/*tab*/
+.swiper-tab-list {
+  width: 20%;
+}
+
+/*列表*/
+.dynamicList {
+  padding: 20rpx 20rpx 0rpx;
+  background: #fff;
+}
+
+.dynamicList:last-child {
+  margin-bottom: 16rpx;
+}
+
+/* 动态个人信息 */
+.dynamic_personal_info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.personal_info_l {
+  display: flex;
+  font-size: 28rpx;
+  color: #353535;
+  align-items: center;
+}
+
+.personal_info_l text {
+  display: block;
+}
+
+.personal_info_l .name {
+  height: 40rpx;
+  line-height: 40rpx;
+  display: flex;
+  align-items: center;
+}
+
+.personal_info_l .name image {
+  width: 44rpx;
+  height: 24rpx;
+  margin: 0;
+  border-radius: 0;
+  margin-left: 8rpx;
+}
+
+.personal_info_l text:last-child {
+  font-size: 20rpx;
+  color: #888;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+
+.personal_info_l image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 16rpx;
+  border-radius: 50%;
+}
+
+.personal_info_r {
+  display: flex;
+  font-size: 20rpx;
+  color: #888;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.personal_info_r image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
+/* 动态图片 */
+.dynamic_img_list {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+
+.dynamic_img_list image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+/* 两张图片时的样式 */
+.two_list image {
+  width: 320rpx;
+  height: 240rpx;
+}
+
+/* 一张图片时的样式 */
+.one_list image {
+  width: 650rpx;
+  height: 650rpx;
+}
+
+/* 动态文字 */
+.dynamic_text {
+  font-size: 28rpx;
+  color: #353535;
+  line-height: 40rpx;
+  margin-top: 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break:break-all;
+  display: -webkit-box;
+}
+
+.dynamic_text view {
+  text-align: center;
+  height: 40rpx;
+  line-height: 40rpx;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  font-size: 20rpx;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 40rpx;
+}
+
+.dynamic_text view text {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  font-size: 24rpx;
+  display: inline-block;
+  height: 100%;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  background: linear-gradient(to right, #FF5E62 , #FF9366);
+}
+
+.dynamic_text view image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 动态互动 */
+.dynamic_interact {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 96rpx;
+  line-height: 96rpx;
+}
+
+.dynamic_interact button {
+  margin: 0;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  margin-left: 72rpx;
+  align-items: center;
+}
+
+.dynamic_interact view {
+  display: flex;
+  margin-left: 72rpx;
+  align-items: center;
+}
+
+.dynamic_interact image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
+.dynamic_interact text {
+  font-size: 24rpx;
+  color: #888888;
+}
+
+/* 好物为空的样式 */
+.not_online {
+  padding: 264rpx 0;
+}

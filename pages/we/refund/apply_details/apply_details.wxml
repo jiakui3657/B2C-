@@ -1,0 +1,28 @@
+<!--pages/we/apply_details/apply_details.wxml-->
+<view class="container">
+  <!-- 退货信息 -->
+  <view class="return_info passage">
+    <view class="info_title">退货信息</view>
+    <view class="goods" wx:for="{{salesInfo[0].tRefundOrderItems}}" wx:key="{{index}}">
+      <view class="goods_logo">
+        <image lazy-load="true" src="{{item.goodsImg}}"></image>
+      </view>
+      <view class="goods_r">
+        <view class="goods_name">{{item.goodsName}}</view>
+        <view class="goods_norms">
+          <text>单价：{{item.goodsSalePrice}}</text>
+          <text>申请数量：{{item.goodsRefundNum}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退货状态 -->
+  <view class="return_code passage">
+    <view><text>申请原因：</text>{{salesInfo[0].refundReason}}</view>
+    <view><text>申请时间：</text>{{salesInfo[0].applyTime}}</view>
+    <view wx:if="{{salesInfo[0].auditState == 0}}"><text>状态：</text>审核中</view>
+    <!-- <view wx:if="{{salesInfo[0].auditState == 1}}"><text>状态：</text>已审核</view>
+    <view wx:if="{{salesInfo[0].auditState == 2}}"><text>状态：</text>审核未通过</view> -->
+  </view>
+</view>

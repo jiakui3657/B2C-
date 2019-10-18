@@ -1,0 +1,75 @@
+/* pages/we/notice/index/index.wxss */
+
+page {
+  height: 100%;
+}
+
+.container {
+  min-height: 100%;
+  padding-bottom: 16rpx;
+}
+
+/* 通知列表 */
+.notice_list {
+  
+}
+
+.notice_time {
+  text-align: center;
+  margin-top: 32rpx;
+}
+
+.notice_time text {
+  height: 40rpx;
+  line-height: 40rpx;
+  background: #D2D2D2;
+  color: #fff;
+  font-size: 22rpx;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  border-radius: 3px;
+  display: inline-block
+}
+
+.notice_content {
+  margin-top: 20rpx;
+  background: #fff;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.notice_content view {
+  line-height: 40rpx;
+  color: #353535;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  padding: 20rpx 20rpx;
+}
+
+.notice_content .notice_content_b {
+  border-top: 1px solid #EDEDED;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notice_content text {
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 40rpx;
+  height: 80rpx;
+  flex: 1;
+}
+
+.notice_content image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.not_online  {
+  padding: 264rpx 0;
+}

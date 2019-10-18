@@ -1,0 +1,101 @@
+/* pages/login/login.wxss */
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.out {
+  width: 100%;
+  height: 100%;
+  font-family: "Microsoft Yahei";
+  background: #fff;
+}
+
+.header {
+  width: 100%;
+  height: 150pt;
+  position: relative;
+}
+
+.bg {
+  width: 100%;
+  height: 120pt;
+}
+
+.logo {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 20;
+}
+
+.logo-inner {
+  width: 65pt;
+  height: 65pt;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 10.5pt;
+  overflow: hidden;
+  background: #fff;
+}
+
+.logo-inner image {
+  width: 44pt;
+  height: 44pt;
+}
+
+.main {
+  width: 100%;
+  padding: 5pt 20pt;
+  box-sizing: border-box;
+}
+
+.shop-text {
+  width: 100%;
+  height: 25pt;
+  line-height: 25pt;
+  font-size: 12pt;
+  text-align: center;
+  overflow: hidden;
+  margin-bottom: 20pt;
+}
+
+.get {
+  width: 100%;
+  border-top: 1rpx solid #e0e0e0;
+  font-size: 10pt;
+  box-sizing: border-box;
+  padding-top: 18pt;
+}
+
+.list {
+  width: 100%;
+  height: 17pt;
+  line-height: 17pt;
+  overflow: hidden;
+}
+
+.big {
+  font-size: 12pt;
+}
+
+.btn {
+  width: 100%;
+  height: 35pt;
+  line-height: 35pt;
+  text-align: center;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 20pt;
+  box-sizing: border-box;
+  background-color: #22ac38;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 12pt;
+}
+.btn::after {
+  border: none
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "订单提交成功",
+  "usingComponents": {
+    "jk-goodsList": "/components/goodsList/goodsList"
+  }
+}

@@ -1,0 +1,285 @@
+<!--pages/cart/index/index.wxml-->
+<view class="container {{discountDialogVisible ? 'stop-scroll' : ''}}">
+  <view wx:if="{{discountDialogVisible}}" class="cover"></view>
+  <view class="deliver-type-wrap passage" wx:if="{{order.isSelf == 1}}">
+    <view class="deliver-label">配送方式</view>
+    <view class="type-wrap">
+      <bwd-radio class="radio-item"
+      wx:for="{{deliverType}}" 
+      wx:key="{{item.type}}"
+      checked="{{item.checked}}" 
+      type="{{item.type}}" 
+      label="{{item.label}}"
+      show="{{item.show}}" 
+      bind:radioChange="onDeliverRadioChange"/>
+    </view>
+  </view>
+
+  <!-- 到货时间 -->
+  <view class="goods_time" wx:if="{{deliverType[2].checked && order.isSelf == 1}}">预计{{order.logisticsDuration}}发货</view>
+
+  <view class="address-wrap passage" wx:if="{{deliverType[2].checked}}">
+    <view class="add-address-btn" wx:if="{{address == ''}}" catchtap="add_address">
+      新增收货地址
+    </view>
+    <view class="address-box" wx:if="{{address != ''}}" catchtap="add_address">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/shop/confirm_order/locate.png" class="locate-icon" /> 
+      <view class="address-info">
+        <view class="consignee-info">
+          {{address.linkmanName}} {{address.linkmanPhone}}
+        </view>
+        <view class="address">
+          {{address.provinceName}}{{address.cityName}}{{address.districtName}}{{address.address}}
+        </view>
+      </view>
+      <image src="{{imgSrc}}/images/online/shop/confirm_order/go.png" class="go-icon" /> 
+    </view>
+  </view>
+
+  <view class="goods_time" wx:if="{{deliverType[1].checked && order.isSelf == 1}}">预计{{order.deliveryDuration}}送达</view>
+  
+  <view class="address-wrap passage" wx:if="{{deliverType[1].checked}}">
+    <view class="add-address-btn" wx:if="{{address == ''}}" catchtap="add_address">
+      新增收货地址
+    </view>
+    <view class="address-box" catchtap="add_address" wx:if="{{address != ''}}">
+      <image src="{{imgSrc}}/images/online/shop/confirm_order/locate.png" class="locate-icon" /> 
+      <view class="address-info">
+        <view class="consignee-info">
+          {{address.linkmanName}} {{address.linkmanPhone}}
+        </view>
+        <view class="address">
+          {{address.provinceName}}{{address.cityName}}{{address.districtName}}{{address.address}}
+        </view>
+      </view>
+      <image src="{{imgSrc}}/images/online/shop/confirm_order/go.png" class="go-icon" /> 
+    </view>
+  </view>
+
+  <view class="address-wrap passage" wx:if="{{deliverType[0].checked && address == ''}}">
+    <view class="add-address-btn" catchtap="add_address">
+      新增收货地址
+    </view>
+  </view>
+  
+  <view class="vendor-wrap passage" wx:if="{{deliverType[0].checked}}">
+    <view class="vendor-address" bindtap="getVendorLocation">
+      <view class="title clearfix">
+        <image src="{{imgSrc}}/images/online/shop/confirm_order/locate.png" class="locate-icon fl" /> 
+        <text class="fl">商家地址</text>
+      </view>
+      <view class="address">
+        {{order.shopAddress}}
+      </view>
+    </view>
+    <view class="vendor-info">
+      <view class="info-item">
+        <view class="title">营业时间</view>
+        <view class="content">{{order.shopOpening}} - {{order.shopEnding}}</view>
+      </view>
+      <view class="info-item">
+        <view class="title">商家电话</view>
+        <view class="content">{{order.shopPhone}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-wrap">
+    <view class="shop-wrap passage">
+      <image lazy-load="true" class="{{order.isSelf == 2 ? '' : 'merchant_logo'}}" src="{{order.isSelf == 2 ? imgSrc + '/images/online/logo.png' : imgSrc + '/images/online/shop/confirm_order/shop.png'}}" class="shop-icon" /> 
+      <text class="shop-name">{{order.isSelf == 2 ? '自营店铺' : order.shopName}}</text>
+    </view>
+    <view class="goods-wrap">
+      <view class="goods-item" wx:for="{{order.items}}" wx:key="{{index}}">
+        <image class="goods-img" src="{{item.goodsImg}}"/>
+        <view class="goods-info">
+          <view class="goods-name">{{item.goodsName}}</view>
+          <view class="goods-size">
+            <text class="size-item">规格：{{item.goodsSpecName}}</text>
+          </view>
+          <view class="goods-count">
+            <view class="goods-price">￥{{item.goodsPrice}}</view>
+            <view class="goods-num">x {{item.goodsNum}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="discount-wrap passage">
+      <view class="deliver-fee">
+        <text class="">商品金额：</text>
+        <text class="">￥{{order.goodsAmount}}</text>
+      </view>
+      <view class="deliver-fee">
+        <text class="">运费：</text>
+
+        <!-- 自营店 -->
+        <text wx:if="{{order.isSelf == 2}}">￥{{order.logisticsAmount}}</text>
+
+        <!-- 商家 - 门店自提 -->
+        <text wx:if="{{order.isSelf == 1 && deliverType[0].checked}}">￥{{order.logisticsAmount}}</text>
+
+        <!-- 商家 - 门店配送 -->
+        <text wx:if="{{order.isSelf == 1 && deliverType[1].checked}}">￥{{order.deliveryFee}}</text>
+
+        <!-- 商家 - 快递配送 -->
+        <text wx:if="{{order.isSelf == 1 && deliverType[2].checked}}">￥{{order.logisticsFee}}</text>
+
+      </view>
+      <view class="discount-fee" catchtap="open_coupons">
+        <view>优惠券</view>
+        <view>
+          <text class="">-￥{{order.isSelf == 1?order.couponAmount:order.discountAmount}}</text>
+          <image lazy-load="true" src="{{imgSrc}}/images/online/shop/confirm_order/go.png" class="go-icon" /> 
+        </view>
+      </view>
+
+      <view class="discount-fee" wx:if="{{order.isSelf == 1}}">
+        <view>会员折扣</view>
+        <view>
+          <text class="">-￥{{order.discountAmount}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="fee-wrap">
+      合计：<text class="font-red">￥{{order_price}}</text>
+    </view>
+    <view class="pay-type-wrap passage">
+      <view class="pay-type" catchtap="">
+        <text class="">支付方式：</text>
+        <picker bindchange="bindPickerChange" value="{{payTypeIndex}}" range="{{payTypeList}}">
+          <view class="picker">
+            {{payTypeList[payTypeIndex]}}
+          </view>
+        </picker>
+      </view>
+      <view class="order-remark">
+        <text class="">备注：</text>
+        <input class="remark-input" value="{{remark}}" bindinput="get_remark" placeholder="请输入备注信息（选填）"/>
+      </view>
+    </view>
+  </view>
+
+  <view class="submit-order-btn" wx:if="{{!coupons_state}}" style="background: {{address == '' ? '#D2D2D2' : ''}}"  bindtap="linkTo">
+    提交订单
+    <formId></formId>
+  </view>
+  
+  <!-- <form report-submit="true" catchsubmit="formSubmit">
+    <button form-type="submit" hover-class="none" class="submit-order-btn" wx:if="{{!coupons_state}}" style="background: {{address == '' ? '#D2D2D2' : ''}}" bindtap="linkTo">提交订单</button>
+  </form> -->
+
+  <!-- <view wx:if="{{discountDialogVisible}}" class="discount-dialog">
+    <image class="close-dialog" src="{{imgSrc}}/images/online/shop/confirm_order/q.png" bindtap="closeDialog" />
+    <view class="discount-list">
+      <view class="discount-title">优惠券</view>
+      <view class="discount-tab">
+        <view class="tab-item {{discountType == 1 ? 'active' : ''}}" data-type="1" bindtap="tabChange">可用优惠券({{usable_coupons.length}})</view>
+        <view class="tab-item {{discountType == 2 ? 'active' : ''}}" data-type="2" bindtap="tabChange">不可用优惠券({{no_usable_coupons.length}})</view>
+      </view>
+      <scroll-view class="tab-content" wx:if="{{discountType == 1}}">
+        <view class="discount" wx:for="{{usable_coupons}}" wx:key="{{index}}">
+          <view class="discount-price" style="background-image:url('{{imgSrc}}/images/online/shop/confirm_order/discount2.png')">
+            <view class="price">
+              <text class="fl icon">￥</text> 
+              <text class="font fl">{{item.type == 'PWAY101' ? item.useDenomination : item.discount}}</text>
+            </view>
+            <view class="rule">满260可用</view>
+          </view>
+          <view class="discount-info">
+            <view class="info">仅可购买百万店购自营商品</view>
+            <view class="time">2019-06-23至2019-07-22</view>
+          </view>
+          <bwd-radio class="discount-radio"
+          checked="{{false}}" 
+          type="{{5}}"
+          bind:radioChange="onDiscountRadioChange"/>
+        </view>
+      </scroll-view>
+      <scroll-view class="tab-content" wx:if="{{discountType == 2}}">
+        <view class="discount" wx:for="{{no_usable_coupons}}" wx:key="{{index}}">
+          <view class="discount-price" style="background-image:url('{{imgSrc}}/images/online/shop/confirm_order/discount2.png')">
+            <view class="price">
+              <text class="fl icon">￥</text> 
+              <text class="font fl">{{item.type == 'PWAY101' ? item.useDenomination : item.discount}}</text>
+            </view>
+            <view class="rule">满260可用</view>
+          </view>
+          <view class="discount-info">
+            <view class="info">仅可购买百万店购自营商品</view>
+            <view class="time">2019-06-23至2019-07-22</view>
+          </view>
+          <bwd-radio class="discount-radio"
+          checked="{{false}}" 
+          type="{{5}}"
+          bind:radioChange="onDiscountRadioChange"/>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="discount-btn">
+      确定
+    </view>
+  </view> -->
+
+  <!-- 模态框 -->
+  <view catchtouchmove="move" catchtap="close" class="mask {{coupons_state ? 'mask_active' : ''}}"></view>
+
+  <!-- 优惠券模态框 -->
+  <view catchtouchmove="move" style="height: 910rpx;" class="modal {{coupons_state ? 'modal_active' : ''}}">
+    <view class="discount-dialog">
+      <image class="close-dialog" catchtap="close" src="{{imgSrc}}/images/online/shop/confirm_order/q.png" />
+      <view class="discount-list">
+        <view class="discount-title">优惠券</view>
+        <view class="discount-tab">
+          <view class="tab-item {{discountType == 1 ? 'active' : ''}}" data-type="1" bindtap="tabChange">可用优惠券({{usable_coupons.length}})</view>
+          <view class="tab-item {{discountType == 2 ? 'active' : ''}}" data-type="2" bindtap="tabChange">不可用优惠券({{no_usable_coupons.length}})</view>
+        </view>
+
+        <!-- 可用劵 -->
+        <scroll-view class="tab-content" scroll-y style="padding-bottom: 103rpx;" wx:if="{{discountType == 1}}">
+          <view class="discount red" wx:for="{{usable_coupons}}" wx:key="{{index}}" data-index="{{index}}" catchtap="coupons_toggle">
+            <view class="discount-price">
+              <view class="price">
+                <text class="fl icon">{{item.type == 'PWAY101' ? '￥' : ''}}</text> 
+                <text class="font fl">{{item.type == 'PWAY101' ? item.useDenomination : item.discount*10}}</text>
+                <text class="fl icon">{{item.type == 'PWAY101' ? '' : '折'}}</text>
+              </view>
+              <view class="rule">满{{item.useAmtLimit}}元使用</view>
+            </view>
+            <view class="discount-info">
+              <view class="info">{{item.couponName}}</view>
+              <view class="time">{{item.useStartTime}} - {{item.useEndTime}}</view>
+            </view>
+            <image class="discount-bj" src="{{imgSrc}}/images/online/classify/detail/coupons_bj.png"></image>
+            <image class="goods_check" src="{{item.isDefault == 1 ? imgSrc + '/images/online/common/selected.png' : imgSrc + '/images/online/common/uncheck.png'}}"></image>
+          </view>
+        </scroll-view>
+
+        <!-- 不可用劵 -->
+        <scroll-view class="tab-content" scroll-y style="padding-bottom: 0;" wx:if="{{discountType == 2}}">
+          <view class="discount red" wx:for="{{no_usable_coupons}}" wx:key="{{index}}">
+            <view class="discount-price">
+              <view class="price">
+                <text class="fl icon">{{item.type == 'PWAY101' ? '￥' : ''}}</text> 
+                <text class="font fl">{{item.type == 'PWAY101' ? item.useDenomination : item.discount*10}}</text>
+                <text class="fl icon">{{item.type == 'PWAY101' ? '' : '折'}}</text>
+              </view>
+              <view class="rule">满{{item.useAmtLimit}}元使用</view>
+            </view>
+            <view class="discount-info">
+              <view class="info">{{item.couponName}}</view>
+              <view class="time">{{item.useStartTime}} - {{item.useEndTime}}</view>
+            </view>
+            <image class="discount-bj" src="{{imgSrc}}/images/online/classify/detail/coupons_bj.png"></image>
+            <bwd-radio class="discount-radio"
+            checked="{{false}}" 
+            type="{{5}}"
+            bind:radioChange="onDiscountRadioChange"/>
+          </view>
+        </scroll-view>
+      </view>
+      <cover-view class="discount-btn" wx:if="{{discountType == 1}}" catchtap="choose_coupons">
+        确定
+      </cover-view>
+    </view>
+  </view>
+</view>

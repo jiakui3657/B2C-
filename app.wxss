@@ -1,0 +1,359 @@
+/**app.wxss**/
+.container {
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #f4f4f4;
+  padding: 0 16rpx;
+  font-family: '微软雅黑'
+}
+
+/* 公共样式 */
+button::after {
+  border: 0;
+  border-radius: 0;
+}
+
+.clearfix{
+  overflow: hidden;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.line-1{
+  line-height: 1
+}
+.hide{
+  display: none!important;
+}
+.show{
+  display: block;
+}
+.font-red{
+  color: #F94929;
+}
+.ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cover{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,.5);
+  z-index: 11111;
+}
+.stop-scroll{
+  height: 100%;
+  overflow: hidden!important;
+}
+.dialog{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 80%;
+  width: 100%;
+  border-radius: 10rpx 10rpx 0 0;
+  background: #fff;
+  z-index: 2;
+  padding: 40rpx;
+  box-sizing: border-box
+}
+
+/* 数量加减 */
+.shop_measure {
+  display: flex;
+  align-items: center
+}
+
+.goods_measure view {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goods_measure image {
+  width: 42rpx;
+  height: 42rpx;
+}
+
+.goods_measure input {
+  height: 42rpx;
+  line-height: 42rpx;
+  text-align: center;
+  display: inline-block;
+  width: 64rpx;
+}
+
+/* 取消scroll-view横向滚动 */
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+/* 未开通 */
+.not_online {
+  text-align: center;
+  padding: 64rpx 0;
+  width: 100%;
+}
+
+.not_online image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.not_online view {
+  font-size: 28rpx;
+  color: #999;
+  margin-top: 16rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.not_online navigator {
+  width: 196rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 60rpx;
+  background: #F9464A;
+  color: #fff;
+  font-size: 28rpx;
+  margin: 0 auto;
+  margin-top: 48rpx;
+}
+
+/* 商品样式 */
+.goods_list {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.goods_logo {
+  margin-right: 32rpx;
+  box-sizing: border-box;
+}
+
+.goods_logo image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.goods_list_r {
+  flex: 1;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.goods_name {
+  color: #353535;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 40rpx;
+}
+
+.goods_norms {
+  color: #999;
+  font-size: 22rpx;
+  line-height: 40rpx;
+}
+
+.goods_price {
+  color: #FF474C;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+.goods_code {
+  justify-content: flex-end;
+  font-size: 22rpx;
+  color: #FF474C;
+  display: flex;
+  /* position: absolute; */
+  right: 40rpx;
+  bottom: 32rpx;
+  margin-top: 50rpx;
+}
+
+.goods_code text {
+  display: inline-block;
+  width: 140rpx;
+  text-align: center;
+  line-height: 52rpx;
+  height: 52rpx;
+  border: 1px solid #FF474C;
+  border-radius: 52rpx;
+  margin-left: 20rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* 通行元素上边距 */
+.passage {
+  margin-top: 16rpx;
+  border-radius: 10rpx;
+}
+
+.radius {
+  border-radius: 10rpx;
+}
+
+/* 按钮 */
+.btn {
+  width: 600rpx;
+  height: 94rpx;
+  line-height: 94rpx;
+  text-align: center;
+  border-radius: 94rpx;
+  background: #FF474C;
+  color: #fff;
+  font-size: 36rpx;
+}
+
+/* 触底提示 */
+.bottom_line {
+  height: 132rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 商品列表 */
+.shopList {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* 全局搜索 */
+.search {
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  z-index: 11;
+  background: #fff;
+}
+
+/* table翻页 */
+.order_Content {
+  height: 80rpx;
+}
+
+.swiper-tab {
+  width: 100%;
+  background: #fff;
+  font-size: 10pt;
+  color: #4dab6d;
+  box-sizing: border-box;
+  padding: 0 10pt;
+  white-space: nowrap;
+}
+
+.swiper-tab-list {
+  box-sizing: border-box;
+  color: #353535;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  display: inline-block;
+}
+
+.swiper-tab-list text {
+  height: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.clear{
+  clear: both;
+}
+
+.on {
+  color: #F94929;
+  border-bottom: 2px solid #F94929;
+}
+
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  flex: 1
+}
+
+/* 模态框 */
+.mask {
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  height: 100%;
+  width: 100%;
+  z-index: 11;
+  background: rgba(0,0,0,.5);
+  display: none;
+  transition: all .5s;
+}
+
+.modal {
+  position: fixed;
+  bottom: -100%;
+  left: 0rpx;
+  height: 748rpx;
+  width: 100%;
+  background: #fff;
+  z-index: 111;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column;
+  transition: all .5s;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+
+.mask_active {
+  display: block;
+}
+
+.modal_active {
+  bottom: 0rpx;
+}
+
+.del {
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.del image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 32rpx 32rpx
+}
+
+.noscroll {
+  height: 100%;
+  overflow: hidden;
+}

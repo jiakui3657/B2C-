@@ -1,0 +1,65 @@
+<!--pages/near/index/index.wxml-->
+<!-- header -->
+<view class="header">
+  <!-- 搜索 -->
+  <jk-search mapCode="true" class="shopList" place="{{city}}" placeholder="请输入店铺名称" pathTo="../shop_search/shop_search" disabled="true" />
+
+  <!-- 商家分类 -->
+  <scroll-view wx:if="{{shop_classify_list && shop_classify_list.length > 0}}" id="scroll_view" scroll-x="true" class="shop_classify" scroll-with-animation="true" scroll-left="{{scroll_left}}">
+    <view class="shop_classify_list {{shop_classify_index == index ? 'shop_classify_active' : ''}}" catchtap="shop_classify_toggle" data-index="{{index}}" id="{{item.id}}" wx:for="{{shop_classify_list}}" wx:key="{{index}}">
+      <text>{{item.name}}</text>
+    </view>
+  </scroll-view>
+</view>
+
+<!-- 订单内容 -->
+<swiper current="{{shop_classify_index}}" class="swiper-box" duration="300" bindchange="bindChange" wx:if="{{shop_classify_list.length > 0}}">
+  <swiper-item wx:for="{{shop_classify_list}}" wx:key="{{index}}">
+    <scroll-view bindscrolltoupper="refresh" bindscroll="scroll" scroll-y="true" bindscrolltolower="lower" scroll-top="0" style="height: 100%;-webkit-overflow-scrolling: touch;" scroll-anchoring="true">
+      <!-- 商家列表 -->
+      <view class="container">
+        <view class="shop_list passage {{item.isOpen == 0 ? 'rest' : ''}}" wx:for="{{item.chlidrenList.list}}" data-index="{{index}}" id="{{item.shopId}}" wx:key="{{index}}" catchtap="shop">
+          <image mode="aspectFill" lazy-load="true" class="shop_logo" src="{{item.logo == '' ? imgSrc+'/images/online/near/shop.png' : item.logo}}"></image>
+          <view class="shop_list_r">
+            <view class="shop_name">{{item.shopName}}</view>
+            <view class="shop_info">
+              <view class="shop_kind">
+                <view class="shop_level">
+                  <image lazy-load="true" wx:for="{{5}}" wx:key="{{index}}" src="{{imgSrc}}/images/online/common/level_in.png"></image>
+                </view>
+                <view>{{item.shopTypeName}}</view>
+              </view>
+              <view class="shop_distance">{{item.distance}}</view>
+            </view>
+            <view class="shop_distribution">
+              <view wx:for="{{item.logisticsList}}" wx:key="{{index}}">{{item}}
+                <text>|</text>
+              </view>
+            </view>
+            <!-- <view class="shop_activity">
+              <text wx:for="{{item.activity}}">{{item}}</text>
+            </view> -->
+            <view class="shop_time">营业时间：{{item.opening}} - {{item.ending}}</view>
+          </view>
+          <image lazy-load="true" wx:if="{{item.isSign == 1}}" class="shop_code" src="{{imgSrc}}/images/online/common/shop_code.png"></image>
+          <view class="rest_prompt">休息中</view>
+        </view>
+
+        <!-- 附近店铺为空的样式 -->
+        <view class="not_online" wx:if="{{item.chlidrenList.list.length <= 0}}">
+          <image src="{{imgSrc}}/images/online/common/goods_not.png"></image>
+          <view>暂时还没有该类型店铺~</view>
+        </view>
+
+        <!-- 触底提示 -->
+        <view class="bottom_line" wx:if="{{item.chlidrenList.pageIndex >= item.chlidrenList.pageCount && item.chlidrenList.list.length > 0}}">我是有底线的~</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
+
+<!-- 附近店铺为空的样式 -->
+<view class="not_online" wx:if="{{shop_classify_list && shop_classify_list.length <= 0}}">
+  <image lazy-load="true" src="{{imgSrc}}/images/online/common/not.png"></image>
+  <view>暂无内容，敬请期待~</view>
+</view>

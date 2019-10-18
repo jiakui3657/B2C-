@@ -1,0 +1,15 @@
+<!--pages/we/vip_club/open_end/open_end.wxml-->
+<view class="container">
+  <view class="logo">
+    <image src="{{imgSrc}}/images/online/we/vip_club/vip.png"></image>
+  </view>
+  <block wx:if="{{flag}}">
+  <view class="title">试用会员开通成功</view>
+  <view class="info">恭喜你成功开通百万店购VIP超级会员30天免费体验权限</view>
+  </block>
+  <block wx:else>
+  <view class="title">VIP会员开通成功</view>
+  <view class="info">恭喜你成功开通百万店购VIP超级会员</view>
+  </block>
+  <view class="check radius" catchtap="ret">查看特权</view>
+</view>

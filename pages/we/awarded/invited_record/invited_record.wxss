@@ -1,0 +1,45 @@
+/* pages/we/awarded/invited_record/invited_record.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  min-height: 100%;
+}
+
+.recordList {
+  display: flex;
+  padding: 30rpx 40rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.recordList image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 32rpx;
+}
+
+.recordList .recordList_r {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recordList .name {
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #353535;
+}
+
+.recordList .time {
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  color: #999;
+  font-size: 24rpx;
+}

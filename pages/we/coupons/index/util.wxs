@@ -1,0 +1,33 @@
+function substr(str, index, len) {
+  if (str == undefined || str.length == 0) {
+    return;
+  }
+  return str.substring(index, len);
+}
+/**
+ * 判断优惠券是否即将过期（1天）
+ */
+var remainExpire1Day = function (startTime, endTime) {
+  if (!startTime || !endTime) {
+    return false;
+  }
+  var now = getDate();
+  var startDate = getDate(startTime);
+  var endDate = getDate(endTime);
+
+  if (now.getTime() < startDate.getTime()) {
+    return false;
+  }
+
+  if (now.getTime() > endDate.getTime()) {
+    return false;
+  }
+
+  if (now.getTime() - startDate.getTime() < 1000 * 60 * 60 * 24) {
+    return true;
+  }
+  return false;
+};
+
+module.exports.substr = substr;
+module.exports.remainExpire1Day = remainExpire1Day;

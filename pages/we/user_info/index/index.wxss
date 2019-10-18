@@ -1,0 +1,124 @@
+/* pages/we/we_info/we_info.wxss */
+page {
+  height: 100%;
+}
+.container {
+  padding: 0;
+  height: 100%;
+  overflow: hidden
+}
+
+.user_name {
+  font-size: 26rpx;
+  color: #353535;
+  text-align: center;
+  background: #fff;
+  padding: 32rpx 0;
+  overflow: hidden;
+}
+
+.user_name image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.user_name view {
+  margin-top: 8rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.user_info {
+  padding-left: 40rpx;
+  background: #fff;
+}
+
+.user_info_list {
+  height: 90rpx;
+  line-height: 90rpx;
+  padding-right: 36rpx;
+  border-bottom: 1px solid #E1E0E0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+}
+
+.user_info_list picker {
+  height: 100%
+}
+
+.user_info_list:last-child {
+  border: 0;
+}
+
+.user_info_list input {
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #353535;
+}
+
+.user_info_list .placeholder {
+  color: #D2D2D2;  
+}
+
+.user_info_list .picker {
+  color: #353535;
+  height: 90rpx;
+}
+
+.user_info_list view {
+  flex: 1;
+}
+
+.user_info_list text {
+  width: 120rpx;
+  text-align: left;
+  color: #888888;
+  margin-right: 66rpx;
+}
+
+.user_info_list image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 16rpx;
+  vertical-align: middle;
+}
+
+.gender {
+  display: flex;
+}
+
+.gender view {
+  flex: 0.4
+}
+
+.certification {
+  text-align: right;
+}
+
+.certification view text {
+  font-size: 24rpx;
+  color: #E14046;
+  margin: 0;
+}
+
+.certification image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 16rpx;
+}
+
+button {
+  width: 700rpx;
+  height: 94rpx;
+  line-height: 94rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 36rpx;
+  background: #FF474C;
+  border-radius: 94rpx;
+  margin: 60rpx auto;
+  border: 0;
+  padding: 0;
+}

@@ -1,0 +1,311 @@
+/* pages/we/collect/collect.wxss */
+page {
+  background: #f4f4f4;
+  font-family: "Microsoft YaHei";
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container {
+  padding-top: 16rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/*tab*/
+.swiper-tab-list {
+  width: 50%;
+}
+
+.goodsList {
+  padding-right: 5rpx;
+  box-sizing: border-box;
+  width: 50%;
+  margin-bottom: 10rpx;
+}
+
+.goodsList:nth-child(2n) {
+  padding-right: 0;
+  padding-left: 5rpx;
+}
+
+.goods {
+  padding: 16rpx 36rpx 46rpx;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background: #fff;
+}
+
+.goodsList:nth-last-child(1) {
+  margin-bottom: 0rpx;
+}
+
+.goodsList:nth-last-child(2) {
+  margin-bottom: 0rpx;
+}
+
+.goods_logo {
+  width: 280rpx;
+  height: 280rpx;
+  margin: 0;
+}
+
+.goods_logo_animation {
+  width: 280rpx;
+  height: 280rpx;
+  position: absolute;
+  top: 16rpx;
+  left: 36rpx;
+}
+
+.goods_name {
+  font-size: 28rpx;
+  color: #353535;
+  line-height: 40rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-top: 12rpx;
+  height: 80rpx;
+}
+
+.goods_abstract {
+  font-size: 24rpx;
+  color: #888888;
+  margin-top: 4rpx;
+}
+
+.goods_price {
+  font-size: 28rpx;
+  color: #FF474C;
+  margin-top: 18rpx;
+  width: 100%;
+  text-align: left;
+}
+
+.goods_price image {
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.goods_original_price {
+  color: #888888;
+  font-size: 22rpx;
+  text-decoration:line-through;
+  position: absolute;
+  bottom: 15rpx;
+  left: 38rpx;
+}
+
+.goods_vip_price {
+  font-size: 28rpx;
+  color: #353535;
+  position: absolute;
+  bottom: 10rpx;
+  left: 36rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+}
+
+.goods_vip_price image {
+  width: 44rpx;
+  height: 20rpx;
+}
+
+.cart {
+  position: absolute;
+  bottom: 36rpx;
+  right: 36rpx;
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.goods_bottom {
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 26rpx;
+  color: #868686;
+  margin: 32rpx 0;
+  text-align: center;
+  width: 100%;
+}
+
+/*动态列表*/
+.dynamicList {
+  padding: 20rpx 20rpx 32rpx;
+  background: #fff;
+  width: 100%;
+}
+
+.dynamicList:last-child {
+  margin-bottom: 16rpx;
+}
+
+/* 动态个人信息 */
+.dynamic_personal_info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.personal_info_l {
+  display: flex;
+  font-size: 28rpx;
+  color: #353535;
+}
+
+.personal_info_l text {
+  display: block;
+}
+
+.personal_info_l text:first-child {
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-top: 4rpx;
+}
+
+.personal_info_l text:last-child {
+  font-size: 20rpx;
+  color: #888;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+
+.personal_info_l image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 16rpx;
+  border-radius: 50%;
+}
+
+.personal_info_r {
+  display: flex;
+  font-size: 20rpx;
+  color: #888;
+  padding-top: 20rpx;
+  box-sizing: border-box;
+}
+
+.personal_info_r image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
+/* 动态图片 */
+.dynamic_img_list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.dynamic_img_list image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+/* 两张图片时的样式 */
+.two_list image {
+  width: 320rpx;
+  height: 240rpx;
+}
+
+/* 一张图片时的样式 */
+.one_list image {
+  width: 650rpx;
+  height: 650rpx;
+}
+
+/* 动态文字 */
+.dynamic_text {
+  font-size: 28rpx;
+  color: #353535;
+  line-height: 40rpx;
+  margin-top: 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  display: -webkit-box;
+}
+
+.dynamic_text view {
+  text-align: center;
+  height: 40rpx;
+  line-height: 40rpx;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  font-size: 20rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dynamic_text view text {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 20rpx;
+}
+
+.dynamic_text view image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 动态互动 */
+.dynamic_interact {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32rpx;
+}
+
+.dynamic_interact button {
+  margin: 0;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  margin-left: 72rpx;
+  align-items: center;
+}
+
+.dynamic_interact view {
+  display: flex;
+  margin-left: 72rpx;
+  align-items: center;
+}
+
+.dynamic_interact image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
+.dynamic_interact text {
+  font-size: 24rpx;
+  color: #888888;
+}
+
+/* 迭代公共样式 */
+.passage:first-child {
+  margin-top: 0;
+}
+
+.not_online  {
+  padding: 264rpx 0;
+}

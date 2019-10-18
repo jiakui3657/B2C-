@@ -1,0 +1,64 @@
+/* pages/we/credits_exchange/detail/detail.wxss */
+.container {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* 商品列表 */
+.goods_list {
+  padding: 0rpx 40rpx 32rpx 40rpx;
+  background: #fff;
+  flex-flow: wrap;
+}
+
+.goods_logo {
+  width: 180rpx;
+  height: 180rpx;
+  padding: 20rpx;
+}
+
+.goods_name {
+  -webkit-line-clamp: 1;
+  height: 40rpx;
+}
+
+.goods_price {
+  margin-top: 16rpx;
+}
+
+.goods_norms {
+  margin-top: 16rpx;
+}
+
+.exchange {
+  position: absolute;
+  right: 0rpx;
+  bottom: 0rpx;
+  color: #353535;
+  font-size: 26rpx;
+}
+
+.exchange text {
+  color: #CAA148;
+  font-weight: 900;
+}
+
+.time {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.time text {
+  color: #FF474C;
+  font-size: 28rpx;
+}
+
+/* 数据空的样式 */
+.not_online {
+  background: #fff;
+}

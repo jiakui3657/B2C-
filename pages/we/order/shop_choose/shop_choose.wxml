@@ -1,0 +1,12 @@
+<!--pages/we/shop_choose/shop_choose.wxml-->
+<view class="container">
+  <view class="goods_list passage" wx:for="{{order_share}}" wx:key="{{index}}">
+    <view class="goods_logo">
+      <image lazy-load="true" mode="aspectFit" src="{{item.goodsImg}}"></image>
+    </view>
+    <view class="goods_list_r">
+      <view class="goods_name">{{item.goodsName}}</view>
+      <view class="goods_code"><text catchtap="share_shop" wx:if="{{item.isShare == 0 && item.isEffective == 1 }}" data-index="{{index}}">晒单分享</text></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "jk-goodsList": "/components/goodsList/goodsList",
+    "navbar": "/components/navbar/navbar"
+  }
+}

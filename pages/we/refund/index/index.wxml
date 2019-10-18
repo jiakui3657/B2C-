@@ -1,0 +1,242 @@
+<!--pages/we/after_sales/after_sales.wxml-->
+
+<!-- 售后table切换 -->
+<view class="order_Content">
+  <view class="swiper-tab">
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==0 ? 'on' : ''}}" data-current="0" catchtap="swichNav">售后申请</text>
+    </view>
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==1 ? 'on' : ''}}" data-current="1" catchtap="swichNav">审核中</text>
+    </view>
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==2 ? 'on' : ''}}" data-current="2" catchtap="swichNav">处理中</text>
+    </view>
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==3 ? 'on' : ''}}" data-current="3" catchtap="swichNav">申请记录</text>
+    </view>
+    <view class='clear'></view>
+  </view>
+</view>
+
+<!-- 售后内容 -->
+<swiper current="{{currentTab}}" class="swiper-box" style="height:{{scrollHeight}}px;display:{{choice}}" bindchange="bindChange">
+  <!-- 售后申请 -->
+  <swiper-item class="item">
+    <view class="search">
+      <jk-search class="shopSearch" bind:componentsearch="componentsearch" bind:componentBindfocus="componentBindfocus" placeholder="商品名称/订单编号 " value="{{keyWord}}" />
+      <picker class="screen" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" wx:if="{{!search}}">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/screening.png"></image>
+        <view>筛选</view>
+      </picker>
+
+      <view class="cancel" wx:if="{{search}}" catchtap="cancelSearch">取消</view>
+
+    </view>
+    <scroll-view class="content" scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="padding-top: 108rpx;">
+      <view class="item-block passage" wx:for="{{goodsList}}" wx:key="{{index}}" wx:if="{{!search}}">
+        <view class="goods_title">
+          <image lazy-load="true" src="{{imgSrc}}/images/online/logo.png"></image>
+          <text>自营店铺</text>
+        </view>
+        <view class="goods_list {{item.isInRefundPeriod == 0?'goods_overdue':''}}" wx:for="{{item.items}}" wx:key="{{goodsItemIndex}}" wx:for-item="goodsItem" wx:for-index="goodsItemIndex">
+          <view class="goods_logo">
+            <image lazy-load="true" src="{{goodsItem.goodsImg}}"></image>
+          </view>
+          <view class="goods_list_r">
+            <view class="goods_name">{{goodsItem.goodsName}}</view>
+            <view class="goods_norms">
+              <text>数量：{{goodsItem.goodsNum}}</text>
+              <text>规格：{{goodsItem.goodsSpecName}}</text>
+            </view>
+
+            <view class="goods_code" wx:if="{{item.isInRefundPeriod == 1}}">
+              <view class="overdue_prompt2" wx:if="{{goodsItem.backwardNum >= goodsItem.goodsNum}}">该商品已申请售后</view>
+              <text catchtap="afterType" data-goods="{{goodsItem}}" data-logistics_state="{{item.logisticsState}}" wx:else>申请售后</text>
+            </view>
+            <view class="goods_code" wx:else>
+              <view class="overdue_prompt" wx:if="{{goodsItem.backwardNum >= goodsItem.goodsNum}}">该商品已申请售后</view>
+              <view class="overdue_prompt" wx:else>该商品已超过售后期</view>
+              <text wx:if="{{goodsItem.backwardNum < goodsItem.goodsNum}}">申请售后</text>
+            </view>
+
+          </view>
+        </view>
+      </view>
+      <view class="not_online" wx:if="{{!search && (goodsList == undefined || goodsList.length <= 0)}}">
+        <image src="{{imgSrc}}/images/online/common/order_not.png"></image>
+        <view>还没有订单哦~</view>
+      </view>
+
+      <view class="item-block passage" wx:for="{{searchGoodsList}}" wx:key="{{index}}" wx:if="{{search}}">
+        <view class="goods_title">
+          <image lazy-load="true" src="{{imgSrc}}/images/online/logo.png"></image>
+          <text>自营店铺</text>
+        </view>
+        <view class="goods_list {{item.isInRefundPeriod == 0?'goods_overdue':''}}" wx:for="{{item.items}}" wx:key="{{goodsItemIndex}}" wx:for-item="goodsItem" wx:for-index="goodsItemIndex">
+          <view class="goods_logo">
+            <image lazy-load="true" src="{{goodsItem.goodsImg}}"></image>
+          </view>
+          <view class="goods_list_r">
+            <view class="goods_name">{{goodsItem.goodsName}}</view>
+            <view class="goods_norms">
+              <text>数量：{{goodsItem.goodsNum}}</text>
+              <text>规格：{{goodsItem.goodsSpecName}}</text>
+            </view>
+
+            <view class="goods_code" wx:if="{{item.isInRefundPeriod == 1}}">
+              <view class="overdue_prompt2" wx:if="{{goodsItem.backwardNum >= goodsItem.goodsNum}}">该商品已申请售后</view>
+              <text catchtap="afterType" data-goods="{{goodsItem}}" wx:else>申请售后</text>
+            </view>
+            <view class="goods_code" wx:else>
+              <view class="overdue_prompt" wx:if="{{goodsItem.backwardNum >= goodsItem.goodsNum}}">该商品已申请售后</view>
+              <view class="overdue_prompt" wx:else>该商品已超过售后期</view>
+              <text wx:if="{{goodsItem.backwardNum < goodsItem.goodsNum}}">申请售后</text>
+            </view>
+
+          </view>
+        </view>
+      </view>
+      <view class="not_online" wx:if="{{searctTip && searchGoodsList.length <= 0}}">
+        <image src="{{imgSrc}}/images/online/common/order_not.png"></image>
+        <view>未找到订单哦~</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 审核中 -->
+  <swiper-item class="item">
+    <scroll-view class="content" scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;padding-top: 16rpx;">
+      <view class="item-block passage" wx:for="{{goodsList2}}" wx:key="{{index}}">
+        <view class="goods_title">
+          <image lazy-load="true" src="{{imgSrc}}/images/online/logo.png"></image>
+          <text>自营店铺</text>
+        </view>
+        <view class="goods_list" wx:for="{{item.tRefundOrderItems}}" wx:key="{{goodsItemIndex}}" wx:for-item="goodsItem" wx:for-index="goodsItemIndex">
+          <view class="goods_logo">
+            <image lazy-load="true" src="{{goodsItem.goodsImg}}"></image>
+          </view>
+          <view class="goods_list_r">
+            <view class="goods_name">{{goodsItem.goodsName}}</view>
+            <view class="goods_norms">
+              <text>数量：{{goodsItem.goodsRefundNum}}</text>
+              <text>规格：{{goodsItem.goodsSpecName}}</text>
+            </view>
+
+            <view class="goods_code" wx:if="{{item.auditState == 0}}">
+              <text catchtap="cancel" data-index="{{index}}" data-refund_order_no="{{item.refundOrderNo}}" catchtap="cancel">取消申请</text>
+              <text catchtap="apply_details" data-index="{{index}}">审核中</text>
+            </view>
+            <view class="goods_code" wx:else>
+              <text catchtap="mail" catchtap="post" data-index="{{index}}">邮寄退回</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="not_online" wx:if="{{goodsList2 == undefined || goodsList2.length <= 0}}">
+        <image src="{{imgSrc}}/images/online/common/order_not.png"></image>
+        <view>还没有退货单哦~</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 处理中 -->
+  <swiper-item class="item">
+    <scroll-view class="content" scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;padding-top: 16rpx;">
+      <view class="item-block passage" wx:for="{{goodsList3}}" wx:key="{{index}}">
+        <view class="goods_title">
+          <image lazy-load="true" src="{{imgSrc}}/images/online/logo.png"></image>
+          <text>自营店铺</text>
+        </view>
+        <view class="goods_list" wx:for="{{item.tRefundOrderItems}}" wx:key="{{goodsItemIndex}}" wx:for-item="goodsItem" wx:for-index="goodsItemIndex">
+          <view class="goods_logo">
+            <image lazy-load="true" src="{{goodsItem.goodsImg}}"></image>
+          </view>
+          <view class="goods_list_r">
+            <view class="goods_name">{{goodsItem.goodsName}}</view>
+            <view class="goods_norms">
+              <text>数量：{{goodsItem.goodsRefundNum}}</text>
+              <text>规格：{{goodsItem.goodsSpecName}}</text>
+            </view>
+
+            <view class="goods_code" wx:if="{{item.logisticsState == 1 && item.refundType == 2}}">
+              <text catchtap="refund_goods" data-item="{{item}}">退货中</text>
+            </view>
+            <view class="goods_code" wx:else>
+              <text catchtap="refund_details" data-item="{{item}}">退款中</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="not_online" wx:if="{{goodsList3 == undefined || goodsList3.length <= 0}}">
+        <image src="{{imgSrc}}/images/online/common/order_not.png"></image>
+        <view>还没有退货单哦~</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 申请记录 -->
+  <swiper-item class="item">
+    <view class="search">
+      <jk-search class="shopSearch" bind:componentsearch="componentsearch2" bind:componentBindfocus="componentBindfocus2" placeholder="商品名称/订单编号 " value="{{keyWord2}}" />
+      <!-- <input></input> -->
+      <picker class="screen" bindchange="bindPickerChange2" value="{{index}}" range="{{array}}" wx:if="{{!search2}}">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/screening.png"></image>
+        <view>筛选</view>
+      </picker>
+
+      <view class="cancel" wx:if="{{search2}}" catchtap="cancelSearch2">取消</view>
+    </view>
+    <!-- <view>申请记录</view> -->
+    <scroll-view class="content" scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="padding-top: 108rpx;">
+      <view class="item-block return passage" wx:for="{{goodsList4}}" wx:key="{{index}}" data-item="{{item}}" catchtap="service_details" wx:if="{{!search2}}">
+        <view class="goods_title">
+          <view class="goods_title_l">服务单号：{{item.refundOrderNo}}</view>
+          <view class="goods_title_r">
+            <image lazy-load="true" src="{{imgSrc}}/images/online/we/refund/money.png"></image>
+            <text>{{item.refundType == 1?'仅退款':'退货退款'}}</text>
+          </view>
+        </view>
+        <view class="goods_list" wx:for="{{item.tRefundOrderItems}}" wx:key="{{goodsItemIndex}}" wx:for-item="goodsItem" wx:for-index="goodsItemIndex">
+          <view class="goods_logo">
+            <image lazy-load="true" src="{{goodsItem.goodsImg}}"></image>
+          </view>
+          <view class="goods_list_r">
+            <view class="goods_name">{{goodsItem.goodsName}}</view>
+            <view class="goods_norms">
+              <text>数量：{{goodsItem.goodsRefundNum}}</text>
+              <text>规格：{{goodsItem.goodsSpecName}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="not_online" wx:if="{{!search2 && (goodsList4 == undefined || goodsList4.length <= 0)}}">
+        <image src="{{imgSrc}}/images/online/common/order_not.png"></image>
+        <view>还没有退货单哦~</view>
+      </view>
+
+      <view class="item-block return passage" wx:for="{{searchGoodsList2}}" wx:key="{{index}}" data-item="{{item}}" catchtap="service_details" wx:if="{{search2}}">
+        <view class="goods_title">
+          <view class="goods_title_l">服务单号：{{item.refundOrderNo}}</view>
+          <view class="goods_title_r">
+            <image lazy-load="true" src="{{imgSrc}}/images/online/we/refund/money.png"></image>
+            <text>{{item.refundType == 1?'仅退款':'退货退款'}}</text>
+          </view>
+        </view>
+        <view class="goods_list" wx:for="{{item.tRefundOrderItems}}" wx:key="{{goodsItemIndex}}" wx:for-item="goodsItem" wx:for-index="goodsItemIndex">
+          <view class="goods_logo">
+            <image lazy-load="true" src="{{goodsItem.goodsImg}}"></image>
+          </view>
+          <view class="goods_list_r">
+            <view class="goods_name">{{goodsItem.goodsName}}</view>
+            <view class="goods_norms">
+              <text>数量：{{goodsItem.goodsRefundNum}}</text>
+              <text>规格：{{goodsItem.goodsSpecName}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="not_online" wx:if="{{searctTip2 && searchGoodsList2.length <= 0}}">
+        <image src="{{imgSrc}}/images/online/common/order_not.png"></image>
+        <view>未找到退货单哦~</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

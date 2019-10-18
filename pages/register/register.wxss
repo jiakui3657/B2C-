@@ -1,0 +1,90 @@
+/* pages/registered/registered.wxss */
+
+.container {
+  padding: 0 40rpx;
+  background: #fff;
+  text-align: center
+}
+
+.container image {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 60rpx auto;
+}
+
+/* 注册信息 */
+.from {
+  text-align: left;
+  /* border-bottom: 1px solid #EDEDED; */
+}
+
+.from view {
+  display: flex;
+  height: 96rpx;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #EDEDED;
+}
+
+.from input {
+  text-align: left;
+  flex: 1;
+  font-size: 32rpx;
+  color: #353535;
+}
+
+.placeholder {
+  color: #999;
+  font-size: 32rpx;
+}
+
+.from text {
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 60rpx;
+  background: #FF474C;
+  color: #F4F4F4;
+  font-size: 22rpx;
+}
+
+/* 注册协议 */
+.agreement {
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  margin-top: 60rpx;
+}
+
+.agreement .checkbox {
+  display: flex;
+  font-size: 28rpx;
+  align-items: center;
+}
+
+.agreement .checkbox .protocol{
+  color: #FF474C;
+}
+
+.agreement checkbox {
+  zoom: .6
+}
+
+.agreement text {
+  color: #353535;
+}
+
+/* 注册按钮 */
+.register_btn {
+  width: 640rpxx;
+  text-align: center;
+  height: 94rpx;
+  line-height: 94rpx;
+  border-radius: 94rpx;
+  background: #D2D2D2;
+  color: #fff;
+  font-size: 36rpx;
+  margin: 60rpx auto;
+}

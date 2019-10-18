@@ -1,0 +1,252 @@
+<!--pages/near/shop/shop.wxml-->
+<view class="page {{showDetail ? 'clearfix' : ''}}">
+  <view wx:if="{{showDetail}}" class="cover" catchtap="showShopInfoDetail"></view>
+  <view class="show-top" id="show-top">
+
+    <!-- 商家信息 -->
+    <view class="shop_info">
+      <image lazy-load="true" class="shop_logo" src="{{shopInfo.logo == '' ? imgSrc + '/images/online/near/shop.png' : shopInfo.logo}}"></image>
+      <view class="shop_r">
+        <view class="shop_name">{{shopInfo.shopName}}</view>
+        <view class="shop_activity">
+          <view>
+            <text wx:if="{{shopInfo.logisticsSetting.isLadeSupport == 1}}">门店自提</text>
+            <text wx:if="{{shopInfo.logisticsSetting.isLogisticsSupport == 1}}">快递配送</text>
+            <text wx:if="{{shopInfo.logisticsSetting.isDeliverySupport == 1}}">门店配送</text>
+          </view>
+          <view class="shop_info_btn" catchtap="showShopInfoDetail" wx:if="{{!showDetail}}">
+            <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 搜索 -->
+    <view class="search" wx:if="{{!showDetail}}">
+      <jk-search class="shopList" placeholder="请输入要找的商品" pathTo="../goods_search/goods_search?shopId={{shopId}}" disabled="true" />
+      <view class="securities_btn" catchtap="open_coupons" wx:if="{{coupons_list.length > 0}}">
+        <image lazy-load="true" src="/images/online/near/securities_btn_bj.png"></image>
+        <text>领劵</text>
+      </view>
+    </view>
+    <!-- 搜索 -->
+    <!-- <jk-search class="shopList" style="position: {{showDetail ? 'fixed' : ''}}" placeholder="请输入要找的商品" pathTo="../goods_search/goods_search?shopId={{shopId}}" disabled="true"/> -->
+    <!-- 店铺信息 -->
+    <!-- <view class="shop-info-wrap" style="margin-top: {{showDetail ? '92rpx' : ''}}">
+      <view class="shop_list" style="z-index: {{showDetail ? '1' : ''}}">
+        <image mode="aspectFill" lazy-load="true" class="shop_logo" src="{{shopInfo.logo == '' ? imgSrc + '/images/online/near/shop.png' : shopInfo.logo}}"></image>
+        <view class="shop_list_r">
+          <view class="shop_name">{{shopInfo.shopName}}</view>
+          <view class="shop_activity">
+            <text wx:if="{{shopInfo.logisticsSetting.isLadeSupport == 1}}">门店自提</text>
+            <text wx:if="{{shopInfo.logisticsSetting.isLogisticsSupport == 1}}">快递配送</text>
+            <text wx:if="{{shopInfo.logisticsSetting.isDeliverySupport == 1}}">门店配送</text>
+          </view>
+          <view class="shop_time">营业时间：{{shopInfo.opening}} ~ {{shopInfo.ending}}</view>
+          <image wx:if="{{shopInfo.code}}" class="shop_code" lazy-load="true" src="{{imgSrc}}/images/online/common/shop_code.png"></image>
+          <view class="shop-locate" catchtap="location">
+            <image lazy-load="true" class="icon fl" src="{{imgSrc}}/images/online/common/map_icon.png"></image>
+            <text class="miles" wx:if="{{shopInfo.distance < 1000}}">{{shopInfo.distance}}m</text>
+            <text class="miles" wx:if="{{shopInfo.distance >= 1000}}">{{shopInfo.modifyDistance}}km</text>
+          </view>
+        </view>
+      </view>
+      <view class="shop-detail-wrap" catchtouchmove="move">
+        <view wx:if="{{showDetail}}" class="shop-detail-list">
+          <view class="item" wx:if="{{shopInfo.logisticsSetting.isDeliverySupport == 1}}">
+            <view class="label">门店配送：</view>
+            <view class="content">配送费￥{{shopInfo.logisticsSetting.deliveryFee}} 满{{shopInfo.logisticsSetting.deliveryFreeAmount}}免配送费</view>
+          </view>
+          <view class="item" wx:if="{{shopInfo.logisticsSetting.isLogisticsSupport == 1}}">
+            <view class="label">快递配送：</view>
+            <view class="content">配送费￥{{shopInfo.logisticsSetting.logisticsFee}} 满{{shopInfo.logisticsSetting.logisticsFreeAmount}}免配送费</view>
+          </view>
+          <view class="item">
+            <view class="label">店铺地址：</view>
+            <view class="content">{{shopInfo.cityName}}{{shopInfo.districtName}}{{shopInfo.address}}</view>
+          </view>
+          <view class="item">
+            <view class="label">联系电话：</view>
+            <view class="content font-blue">{{shopInfo.phone}}</view>
+          </view>
+          <view class="item">
+            <view class="label">店铺介绍：</view>
+            <view class="content">{{shopInfo.introduce}}</view>
+          </view>
+        </view>
+        <view class="shop-more {{showDetail ? 'show-info' : ''}}" catchtap="showShopInfoDetail">
+          <view class="more-wrap">
+            <text class="">{{showDetail ? '收起店铺信息' : '更多店铺信息'}}</text>
+            <image lazy-load="true" class="icon {{showDetail ? 'reverse' : ''}}" src="{{imgSrc}}/images/online/common/more.png"></image>
+          </view>
+        </view>
+      </view>
+    </view> -->
+    <view class="shop-detail-wrap" wx:if="{{showDetail}}" catchtouchmove="move">
+      <view class="shop-detail-list">
+        <view class="shop_info_title">
+          <text class="title">营业时间</text>
+        </view>
+        <view class="item">{{shopInfo.opening}} - {{shopInfo.ending}}
+          <text class="time">(仅该时间段内支持自提)</text>
+        </view>
+        <view class="shop_info_title">
+          <text class="title">配送方式</text>
+        </view>
+        <view class="item" wx:if="{{shopInfo.logisticsSetting.isDeliverySupport == 1}}">
+          <view class="label">门店配送：</view>
+          <view class="content">配送费￥{{shopInfo.logisticsSetting.deliveryFee}} 满{{shopInfo.logisticsSetting.deliveryFreeAmount}}免配送费</view>
+        </view>
+        <view class="item" wx:if="{{shopInfo.logisticsSetting.isLogisticsSupport == 1}}">
+          <view class="label">快递配送：</view>
+          <view class="content">配送费￥{{shopInfo.logisticsSetting.logisticsFee}} 满{{shopInfo.logisticsSetting.logisticsFreeAmount}}免配送费</view>
+        </view>
+        <view class="shop_info_title">
+          <text class="title">店铺信息</text>
+          <view class="shop-locate" catchtap="location">
+            <image lazy-load="true" class="icon fl" src="{{imgSrc}}/images/online/common/map_icon.png"></image>
+            <text class="miles" wx:if="{{shopInfo.distance < 1000}}">{{shopInfo.distance}}m</text>
+            <text class="miles" wx:if="{{shopInfo.distance >= 1000}}">{{shopInfo.modifyDistance}}km</text>
+          </view>
+        </view>
+        <view class="item">
+          <view class="label">店铺地址：</view>
+          <view class="content">{{shopInfo.cityName}}{{shopInfo.districtName}}{{shopInfo.address}}</view>
+        </view>
+        <view class="item">
+          <view class="label">联系电话：</view>
+          <view class="content font-blue">{{shopInfo.phone}}</view>
+        </view>
+        <view class="item">
+          <view class="label">店铺介绍：</view>
+          <view class="content">{{shopInfo.introduce}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="close" wx:if="{{showDetail}}">
+      <image catchtap="showShopInfoDetail" lazy-load="true" src="{{imgSrc}}/images/online/we/awarded/del.png"></image>
+    </view>
+  </view>
+  <!-- 商品分类 -->
+  <view class="goods_classify">
+    <view class="goods_l" wx:if="{{goods_l_list && goods_l_list.length > 0}}" lower-threshold="1" scroll-y scroll-with-animation="true" scroll-top="{{scroll_top}}">
+      <view class="goods_l_list {{goods_l_index == index ? 'goods_l_active' : ''}}" catchtap="goods_l_toggle" data-index="{{index}}" id="{{item.id}}" wx:for="{{goods_l_list}}" wx:key="{{index}}">
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+    <view class="goods_r" wx:if="{{goods_l_list && goods_l_list.length > 0}}" wx:for="{{goods_l_list}}" wx:key="{{index}}" wx:if="{{goods_l_index == index}}">
+      <scroll-view class="goods_r_content" style="height: {{scrollHeight}}px" lower-threshold="1" scroll-y bindscrolltolower="lower">
+        <view class="goods_r_list" wx:for="{{goodsList.list}}" wx:key="{{index}}" id="{{item.goodsId}}" catchtap="linkTo">
+          <image mode="aspectFill" lazy-load="true" class="goods_logo" src="{{item.image}}"></image>
+          <image class="goods_logo_animation" mode="aspectFill" style="z-index: {{animationIndex == index ? '11' : '2'}};" id="shop_logo{{index}}" animation="{{animationList[index]}}" src="{{item.image}}"></image>
+          <view class="goods_r_list_r">
+            <view class="goods_name">{{item.name}} </view>
+            <view class="goods_norms">{{item.sup}}</view>
+            <view class="goods_price">
+              <text>¥{{item.price}}</text>
+            </view>
+            <view class="goods_original_price" wx:if="{{item.linePrice > 0}}">
+              <text>¥{{item.linePrice}}</text>
+            </view>
+            <image lazy-load="true" data-index="{{index}}" data-id="shop_logo{{index}}" catchtap="addCart" class="cart" src="{{imgSrc}}/images/online/common/shop_cart.png"></image>
+          </view>
+        </view>
+        <!-- 附近店铺为空的样式 -->
+        <view class="not_online" wx:if="{{goodsList.list.length <= 0}}">
+          <image src="{{imgSrc}}/images/online/common/goods_not.png"></image>
+          <view>暂无商品~</view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 附近店铺为空的样式 -->
+    <view class="not_online" wx:if="{{goods_l_list && goods_l_list.length <= 0}}">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/common/not.png"></image>
+      <view>暂无商品~</view>
+    </view>
+  </view>
+  <!-- 按钮 -->
+  <view class="btn-wrap" style="z-index: {{cart_state ? '1111111' : '1111'}}">
+    <view id="cart" class="cart" catchtap="open_cart">
+      <image lazy-load="true" class="icon" src="{{imgSrc}}/images/online/classify/detail/car.png" />
+      <view class="num">{{shopping_cart}}</view>
+    </view>
+    <view class="fee-wrap">
+      <view class="total">总计：
+        <text class="font-red">￥{{cart_shop_price}}</text>
+      </view>
+      <!-- <view class="tip">(不含配送费)</view> -->
+    </view>
+    <view class="buy-btn {{isRest ? '' : 'shop-rest'}}" catchtap="shop">{{isRest ? '去购物车' : '休息中'}}</view>
+  </view>
+</view>
+
+<!-- 模态框 -->
+<view catchtouchmove="move" style="z-index: 11111;" catchtap="close" class="mask {{coupons_state || cart_state ? 'mask_active' : ''}}"></view>
+
+<!-- 优惠券模态框 -->
+<view catchtouchmove="move" style="height: 800rpx;z-index: 11111;" class="modal {{coupons_state ? 'modal_active' : ''}}">
+  <view class="coupons-wrap">
+    <view class="title">领券</view>
+    <scroll-view class="coupons-list" scroll-y>
+      <view class="discount red" wx:for="{{coupons_list}}" wx:key="{{index}}">
+        <view class="discount-price">
+          <view class="price" wx:if="{{item.typeCode == 'PWAY101'}}">
+            <text class="fl icon">￥</text>
+            <text class="font fl">{{item.denomination}}</text>
+          </view>
+          <view class="price" wx:if="{{item.typeCode == 'PWAY102'}}">
+            <text class="font fl">{{item.discount*10}}</text>
+            <text class="fl icon">折</text>
+          </view>
+          <view class="rule">满{{item.useAmtLimit}}元可用</view>
+        </view>
+        <view class="discount-info">
+          <view class="info">
+            <view>{{item.name}}</view>
+          </view>
+          <view class="time">{{item.startTime}}-{{item.endTime}}</view>
+          <image lazy-load="true" wx:if="{{item.getNumLimit == item.hadGetNum}}" src="{{imgSrc}}/images/online/common/has-c.png"></image>
+          <!-- <image src="{{imgSrc}}/images/online/common/no-c.png"></image> -->
+        </view>
+        <view class="discount-btn style1" wx:if="{{item.getNumLimit > item.hadGetNum}}" data-index="{{index}}" catchtap="getCouponBtn">{{item.hadGetNum == 0?'点击领取':'继续领取'}}</view>
+        <image class="coupon_bj" lazy-load="true" src="{{imgSrc}}/images/online/classify/detail/coupons_bj.png"></image>
+        <view class="welfare" wx:if="{{item.isNewConsumerWelfare == 1}}">新客福利</view>
+      </view>
+    </scroll-view>
+    <image catchtap="close" lazy-load="true" class="close" src="{{imgSrc}}/images/online/common/close.png"></image>
+  </view>
+</view>
+
+<!-- 购物车模态框 -->
+<view catchtouchmove="move" style="height: 800rpx;border-radius: 10rpx;z-index: 11111;" class="modal {{cart_state ? 'modal_active' : ''}}">
+  <view class="cart-wrap">
+    <view class="cart-title" catchtap="empty">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/we/order/del.png"></image>
+      <text>清空</text>
+    </view>
+    <scroll-view class="cart-list" scroll-y>
+      <!-- 商家列表 -->
+      <view class="goods_list" wx:for="{{cart_list}}" wx:key="{{index}}">
+        <view class="goods_list_l">
+          <image lazy-load="true" src="{{item.goodsImg}}" class="goods_logo"></image>
+        </view>
+        <view class="goods_list_r">
+          <view class="goods_name">{{item.goodsName}}</view>
+          <view class="goods_weight">规格：{{item.goodsSpecName}}</view>
+          <view class="goods_price">¥{{item.price}}</view>
+          <view class="goods_measure">
+            <image data-index="{{index}}" lazy-load="true" catchtap="reduction" src="{{imgSrc}}/images/online/common/minus.png"></image>
+            <input disabled="true" type="number" data-idx="{{idx}}" data-index="{{index}}" bindblur="get_number" value="{{item.goodsNum}}"></input>
+            <image data-index="{{index}}" lazy-load="true" catchtap="add" src="{{imgSrc}}/images/online/common/add.png"></image>
+          </view>
+        </view>
+      </view>
+
+      <view class="not_online passage" wx:if="{{cart_list.length == 0}}">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/shop_not.png"></image>
+        <view>购物车还是空的哦~</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

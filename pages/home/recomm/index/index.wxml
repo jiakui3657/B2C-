@@ -1,0 +1,31 @@
+<!--pages/home/recomm/recomm.wxml-->
+
+<scroll-view class="container" scroll-y="true">
+
+  <!-- 顶部标特 -->
+  <view class="header">
+    <image src="{{imgSrc}}/images/online/home/recomm/recommOne.png"></image>
+    <view class="title">为您挑选世间好货</view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="content">
+    <view class="shop_list passage" wx:for="{{10}}" wx:key="{{index}}">
+      <image class="shop_logo" src="{{imgSrc}}/images/test/seckill_shop.png"></image>
+      <view class="shop_list_r">
+        <view class="shop_norms">美果汇 果然有礼红红火火水果礼盒</view>
+        <view class="shop_name">水果大礼盒 送礼更有面</view>
+        <view class="shop_price">¥189 <text>¥199</text></view>
+        <image src="{{imgSrc}}/images/online/common/shop_cart.png"></image>
+      </view>
+    </view>
+    <view class="shop_bottom">我是有底线的~</view>
+  </view>
+  
+</scroll-view>
+
+<!-- 购物车 -->
+<view class="shop">
+  <image src="{{imgSrc}}/images/online/tabBar/shop_selected.png"></image>
+  <text>3</text>
+</view>

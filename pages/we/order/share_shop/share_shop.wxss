@@ -1,0 +1,105 @@
+/* pages/we/share_shop/share_shop.wxss */
+page {
+  height: 100%;
+  background: #F4F4F4;
+}
+
+.container {
+  padding: 0;
+  overflow: hidden;
+  padding-bottom: 100rpx;
+}
+
+.goods {
+  background: #fff;
+  margin-top: 16rpx;
+  padding: 20rpx 40rpx;
+  display: flex;
+}
+
+.goods_logo {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.goods_r {
+  flex: 1;
+}
+
+/* 分享内容 */
+.share_note {
+  margin-top: 16rpx;
+  box-sizing: border-box;
+  padding: 40rpx;
+  background: #fff;
+  padding-bottom: 114rpx;
+}
+
+.shop_img {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.shop_img view {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 10rpx;
+  position: relative;
+  margin-top: 16rpx;
+}
+
+.shop_img image {
+  width: 100%;
+  height: 100%;
+}
+
+.shop_img view:nth-child(4n) {
+  margin-right: 0rpx;
+}
+
+.shop_img .del {
+  position: absolute;
+  right: -8rpx;
+  top: -8rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.share_title {
+  margin: 32rpx 0 8rpx 0;
+  font-size: 28rpx;
+  color: #353535;
+}
+
+.note {
+  background: #F4F4F4;
+  box-sizing: border-box;
+  padding: 20rpx;
+  font-size: 26rpx;
+  color: #101010;
+  height: 360rpx;
+}
+
+textarea {
+  height: 100%;
+  width: 100%;
+}
+
+.placeholder {
+  color: #888888;
+  font-size: 26rpx;
+}
+
+.share {
+  height: 90rpx;
+  background: #FF474C;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 90rpx;
+  margin-top: 380rpx;
+  position: fixed;
+  bottom: 0rpx;
+  left: 0;
+  width: 100%;
+}

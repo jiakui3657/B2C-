@@ -1,0 +1,31 @@
+<!--pages/registered/registered.wxml-->
+<view class="container">
+  <image src="{{imgSrc}}/images/online/logo.png"></image>
+
+  <!-- 注册信息 -->
+  <view class="from">
+
+    <!-- 手机号 -->
+    <view class="phone">
+      <input bindinput="get_phone" placeholder="手机号" placeholder-class="placeholder" type="number" maxlength="11" focus="true"></input>
+    </view>
+
+    <!-- 验证码 -->
+    <view class="code">
+      <input bindinput="get_code" placeholder="验证码" placeholder-class="placeholder" type="number" maxlength="8"></input>
+      <text catchtap="code">{{num}}</text>
+    </view>
+  </view>
+
+  <!-- 注册协议 -->
+  <view class="agreement">
+    <checkbox-group bindchange="checkboxChange">
+      <label class="checkbox">
+        <checkbox value="1" color="#FF474C" /><text>阅读并同意</text><text class="protocol" catchtap="registerProtocol">《百万店购用户注册协议》</text>
+      </label>
+    </checkbox-group>
+  </view>
+
+  <!-- 注册按钮 -->
+  <view class="register_btn" style="background: {{code_start? '#FF474C' : ''}}" catchtap="register">确定</view>
+</view>

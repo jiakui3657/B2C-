@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "已取消",
+  "usingComponents": {
+    "formId": "/components/formId/formId"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "待提货",
+  "usingComponents": {
+    "formId": "/components/formId/formId"
+  }
+}

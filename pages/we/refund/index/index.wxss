@@ -1,0 +1,220 @@
+/* pages/we/after_sales/after_sales.wxss */
+page {
+  background: #f4f4f4;
+  font-family: "Microsoft YaHei";
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/*tab*/
+.swiper-tab-list {
+  width: 25%;
+}
+
+/*列表*/
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.item-block {
+  padding: 0rpx 0rpx 0rpx 40rpx;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.content .item-block:last-child {
+  margin-bottom: 16rpx;
+}
+
+.content .item-block:first-child {
+  margin: 0
+}
+
+.goods_title {
+  display: flex;
+  font-size: 28rpx;
+  color: #353535;
+  height: 104rpx;
+  line-height: 104rpx;
+  align-items: center;
+}
+
+.goods_title image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.goods_list {
+  padding: 0rpx 0 32rpx 0;
+  box-sizing: border-box;
+}
+
+.item-block .goods_list:last-child .goods_list_r {
+  border: 0;
+}
+
+.goods_logo {
+  width: 180rpx;
+  height: 180rpx;
+  position: relative;
+}
+
+.goods_list_r {
+  flex: 1;
+  position: relative;
+  padding-bottom: 32rpx;
+  border-bottom: 1px solid #EDEDED;
+  padding-right: 40rpx;
+}
+
+.goods_norms {
+  margin-top: 16rpx;
+}
+
+.goods_norms text:last-child {
+  margin-left: 32rpx;
+}
+
+.goods_code {
+  bottom: -36rpx;
+  right: 0;
+}
+
+.overdue_prompt {
+  color: #999;
+  font-size: 22rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  display: none;
+}
+
+.overdue_prompt2 {
+  color: #999;
+  font-size: 22rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.goods_overdue .overdue_prompt {
+  display: block;
+}
+
+.goods_overdue .goods_code {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.goods_overdue .goods_code text {
+  opacity: .3;
+}
+
+/* 筛选 */
+
+.search {
+  display: flex;
+  background: #fff;
+  position: relative;
+  height: 92rpx;
+}
+
+.screen {
+  width: 80rpx;
+  text-align: center;
+  color: #888888;
+  font-size: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.shopSearch {
+  flex: 1;
+}
+
+.screen image  {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.screen view  {
+  margin-top: 4rpx;
+  height: 20rpx;
+  line-height: 20rpx;
+  font-size: 20rpx;
+}
+
+/* 退货单号 */
+.return {
+  padding: 0;
+}
+
+.return .goods_list {
+  padding: 20rpx 0rpx 0 40rpx;
+}
+
+.return .goods_title {
+  line-height: 68rpx;
+  height: 68rpx;
+  padding: 0 20rpx;
+  font-size: 26rpx;
+  color: #888888;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0;
+  border-bottom: 1px solid #EDEDED;
+}
+
+.return .goods_title image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 12rpx;
+  vertical-align: middle;
+  margin-top: -8rpx;
+}
+
+.return .goods_list_r {
+  padding-bottom: 80rpx;
+}
+
+.cancel {
+  width: 80rpx;
+  text-align: center;
+  color: #888888;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.not_online  {
+  padding: 264rpx 0;
+}

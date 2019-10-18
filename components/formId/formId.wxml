@@ -1,0 +1,4 @@
+<!--components/formId/formId.wxml-->
+<form report-submit="true" catchsubmit="submitFormId" class='form'>
+  <button form-type="submit" class='form-btn'></button>
+</form>

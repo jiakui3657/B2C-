@@ -1,0 +1,10 @@
+<!--pages/we/share/index/index.wxml-->
+<view class="container">
+  <image class="share_bj" lazy-load="true" src="{{imgSrc}}/images/online/we/share/share_bj.jpg"></image>
+  <view class="share_note">
+    <canvas class="radius" style="height:900rpx;background: #fff;width:100%" canvas-id="canvas" id="share">
+    </canvas>
+    <view class="save radius" catchtap="save">保存图片</view>
+    <view class="prompt">保存图片到相册，可以分享给朋友哦</view>
+  </view>
+</view>

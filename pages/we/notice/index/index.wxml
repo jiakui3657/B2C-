@@ -1,0 +1,21 @@
+<!--pages/we/notice/index/index.wxml-->
+<view class="container">
+
+  <!-- 通知列表 -->
+  <view class="notice_list" wx:for="{{messageRs && messageRs.list}}" wx:key="{{index}}" id="{{item.id}}" catchtap="notice">
+    <view class="notice_time"><text>{{item.createTime}}</text></view>
+    <view class="notice_content radius">
+      <view>{{item.title}}</view>
+      <view class="notice_content_b">
+        <text>{{item.summary}}</text>
+        <image src="{{imgSrc}}/images/online/common/more.png"></image>
+      </view>
+    </view>
+  </view>
+   <view class="goods_bottom" wx:if="{{ messageRs.pageIndex >= messageRs.pageCount && messageRs.list.length > 0 }}">我是有底线的~</view>
+  <!-- 购物车为空的样式 -->
+  <view class="not_online" wx:if="{{messageRs && messageRs.list.length == 0}}">
+    <image src="{{imgSrc}}/images/online/common/not.png"></image>
+    <view>暂无消息~</view>
+  </view>
+</view>

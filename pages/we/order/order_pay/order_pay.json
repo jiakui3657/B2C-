@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "待付款",
+  "usingComponents": {
+    "formId": "/components/formId/formId"
+  }
+}

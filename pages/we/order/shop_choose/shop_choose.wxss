@@ -1,0 +1,36 @@
+/* pages/we/shop_choose/shop_choose.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  padding: 0;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.goods_list {
+  background: #fff;
+  box-sizing: border-box;
+  padding: 30rpx 40rpx 30rpx 40rpx;
+  display: flex;
+}
+
+.goods_list:last-child {
+  margin-bottom: 16rpx;
+}
+
+.goods_logo {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.goods_r {
+  flex: 1;
+  padding-right: 0;
+}
+
+.goods_code {
+  bottom: -8rpx;
+  right: 40rpx;
+}

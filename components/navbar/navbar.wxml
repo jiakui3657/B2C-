@@ -1,0 +1,10 @@
+<!--components/navbar/navbar.wxml-->
+<view class="navbar custom-class" style='height:{{navH}}px;background-color:{{bgColor}}'>
+  <view class="navbar-action-wrap navbar-action-group row item-center" style='top:{{navTop}}px;background-color:rgba(255,255,255,.6);height: {{menuHeight}}px;'>
+    <view wx:if="{{showNav}}" class="navbar-action_item" catchtap="navBack"><image lazy-load="true" style="width:20rpx;height: 38rpx;" src="{{imgSrc}}/images/online/common/back.png"></image></view>
+    <view wx:if="{{showHome}}" class="navbar-action_item last" catchtap="toIndex"><image lazy-load="true" style="width:66rpx;height: 66rpx;" src="{{imgSrc}}/images/online/common/home.png"></image></view>
+  </view>
+  <view class='navbar-title' style='top:{{navTop}}px;height: {{menuHeight}}px;'>
+    {{pageName}}
+  </view>
+</view>

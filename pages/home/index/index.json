@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "jk-goodsList": "/components/goodsList/goodsList",
+    "jk-search": "/components/search/search"
+  },
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,9 @@
+<!--pages/we/notice/notice/notice.wxml-->
+<view class="container">
+  <view class="list" wx:if="{{messageUrlType == null}}">
+    <rich-text nodes="{{message.content}}"></rich-text>
+  </view>
+  <view class="list" wx:if="{{messageUrlType == 1}}">
+    <web-view src="{{message.url}}"></web-view>
+  </view>
+</view>

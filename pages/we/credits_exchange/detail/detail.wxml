@@ -1,0 +1,29 @@
+<!--pages/we/credits_exchange/detail/detail.wxml-->
+<view class="container">
+  <!-- 商品列表 -->
+  <view class="goods_list passage" wx:for="{{orderRs.list}}" wx:key="{{index}}">
+    <view class="time">
+      <view>{{item.createTime}}</view>
+      <text wx:if="{{item.logisticsStatus==0}}">待发货</text>
+      <text wx:elif="{{item.logisticsStatus==1}}">已发货</text>
+      <text wx:else>已完成</text>
+    </view>
+    <view class="goods_logo">
+      <image lazy-load="true" mode="aspectFit" src="{{item.goodsImg}}"></image>
+    </view>
+    <view class="goods_list_r">
+      <view class="goods_name">{{item.goodsName}}</view>
+      <view class="goods_price">{{item.goodsIntegral}}积分</view>
+      <view class="goods_norms">×{{item.goodsNum}}</view>
+      <view class="exchange radius">合计：
+        <text>{{item.payIntegral}}积分</text>
+      </view>
+    </view>
+  </view>
+  <!-- 购物车为空的样式 -->
+  <view class="not_online" wx:if="{{orderRs.list.length <= 0}}">
+    <image src="{{imgSrc}}/images/online/common/not.png"></image>
+    <view>还没有内容哦~</view>
+    <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator>
+  </view>
+</view>

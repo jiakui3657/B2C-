@@ -1,0 +1,190 @@
+/* pages/we/address/add_address/add_address.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  min-height: 100%;
+  overflow: hidden;
+  padding: 0
+}
+
+.add_info {
+  background: #fff;
+  padding: 0 40rpx 40rpx;
+}
+
+.basis_info {
+  display: flex;
+  height: 92rpx;
+  line-height: 92rpx;
+  align-items: center;
+  font-size: 28rpx;
+  color: #353535;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #EDEDED;
+}
+
+.basis_info text {
+  width: 140rpx;
+  display: inline-block;
+}
+
+.basis_info input {
+  margin-left: 32rpx;
+  flex: 1;
+  height: 100%;
+}
+
+.basis_info picker {
+  margin-left: 32rpx;
+  flex: 1;
+  height: 100%;
+}
+
+.basis_info .picker {
+  width: 100%;
+  height: 92rpx;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.basis_info picker text {
+  width: auto;
+}
+
+.placeholder {
+  color: #D2D2D2;
+}
+
+/* 标签 */
+.label {
+  display: flex;
+  padding-top: 32rpx;
+  font-size: 28rpx;
+  color: #353535;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.label_content {
+  margin-left: 100rpx;
+  flex: 1
+}
+
+.label_list {
+  display: flex;
+  flex-wrap: wrap
+}
+
+.label_list .labelToggle,.add {
+  min-width: 128rpx;
+  text-align: center;
+  height: 52rpx;
+  line-height: 52rpx;
+  border-radius: 50rpx;
+  border: 1px solid #D2D2D2;
+  color: #353535;
+  font-size: 22rpx;
+  margin: 0 32rpx 32rpx 0;
+  padding: 0 16rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label_list .activeView {
+  border: 1px solid #FF474C;
+  color: #FF474C;
+}
+
+.label_list .add image {
+  width: 16rpx;
+  height: 16rpx;
+  margin-left: 0;
+}
+
+.label_list image {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  margin-left: 24rpx;
+}
+
+/* 添加标签 */
+.add_label {
+  height: 48rpx;
+  border-radius: 48rpx;
+  margin-bottom: 32rpx;
+  display: flex;
+  width: 440rpx;
+  overflow: hidden;
+  align-items: center;
+  line-height: 48rpx;
+}
+
+.add_label input {
+  flex: 1;
+  background: #F4F4F4;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  color: #353535;
+  height: 100%;
+}
+
+.add_label text {
+  display: inline-block;
+  width: 90rpx;
+  height: 100%;
+  font-size: 24rpx;
+  color: #fff;
+  background: #D2D2D2;
+  text-align: center;
+}
+
+.add_label .activeText {
+  background: #FF474C;
+}
+
+.add_label .placeholder {
+  color: #D2D2D2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.address_code {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20rpx;
+  font-size: 28rpx;
+  color: #353535;
+}
+
+/* 添加地址按钮 */
+.bottom_btn {
+  width: 670rpx;
+  height: 94rpx;
+  line-height: 94rpx;
+  border-radius: 94rpx;
+  color: #fff;
+  font-size: 36rpx;
+  background: #FF474C;
+  margin: 60rpx auto;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.delent {
+  background: transparent;
+  color: #FF474C;
+  border: 1px solid #FF474C;
+}

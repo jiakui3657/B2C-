@@ -1,0 +1,19 @@
+/* pages/we/notice/notice/notice.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  min-height: 100%;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.list {
+  margin-top: 76rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #353535;
+}

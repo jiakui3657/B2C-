@@ -1,0 +1,67 @@
+/* components/navbar/navbar.wxss */
+.navbar {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-shrink: 0;
+  z-index: 99999;
+  background-color: #fff;
+}
+
+.navbar-title {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 115px;
+  padding-right: 115px;
+  /* height: 32px;
+  line-height: 32px; */
+  text-align: center;
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  color: black;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-action-wrap {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  position: absolute;
+  left: 10px;
+  z-index: 11;
+  /* line-height: 1;
+  padding-top: 4px;
+  padding-bottom: 4px; */
+}
+
+.navbar-action-group {
+}
+
+.navbar-action_item {
+  padding: 0 10rpx;
+  color: #333;
+}
+
+.navbar-action-group .navbar-action_item {
+  padding: 0 10rpx;
+}
+
+.navbar-action_item image {
+  display: block;
+}
+
+.navbar-action-group .last {
+  border-right: none;
+}

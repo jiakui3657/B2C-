@@ -1,0 +1,476 @@
+/* pages/we/vip_club/index/index.wxss */
+
+.container {
+  padding-bottom: 16rpx;
+}
+
+/* banner */
+.banner {
+  height: 320rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner .banner_bj {
+  width: 100%;
+  height: 100%;
+  /* background: #353535; */
+}
+
+.coupons_list_text .code {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90rpx;
+  height: 70rpx;
+}
+
+.user_info {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 32rpx 20rpx;
+}
+
+.user_info_t {
+  display: flex;
+  justify-content: space-between
+}
+
+.user_info_l {
+  display: flex;
+}
+
+.user_logo {
+  width: 80rpx;
+  height: 80rpx;
+  display: block;
+  margin-right: 16rpx;
+  border-radius: 50%;
+}
+
+.user_info_r {
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap;
+  flex-direction: column;
+}
+
+.user_name {
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 26rpx;
+  color: #AE7700;
+}
+
+.expire_time {
+  font-size: 22rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  color: #AE7700;
+}
+
+.open {
+  width: 160rpx;
+  text-align: center;
+  height: 52rpx;
+  line-height: 52rpx;
+  color: #F4F4F4;
+  font-size: 24rpx;
+  background: #956602;
+  border-radius: 52rpx;
+}
+
+.open image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 8rpx;
+}
+
+.user_info_b {
+  text-align: center;
+}
+
+.vip_code {
+  color: #956602;
+  font-size: 56rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.vip_integral {
+  color: #AE7700;
+  font-size: 28rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-top: 16rpx;
+}
+
+/* 会员特权 */
+.privilege {
+  background: #fff;
+  padding-bottom: 28rpx;
+}
+
+.privilege_more {
+  display: flex;
+  justify-content: space-between;
+  height: 112rpx;
+  line-height: 112rpx;
+  padding: 0 20rpx;
+  font-size: 32rpx;
+}
+
+.privilege_title {
+  font-weight: 900;
+}
+
+.privilege_more view {
+  display: flex;
+  color: #888;
+  font-size: 26rpx;
+}
+
+.privilege_more image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-top: 44rpx;
+  margin-left: 8rpx;
+}
+
+.privilege_list {
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.privilege_list image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.privilege_list navigator {
+  margin-right: 40rpx;
+  padding: 20rpx 0;
+  text-align: center;
+  display: inline-block;
+}
+
+.privilege_list navigator:last-child {
+  margin-right: 0;
+}
+
+.privilege_list view {
+  font-size: 28rpx;
+  color: #353535;
+  margin-top: 16rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+/* 开通会员 */
+.open_vip {
+  height: 160rpx;
+}
+
+.open_vip image {
+  height: 100%;
+  width: 100%;
+}
+
+/* 优惠券 */
+.coupons {
+  background: #fff;
+  padding-bottom: 32rpx;
+  overflow: hidden
+}
+
+.coupons_title {
+  font-size: 32rpx;
+  margin-top: 32rpx;
+  text-align: center;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-weight: 900;
+}
+
+.coupons_explain {
+  margin-top: 16rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #888888;
+}
+
+.coupons_content {
+  margin-top: 32rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 180rpx;
+  font-size: 0;
+  position: relative;
+  padding: 0 20rpx;
+}
+
+.coupons_list {
+  margin-right: 32rpx;
+  position: relative;
+  width: 260rpx;
+  height: 100%;
+  display: inline-block
+}
+
+.coupons_list:last-child {
+  margin-right: 0rpx;
+}
+
+.coupons_list image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.coupons_list_text {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between
+}
+
+.coupons_list_l {
+  flex: 1;
+  font-size: 24rpx;
+  color: #956602;
+  overflow: hidden;
+  padding-top: 24rpx;
+  box-sizing: border-box;
+}
+
+.coupons_price {
+  font-size: 28rpx;
+  color: #573D05;
+  line-height: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  margin-bottom: 8rpx;
+}
+
+.coupons_price text {
+  font-size: 56rpx;
+}
+
+.coupons_limit,.coupons_classify {
+  height: 40rpx;
+  line-height: 40rpx;
+  padding-left: 8rpx;
+}
+
+.coupons_list_r {
+  width: 70rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-flow: wrap;
+  padding: 5rpx 20rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  color: #573D05;
+  white-space: normal;
+}
+
+/* 积分兑换 */
+.integral {
+  background: #fff;
+  padding-bottom: 32rpx;
+  overflow: hidden;
+} 
+.integral .coupons_content {
+  padding: 0 20rpx;
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+}
+
+.integral .coupons_content view {
+  width: 330rpx;
+  height: 216rpx;
+  box-sizing: border-box;
+}
+
+.integral .coupons_content view:first-child {
+  margin-right: 10rpx;
+}
+
+.integral .coupons_content image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 会员专享价 */
+.vip_goods {
+  background: #fff;
+  padding-bottom: 32rpx;
+  overflow: hidden;
+}
+
+.goods_title {
+  font-size: 32rpx;
+  margin-top: 32rpx;
+  text-align: center;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-weight: 900;
+}
+
+.goods_explain {
+  margin-top: 16rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #888888;
+}
+
+.vip_goods .goods_content {
+  height: 350rpx;
+  margin-top: 32rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-size: 0;
+  position: relative;
+  padding: 0 20rpx;
+}
+
+.vip_goods .goods_list {
+  width: 260rpx;
+  height: auto;
+  padding: 0rpx 10rpx;
+  display: inline-block
+}
+
+.vip_goods .goods_logo {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 0 30rpx;
+  padding: 0;
+}
+
+.vip_goods .goods_name {
+  height: 80rpx;
+  line-height: 40rpx;
+  margin-top: 20rpx;
+  white-space: normal;
+}
+
+.vip_price {
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #353535;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+}
+
+.vip_price image {
+  width: 44rpx;
+  height: 20rpx;
+  vertical-align: middle;
+}
+
+.price {
+  font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  color: #FF474C;
+}
+
+.goods_more {
+  white-space: normal;
+  display: inline-block;
+  height: 100%;
+  width: 26rpx;
+  font-size: 28rpx;
+  color: #353535;
+  padding: 100rpx 72rpx 0 40rpx;
+  vertical-align: top;
+  line-height: 40rpx;
+}
+
+/* 会员线下动态 */
+.vip_dynamic {
+  background: #fff;
+  overflow: hidden;
+  padding-bottom: 28rpx;
+}
+
+.vip_dynamic .coupons_content {
+  height: 314rpx;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10rpx;
+  display: block;
+}
+
+.vip_dynamic .coupons_content image {
+  width: 100%;
+  height: 100%;
+}
+
+.vip_dynamic .vip_dynamic_mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, .4);
+}
+
+.vip_dynamic_note {
+  width: 370rpx;
+  height: 188rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -185rpx;
+  margin-top: -94rpx;
+  box-sizing: border-box;
+  border: 1px solid #fff;
+  padding: 16rpx;
+}
+
+.vip_dynamic_text {
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, .7);
+  box-sizing: border-box;
+  padding: 20rpx 30rpx;
+  font-size: 28rpx;
+  color: #353535;
+  text-align: center;
+  white-space: normal;
+}
+
+.vip_dynamic_text text {
+  font-weight: 900;
+}
+
+/* 删除滚动条 */
+.coupons_content::-webkit-scrollbar {
+  display: none;
+}
+
+.privilege_list::-webkit-scrollbar {
+  display: none;
+}

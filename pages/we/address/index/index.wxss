@@ -1,0 +1,97 @@
+/* pages/we/address/index/index.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  min-height: 100%;
+  padding: 0;
+  padding-bottom: 166rpx;
+}
+
+/* 地址列表 */
+.address_list {
+  background: #fff;
+  box-sizing: border-box;
+  padding: 40rpx 30rpx 36rpx 40rpx;
+  border-bottom: 1px solid #F4F4F4;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+
+}
+
+.address_list:last-child {
+}
+
+.address_l {
+  flex: 1;
+  font-size: 32rpx;
+  color: #353535;
+}
+
+.basis_info {
+  height: 48rpx;
+  line-height: 48rpx;
+  display: flex;
+  align-items: center
+}
+
+.basis_info text {
+  display: inline-block;
+  width: 60rpx;
+  text-align: center;
+  color: #fff;
+  height: 32rpx;
+  line-height: 32rpx;
+  font-size: 22rpx;
+  background: #0E71E1;
+  margin-left: 16rpx;
+  border-radius: 3px;
+}
+
+.address {
+  font-size: 28rpx;
+  color: #999;
+  line-height: 40rpx;
+  margin-top: 8rpx;
+}
+
+.phone {
+  margin-left: 8rpx;
+}
+
+.basis_info .red {
+  background: #FF474C;
+}
+
+.address_r {
+  width: 40rpx;
+  display: flex;
+  align-items: center;
+}
+
+.address_r image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 添加地址按钮 */
+.bottom_btn {
+  position: fixed;
+  bottom: 36rpx;
+  left: 10rpx;
+  width: 730rpx;
+  height: 94rpx;
+  line-height: 94rpx;
+  text-align: center;
+  border-radius: 94rpx;
+  color: #fff;
+  font-size: 36rpx;
+  background: #FF474C;
+}
+
+/* 地址空列表样式 */
+.not_online {
+  padding: 344rpx 0;
+}

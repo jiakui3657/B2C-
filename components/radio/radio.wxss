@@ -1,0 +1,32 @@
+.radio-btn{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 8rpx;
+}
+.radio-label{
+  font-size: 28rpx;
+}
+.radio-btn .btn{
+  display: block;
+  height: 100%;
+  width: 100%
+}
+
+.radio-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.red{
+  color: #FF474C;
+}
+
+.fr{
+  float: right;
+}
+.clearfix{
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,140 @@
+{
+  "pages": [
+    "pages/home/index/index",
+    "pages/home/recomm/index/index",
+    "pages/home/welfare/use_coupons/use_coupons",
+    "pages/home/welfare/index/index",
+    "pages/home/welfare/entry_coupon/entry_coupon",
+    "pages/home/circle/index/index",
+    "pages/home/circle/store_details/store_details",
+    "pages/home/circle/share_dynamic_details/share_dynamic_details",
+    "pages/home/circle/dynamic_details/dynamic_details",
+    "pages/home/circle/share_store_details/share_store_details",
+    "pages/cart/index/index",
+    "pages/cart/confirm_order/confirm_order",
+    "pages/cart/order_success/order_success",
+    "pages/near/index/index",
+    "pages/near/shop/shop",
+    "pages/near/shop_detail/shop_detail",
+    "pages/near/shop_location/shop_location",
+    "pages/near/goods_search/goods_search",
+    "pages/near/shop_search/shop_search",
+    "pages/classify/index/index",
+    "pages/classify/goods_search/goods_search",
+    "pages/classify/goods_detail/goods_detail",
+    "pages/classify/goods_evaluation/goods_evaluation",
+    "pages/we/index/index",
+    "pages/we/user_info/index/index",
+    "pages/we/user_info/authenticationOk/authenticationOk",
+    "pages/we/user_info/certification/certification",
+    "pages/we/share/index/index",
+    "pages/we/order/index/index",
+    "pages/we/order/order_pay/order_pay",
+    "pages/we/order/order_delivery/order_delivery",
+    "pages/we/order/logistics/logistics",
+    "pages/we/order/order_goods/order_goods",
+    "pages/we/order/order_pick/order_pick",
+    "pages/we/order/shop_choose/shop_choose",
+    "pages/we/order/share_shop/share_shop",
+    "pages/we/order/order_cancel/order_cancel",
+    "pages/we/order/order_complete/order_complete",
+    "pages/we/order/logistics_list/logistics_list",
+    "pages/we/refund/index/index",
+    "pages/we/refund/after_sales_details/after_sales_details",
+    "pages/we/refund/after_type/after_type",
+    "pages/we/refund/apply_details/apply_details",
+    "pages/we/refund/mail_address/mail_address",
+    "pages/we/refund/return_goods/return_goods",
+    "pages/we/refund/refund_details/refund_details",
+    "pages/we/refund/service_details/service_details",
+    "pages/we/refund/edit_info/edit_info",
+    "pages/we/collect/index/index",
+    "pages/we/integral/index/index",
+    "pages/we/footprint/index/index",
+    "pages/we/vip_club/index/index",
+    "pages/we/vip_club/privilege_list/privilege_list",
+    "pages/we/vip_club/open_end/open_end",
+    "pages/we/vip_club/open_vip/open_vip",
+    "pages/we/vip_club/prove/prove",
+    "pages/we/vip_club/vip_protocol/vip_protocol",
+    "pages/we/credits_exchange/index/index",
+    "pages/we/credits_exchange/change/change",
+    "pages/we/credits_exchange/detail/detail",
+    "pages/we/awarded/index/index",
+    "pages/we/awarded/invite/invite",
+    "pages/we/awarded/help/help",
+    "pages/we/awarded/share_polite/share_polite",
+    "pages/we/awarded/share_goods/share_goods",
+    "pages/we/awarded/friends/friends",
+    "pages/we/awarded/invited_record/invited_record",
+    "pages/we/awarded/help_couple/help_couple",
+    "pages/we/notice/notice/notice",
+    "pages/we/notice/index/index",
+    "pages/we/address/index/index",
+    "pages/we/address/add_address/add_address",
+    "pages/we/coupons/index/index",
+    "pages/we/register_protocol/register_protocol",
+    "pages/register/register",
+    "pages/login/login",
+    "pages/demo/demo",
+    "pages/shop/shop"
+  ],
+  "window": {
+    "backgroundColor": "#f4f4f4",
+    "backgroundTextStyle": "dark",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "百万店购",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColorTop": "#f4f4f4",
+    "backgroundColorBottom": "#f4f4f4"
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#FF474C",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/home/index/index",
+        "text": "主页",
+        "iconPath": "/images/online/tabBar/home.png",
+        "selectedIconPath": "/images/online/tabBar/home_selected.png"
+      },
+      {
+        "pagePath": "pages/classify/index/index",
+        "text": "分类",
+        "iconPath": "/images/online/tabBar/classify.png",
+        "selectedIconPath": "/images/online/tabBar/classify_selected.png"
+      },
+      {
+        "pagePath": "pages/near/index/index",
+        "text": "附近",
+        "iconPath": "/images/online/tabBar/near.png",
+        "selectedIconPath": "/images/online/tabBar/near_selected.png"
+      },
+      {
+        "pagePath": "pages/cart/index/index",
+        "text": "购物车",
+        "iconPath": "/images/online/tabBar/shop.png",
+        "selectedIconPath": "/images/online/tabBar/shop_selected.png"
+      },
+      {
+        "pagePath": "pages/we/index/index",
+        "text": "我的",
+        "iconPath": "/images/online/tabBar/we.png",
+        "selectedIconPath": "/images/online/tabBar/we_selected.png"
+      }
+    ]
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wxd02041eed6e2c3e2"
+  ],
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
+}

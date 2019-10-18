@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "售后管理",
+  "usingComponents": {
+    "jk-search": "/components/search/search"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "晒单分享",
+  "usingComponents": {
+    "formId": "/components/formId/formId"
+  }
+}

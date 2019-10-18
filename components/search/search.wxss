@@ -1,0 +1,68 @@
+/* components/search/search.wxss */
+.search {
+  display: flex;
+  background: #fff;
+  padding: 16rpx;
+  width: 100%;
+  box-sizing: border-box;
+  height: 92rpx;
+}
+
+.map {
+  width: 120rpx;
+  font-size: 28rpx;
+  color: #888888;
+  line-height: 60rpx;
+}
+
+.map image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+  vertical-align: middle;
+}
+
+.search navigator {
+  flex: 1;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 60rpx;
+  background: #F4F4F4;
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.search navigator image {
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+  margin: 15rpx 8rpx 0 32rpx;
+}
+
+.search navigator input {
+  flex: 1;
+  font-size: 26rpx;
+  color: #353535;
+  line-height: 60rpx;
+  height: 60rpx;
+  vertical-align: middle;
+}
+
+.search navigator view {
+  height: 100%;
+  width: 84rpx;
+}
+
+cover-view {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+cover-view cover-image {
+  width: 30rpx;
+  height: 30rpx;
+}

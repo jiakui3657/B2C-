@@ -1,0 +1,46 @@
+<!--pages/we/we_info/we_info.wxml-->
+<view class="container">
+  <view class="user_name passage">
+    <image lazy-load="true" mode="aspectFit" src="{{avatar}}" catchtap="getUserAvatar"></image>
+    <view>{{name}}</view>
+  </view>
+  <view class="user_info passage">
+    <view class="user_info_list certification" catchtap="certification">
+      <text>实名认证</text>
+      <view>
+        <text>{{userInfo.isAuth == 0 ? '未认证' : '已认证'}}</text>
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+      </view>
+    </view>
+    <view class="user_info_list">
+      <text>昵称</text>
+      <view>
+        <input bindinput="get_name" value="{{name}}" placeholder-class="placeholder" placeholder="请输入昵称" maxlength="20" />
+      </view>
+    </view>
+    <view class="user_info_list">
+      <text>性别</text>
+      <view class="gender">
+        <view catchtap="genderToggle" data-sex="2">
+          <image lazy-load="true" src="{{gender == 2 ? imgSrc + '/images/online/common/selected.png' : imgSrc + '/images/online/common/uncheck.png'}}"></image>
+          男
+        </view>
+        <view catchtap="genderToggle" data-sex="3">
+          <image lazy-load="true" src="{{gender == 3 ? imgSrc + '/images/online/common/selected.png' : imgSrc + '/images/online/common/uncheck.png'}}"></image>
+          女
+        </view>
+      </view>
+    </view>
+    <view class="user_info_list">
+      <text>出生日期</text>
+      <view>
+        <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+          <view class="picker">
+            {{date}}
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <button hover-class="none" catchtap="save">保存</button>
+</view>

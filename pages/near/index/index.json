@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "jk-search": "/components/search/search"
+  },
+  "navigationBarTitleText": "附近店铺"
+}

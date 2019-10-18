@@ -1,0 +1,66 @@
+<!--pages/we/refund/return_goods/return_goods.wxml-->
+<view class="container">
+  <!-- 收货人 -->
+  <view class="user_info_t passage">
+    <image src="{{imgSrc}}/images/online/we/refund/closed.png"></image>
+    <view class="info">
+      <view class="user_name">{{detail.deliveryLinkman}}<text>{{detail.deliveryLinkmanPhone}}</text></view>
+      <view class="user_address">{{detail.deliveryAddress}}</view>
+    </view>
+  </view>
+
+  <!-- 退货商品 -->
+  <view class="goods passage">
+    <view class="goods_title">退货信息</view>
+    <view class="goods_content">
+      <view class="goods_logo">
+        <image src="{{detail.tRefundOrderItems[0].goodsImg}}"></image>
+      </view>
+      <view class="goods_r">
+        <view class="goods_name">{{detail.tRefundOrderItems[0].goodsName}}</view>
+        <view class="goods_norms">
+          <text>单价：￥{{detail.tRefundOrderItems[0].goodsSalePrice}}</text>
+          <text>申请数量：{{detail.tRefundOrderItems[0].goodsRefundNum}}</text>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+
+  <!-- 寄货人 -->
+  <view class="user_info_t passage">
+    <image src="{{imgSrc}}/images/online/we/refund/send.png"></image>
+    <view class="info" catchtap="edit_info">
+      <view class="user_name">{{detail.logisticsLinkman}}<text>{{detail.logisticsLinkmanPhone}}</text></view>
+      <view class="user_address">{{detail.logisticsAddress}}</view>
+    </view>
+  </view>
+
+  <!-- 快递信息 -->
+  <view class="courier_info passage">
+    <view class="courier_list">
+      <view>快递公司：</view>
+      <text>{{detail.logisticsCompanyName}}</text>
+    </view>
+    <view class="courier_list">
+      <view>快递单号：</view>
+      <text>{{detail.logisticsNo}}</text>
+    </view>
+  </view>
+
+  <!-- 退款信息 -->
+  <view class="refund_info passage">
+    <view>
+      申请原因：<text>{{detail.refundReason}}</text>
+    </view>
+    <view>
+      申请时间：<text>{{detail.applyTime}}</text>
+    </view>
+    <view>
+      审核时间：<text>{{detail.auditTime}}</text>
+    </view>
+    <view wx:if="{{detail.logisticsTime}}">
+      邮寄时间：<text>{{detail.logisticsTime}}</text>
+    </view>
+  </view>
+</view>

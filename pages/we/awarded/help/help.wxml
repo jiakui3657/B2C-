@@ -1,0 +1,90 @@
+<!--pages/we/awarded/help/help.wxml-->
+
+<!-- header -->
+<view class="header">
+  <image lazy-load="true" src="{{imgSrc}}/images/online/we/awarded/sign_bj.png"></image>
+  <image lazy-load="true" class="activity_title" src="{{imgSrc}}/images/online/we/awarded/activity_title.png"></image>
+  <view catchtap="cancel" class="rules_name" wx:if="{{bangingCoupon.remark}}">活动规则</view>
+  <view class="staff" wx:if="{{bangingCoupon.tipList && bangingCoupon.tipList.length > 0}}">
+    <swiper vertical="true" circular="true" interval="3000" autoplay="true" >
+      <swiper-item wx:for="{{bangingCoupon.tipList}}" wx:key="{{index}}">{{item}}</swiper-item>
+    </swiper>
+  </view>
+</view>
+
+<view class="container radius">
+
+  <!-- 邀请好友信息 -->
+  <view class="friends">
+
+    <!-- 顶部提示信息 -->
+    <view class="friends_t">
+      <view class="friends_title"><text>{{bangingCoupon.type == 'PWAY101' ? bangingCoupon.useDenomination : bangingCoupon.discount}}</text>{{bangingCoupon.type == 'PWAY101' ? '元立减券' : '折扣券'}}</view>
+      <view class="friends_number" wx:if="{{!failure}}">再邀<text>{{bangingCoupon.needNum - bangingCoupon.invitedNum}}</text>位好友帮忙，即可获得，下单立减</view>
+      <view class="failure_title" wx:if="{{failure}}" style="margin-top: 32rpx;">别灰心，还可以再领一次哦~</view>
+    </view>
+
+    <!-- 底部人员信息 -->
+    <view class="friends_b">
+
+      <!-- 邀请人员信息 -->
+      <view class="invitation_content">
+        <view class="invitation_list" wx:for="{{bangingCoupon.invitedNum}}" wx:key="{{index}}">
+          <image lazy-load="true"  src="{{bangingCoupon.invitedList[index].avatar}}"></image>
+          <view>{{bangingCoupon.invitedList[index].item.nickName}}</view>
+        </view>
+        <view class="invitation_list" wx:for="{{bangingCoupon.needNum - bangingCoupon.invitedNum}}" wx:key="{{index}}">
+          <image lazy-load="true" src="{{imgSrc}}/images/online/we/awarded/add.png"></image>
+        </view>
+      </view>
+
+      <!-- 邀请人员按钮 -->
+      <button class="invitation_btn" hover-class="none" open-type="share" >继续邀请</button>
+
+      <!-- 剩余时间 -->
+      <view class="remaining">
+        <view class="remaining_text">距优惠券消失剩</view>
+        <view class="remaining_time">
+          <text class="time" wx:if="{{!failure}}">{{time.hour}}</text><text class="separator">:</text><text class="time">{{time.minute}}</text><text class="separator">:</text><text class="time">{{time.second}}</text>
+          <view class="failure_title" wx:if="{{failure}}" style="margin-top: 60rpx;">别灰心，还可以再领一次哦~</view>
+        </view>
+      </view>
+
+      <!-- 解释权提示 -->
+      <view class="explain">本活动的最终解释权归百万店购所有</view>
+
+      <!-- 失败提示 -->
+      <image lazy-load="true" wx:if="{{failure}}" class="failure" src="{{imgSrc}}/images/online/we/awarded/failure.png"></image>
+    </view>
+  </view>
+
+</view>
+
+<!-- 规则模态框 -->
+<view catchtouchmove="move" catchtap="cancel" class="mask" wx:if="{{modalFlag || securitiesFlag}}"></view>
+<view catchtouchmove="move" class="rules radius" wx:if="{{modalFlag}}">
+  <view class="rules_title">
+    <text>活动规则</text>
+  </view>
+  <view class="rules_note">
+    <scroll-view  scroll-y="true">
+      <text>{{bangingCoupon.remark}}</text>
+    </scroll-view>
+  </view>
+  <image lazy-load="true" catchtap="cancel" class="del" src="{{imgSrc}}/images/online/we/awarded/del.png"></image>
+</view>
+
+<!-- 助力提示框 -->
+<!-- <view class="help securities" wx:if="{{helpFlag}}">
+  <image src="{{imgSrc}}/images/online/we/awarded/securities_title.png"></image>
+  <view class="securities_content">
+    <view class="securities_title">
+      <image src="{{imgSrc}}/images/test/seckill_shop.png"></image>
+      <view>谢谢你，帮我领券</view>
+    </view>
+    <view class="securities_money">助力成功!</view>
+    <view class="securities_rules">已有2位好友帮忙领取</view>
+    <view class="securities_btn">我也要领</view>
+    <view class="securities_time">距优惠券消失剩：05:56:48</view>
+  </view>
+</view> -->

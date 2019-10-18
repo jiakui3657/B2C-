@@ -1,0 +1,31 @@
+/* pages/we/authenticationOk/authenticationOk.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  background: #fff;
+  font-size: 52rpx;
+  color: #353535;
+  padding-top: 96rpx;
+  text-align: center;
+}
+
+image {
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 50%;
+}
+
+.btn {
+  width: 600rpx;
+  height: 94rpx;
+  line-height: 94rpx;
+  text-align: center;
+  border-radius: 94rpx;
+  background: #FF474C;
+  color: #fff;
+  font-size: 36rpx;
+  margin: 80rpx auto;
+}

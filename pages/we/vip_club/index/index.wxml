@@ -1,0 +1,119 @@
+<!--pages/we/vip_club/index/index.wxml-->
+<view class="container">
+  <!-- banner -->
+  <view class="banner passage">
+    <image lazy-load="true" class="banner_bj radius" src="{{imgSrc}}/images/online/we/vip_club/vip_banner.png"></image>
+    <view class="user_info">
+      <view class="user_info_t">
+        <view class="user_info_l">
+          <image lazy-load="true" mode="aspectFit" class="user_logo" src="{{userInfo.avatar}}"></image>
+          <view class="user_info_r">
+            <view class="user_name">{{userInfo.nickName}}</view>
+            <view class="expire_time" wx:if="{{userInfo.memberGradeCode != 'M101'}}">{{userInfo.endTime}}到期</view>
+          </view>
+        </view>
+        <view class="open" catchtap="open_vip">
+          <text wx:if="{{userInfo.memberGradeCode == 'M101'}}">立即体验</text>
+          <text wx:if="{{userInfo.memberGradeCode == 'M102'}}">立即开通</text>
+          <text wx:if="{{userInfo.memberGradeCode == 'M103'}}">立即续费</text>
+          <image lazy-load="true" src="{{imgSrc}}/images/online/common/white_more.png"></image>
+        </view>
+      </view>
+      <view class="user_info_b">
+        <view class="vip_code">{{userInfo.memberGradeName}}</view>
+        <view class="vip_integral">您当前积分为：{{userInfo.integral || 0}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 会员特权 -->
+  <view class="privilege passage">
+    <view class="privilege_more">
+      <text class="privilege_title">专享特权</text>
+      <view catchtap="privilege">
+        <text>查看全部</text>
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+      </view>
+    </view>
+    <scroll-view class="privilege_list" scroll-x="true">
+      <navigator hover-class="none" url="/pages/we/vip_club/privilege_list/privilege_list?current={{index}}" wx:for="{{privilegeList}}" wx:key="{{index}}">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/we/vip_club/{{item.available == 0 ? 'not_' : ''}}{{item.privilegeCode}}.png"></image>
+        <view>{{item.privilegeName}}</view>
+      </navigator>
+    </scroll-view>
+  </view>
+
+  <!-- 开通会员 -->
+  <view class="open_vip passage" catchtap="open_vip" wx:if="{{ ads && ads.C_VIP && ads.C_VIP.length }}">
+    <image wx:if="{{ ads && ads.C_VIP && ads.C_VIP.length }}" lazy-load="true" src="{{ ads.C_VIP[0].source }}"></image>
+    <image wx:else lazy-load="true" src="{{imgSrc}}/images/test/vip_ad.png"></image>
+  </view>
+
+  <!-- 优惠券 -->
+  <view class="coupons passage" wx:if="{{vipCouponList && vipCouponList.length > 1}}">
+    <view class="coupons_title">每月礼券</view>
+    <view class="coupons_explain">每月初更新  每张券可领一次</view>
+    <scroll-view scroll-x="true" class="coupons_content">
+      <view class="coupons_list" wx:for="{{vipCouponList}}" wx:key="{{index}}">
+        <block wx:if="{{userInfo.memberGradeCode == 'M103'}}"><image lazy-load="true" src="{{imgSrc}}/images/online/we/vip_club/vip_coupons.png"></image></block>
+        <block wx:else><image lazy-load="true" src="{{imgSrc}}/images/online/we/vip_club/coupons.png"></image></block>
+        <view class="coupons_list_text">
+                        <image wx:if="{{item.isTake==1}}" class="code" src="{{imgSrc}}/images/online/we/coupons/receive.png"></image>
+          <view class="coupons_list_l">
+            <view class="coupons_price">￥<text>{{item.useDenomination}}</text></view>
+            <view class="coupons_limit">满{{item.useAmtLimit}}可用</view>
+          </view>
+          <view class="coupons_list_r" catchtap="open_vip" wx:if="{{userInfo.memberGradeCode != 'M103'}}">开通vip领取</view>
+          <view class="coupons_list_r" wx:elif="{{item.isTake == 0 && item.totalNum >= item.getNum + item.getNumLimit && userInfo.memberGradeCode == 'M103'}}" data-couponid="{{item.couponId}}" catchtap="getCoupon">立即领取</view>
+          <view class="coupons_list_r" wx:elif="{{item.isTake == 0 && item.totalNum < item.getNum + item.getNumLimit && userInfo.memberGradeCode == 'M103'}}">已抢光</view>
+          <view class="coupons_list_r" id="{{item.couponId}}" wx:else catchtap="go_coupons">立即使用</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 积分兑换 -->
+  <view class="integral passage">
+    <view class="coupons_title">积分兑好礼</view>
+    <view class="coupons_explain">会员积分兑换  享受超值福利</view>
+    <view class="coupons_content">
+      <view class="radius" data-index="1" catchtap="credits_exchange">
+        <image lazy-load="true" src="{{imgSrc}}/images/test/exchange.png"></image>
+      </view>
+      <view class="radius" data-index="0" catchtap="credits_exchange">
+        <image lazy-load="true" src="{{imgSrc}}/images/test/vip_exchange.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 会员专享价 -->
+  <view class="vip_goods passage" wx:if="{{vipGoodsList && vipGoodsList.length > 0}}">
+    <view class="goods_title">会员专享价</view>
+    <view class="goods_explain">惊喜最低价 每日更新</view>
+    <scroll-view class="goods_content" scroll-x="true">
+      <view class="goods_list" wx:for="{{vipGoodsList}}" wx:key="{{index}}" id="{{item.goodsId}}" catchtap="toGoodsDetail">
+        <image lazy-load="true" mode="aspectFit" class="goods_logo" src="{{item.goodsImg}}"></image>
+        <view class="goods_name">{{item.goodsName}}</view>
+        <view class="vip_price"><text>¥{{item.vipPrice}}</text><image lazy-load="true" src="{{imgSrc}}/images/online/common/vip_icon.png"></image></view>
+        <view class="price">¥{{item.price}}</view>
+      </view>
+      <navigator class="goods_more" url="/pages/home/welfare/index/index?index=2" hover-class="none">查看更多</navigator>
+    </scroll-view>
+  </view>
+
+  <!-- 会员线下动态 -->
+  <!-- <view class="vip_dynamic passage">
+    <view class="coupons_title">会员线下动态</view>
+    <view class="coupons_content">
+      <image lazy-load="true" mode="aspectFit" src="{{imgSrc}}/images/test/vip_activity.jpg"></image>
+      <view class="vip_dynamic_mask">
+        <view class="vip_dynamic_note">
+          <view class="vip_dynamic_text">
+            <text>百万店购</text>
+            <view>打造专属会员狂欢活动线上线下交互引流</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+</view>

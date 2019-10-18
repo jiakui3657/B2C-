@@ -1,0 +1,81 @@
+<!--pages/home/circle/share_store_details/share_store_details.wxml-->
+<!-- 状态栏 -->
+<navbar page-name="好店详情" show-home="true"></navbar>
+
+<scroll-view class="container" scroll-y="true" style="padding-top: {{navHeight}}px;">
+
+  <!-- 个人信息 -->
+  <view class="user_info">
+    <view class="user_info_l">
+      <image lazy-load="true" class="user_logo" src="{{content.userAvatar ? content.userAvatar : imgSrc + '/images/online/logo.png'}}"></image>
+      <view class="infp">
+        <view class="user_name">
+          <text>{{content.userName ? content.userName : '自营店铺'}}</text>
+          <image lazy-load="true" wx:if="{{content.memberGradeCode == 'M103'}}" src="{{imgSrc}}/images/online/common/vip_icon.png"></image>
+        </view>
+        <view class="user_time">{{content.createTime}}</view>
+      </view>
+    </view>
+    <view class="user_info_r">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/browse.png"></image>
+      <text>{{content.visitNum}}人看过</text>
+    </view>
+  </view>
+
+  <!-- 心情内容 -->
+  <view class="content">
+    <view class="title">
+      <text selectable="true" space="emsp" decode="true">{{content.title}}</text>
+    </view>
+
+    <!-- 心情内容 -->
+    <rich-text wx:if="{{content.rich}}" nodes="{{content.content}}"></rich-text>
+
+    <view wx:if="{{!content.rich}}" class="rich">
+      <text>{{content.content}}</text>
+    </view>   
+
+    <view class="grid" wx:if="{{content.imgList.length > 0}}">
+      <image mode="aspectFit" lazy-load="true" wx:for="{{content.imgList}}" wx:key="{{index}}" src="{{item}}"></image>
+    </view>
+
+    <!-- 推荐商家 -->
+    <view class="shop">
+      <view class="goods_list">
+        <view class="goods_logo"><image src="{{shop_data.logo}}"></image></view>
+        <view class="goods_list_r">
+          <view class="goods_name">{{shop_data.shopName}}</view>
+          <view class="level">
+            <image lazy-load="true" src="{{imgSrc}}/images/online/common/level_in.png"></image>
+            <image lazy-load="true" src="{{imgSrc}}/images/online/common/level_in.png"></image>
+            <image lazy-load="true" src="{{imgSrc}}/images/online/common/level_in.png"></image>
+            <image lazy-load="true" src="{{imgSrc}}/images/online/common/level_in.png"></image>
+            <image lazy-load="true" src="{{imgSrc}}/images/online/common/level.png"></image>
+            <text>{{shop_data.shopTypeName}}</text>
+          </view>
+          <view class="goods_norms">营业时间：{{shopInfo.opening}} ~ {{shopInfo.ending}}</view>
+          <view class="goods_btn" catchtap="shop">进店逛逛</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 固定底部 -->
+  <view class="fixed">
+    <!-- 心情互动 -->
+    <view class="mood">
+      <view catchtap="praise">
+        <image lazy-load="true" src="{{content.isPrised == 1 ? imgSrc + '/images/online/we/collect/has_praise.png' : imgSrc + '/images/online/we/collect/not_praise.png'}}"></image>
+        <text>{{content.priseNum}}</text>
+      </view>
+      <view catchtap="collect">
+        <image lazy-load="true" src="{{content.isCollected == 1 ? imgSrc + '/images/online/we/collect/4.png' : imgSrc + '/images/online/we/collect/3.png'}}"></image>
+        <text>{{content.collectionNum}}</text>
+      </view>
+      <button open-type="share" hover-class="none">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/share.png"></image>
+        <text>{{content.shareNum}}</text>
+      </button>
+    </view>
+  </view>
+</scroll-view>

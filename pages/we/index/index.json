@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我的",
+  "usingComponents": {
+    "jk-goodsList": "/components/goodsList/goodsList",
+    "formId": "/components/formId/formId"
+  }
+}

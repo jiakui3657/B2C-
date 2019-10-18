@@ -1,0 +1,53 @@
+<!--pages/we/address/add_address/add_address.wxml-->
+<view class="container">
+  <!-- 添加收货信息 -->
+  <view class="add_info passage">
+    <view class="basis_info">
+      <text>联系人：</text>
+      <input value="{{name}}" bindinput="get_name" placeholder="请输入收货人姓名" placeholder-class="placeholder"></input>
+    </view>
+    <view class="basis_info">
+      <text>手机号码：</text>
+      <input value="{{phone}}" bindinput="get_phone" placeholder="请输入手机号码" placeholder-class="placeholder" type="number" maxlength="11"></input>
+    </view>
+    <view class="basis_info">
+      <text>所在地区：</text>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+        <view class="picker">
+          {{region[0]}}<text wx:if="{{region.length > 0}}">，</text>{{region[1]}}<text wx:if="{{region.length > 0}}">，</text>{{region[2]}}<text style="color: #D2D2D2;" wx:if="{{region.length <= 0}}">请选择收货地址</text>
+        </view>
+      </picker>
+    </view>
+    <view class="basis_info">
+      <text>详细地址：</text>
+      <input value="{{address}}" bindinput="get_address" placeholder="请输入详细地址" placeholder-class="placeholder"></input>
+    </view>
+    <view class="label">
+      <text class="label_title">标签</text>
+      <view class="label_content">
+        <view class="label_list">
+          <view class="labelToggle {{labelFlag == index ? 'activeView' : ''}}" wx:for="{{labelList}}" wx:key="{{index}}" data-index="{{index}}" catchtap="labelToggle">{{item.labelName}}
+          <view catchtap="delect" data-index="{{index}}" wx:if="{{item.labelCode == definition}}">
+            <image src="{{imgSrc}}/images/online/common/close.png"></image>
+          </view>
+        </view>
+          <view class="add" catchtap="addLabelToggle" wx:if="{{!add_label  && labelList.length < 6}}"><image lazy-load="true" src="{{imgSrc}}/images/online/we/address/add.png"></image></view>
+        </view>
+        <view class="add_label" wx:if="{{add_label}}">
+          <input bindinput="getValue" value="{{labelNote}}" placeholder="请输入标签名称，最多5个字" placeholder-class="placeholder"></input>
+          <text catchtap="addLabel" class="{{labelNote.length>0 ? 'activeText' : ''}}">确定</text>
+        </view>
+      </view>
+    </view>
+    <view class="address_code">
+      <text>设为默认地址</text>
+      <switch checked='{{code == 0 ? false : true}}'  color="#FF474C" style="zoom: .6" bindchange="get_code" />
+    </view>
+  </view>
+
+  <!-- 修改按钮 -->
+  <view class="bottom_btn" catchtap="save_address">保存</view>
+
+  <!-- 删除按钮 -->
+  <view class="bottom_btn delent" catchtap="del" wx:if="{{id}}">删除</view>
+</view>

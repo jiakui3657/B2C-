@@ -1,0 +1,479 @@
+/* pages/cart/index/index.wxss */
+page{
+  height: 100%
+}
+.container {
+  height: 100%;
+  padding: 0 0 110rpx 0;
+  position: relative;
+  overflow: auto;
+}
+
+.mt-18{
+  margin-top: 18rpx;
+  background: #fff;
+  padding: 0 40rpx;
+  box-sizing: border-box
+}
+
+.deliver-type-wrap{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+
+.deliver-label {
+  color: #353535;
+  font-size: 28rpx;
+}
+
+.type-wrap{
+  display: flex;
+  flex: 1;
+  margin-left: 48rpx;
+  justify-content: space-between;
+}
+
+.submit-order-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 94rpx;
+  line-height: 94rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 36rpx;
+  letter-spacing: 1rpx;
+  background: #FF474C;
+  z-index: 111;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* 到货时间 */
+.goods_time {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 96rpx;
+  color: #fff;
+  font-size: 28rpx;
+  background: #FF474C;
+}
+
+.address-wrap{
+  padding: 32rpx 40rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+.address-box{
+  display: flex;
+}
+.add-address-btn{
+  margin: 0 auto;
+  width: 420rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 60rpx;
+  color: #FF474C;
+  font-size: 28rpx;
+  text-align: center;
+  border: 1px solid #FF474C;
+}
+.address-info{
+  flex: 1;
+  margin-right: 16rpx;
+}
+.address-info .consignee-info{
+  font-size: 28rpx;
+  line-height: 40rpx;
+  margin-bottom: 8rpx;
+}
+.address-info .address,
+.vendor-address .address{
+  font-size: 24rpx;
+  line-height: 30rpx;
+  color: #888
+}
+.vendor-address{
+  border-bottom: 1rpx solid #ededed;
+  padding: 32rpx 0;
+}
+.vendor-info{
+  display: flex;
+  padding: 32rpx 0 32rpx 56rpx;
+}
+.vendor-info .info-item{
+  flex: 1;
+  font-size: 28rpx;
+  color: #353535;
+}
+
+.vendor-info .info-item title{
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #353535;
+}
+
+.vendor-info .info-item .content{
+  color: #2C78E4;
+  margin-top: 16rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.vendor-address .title{
+  font-weight: bold;
+  font-size: 28rpx;
+}
+.vendor-address .address{
+  margin: 8rpx 56rpx 0rpx;
+}
+.shop-wrap {
+  padding: 0rpx 40rpx;
+  box-sizing: border-box;
+  background: #fff;
+  height: 104rpx;
+  display: flex;
+  align-items: center;
+}
+
+.vendor-wrap {
+  padding: 0rpx 40rpx;
+  box-sizing: border-box;
+  background: #fff;
+  flex-direction: column;
+  display: flex;
+}
+
+.shop-name{
+  float: left;
+  font-size: 28rpx;
+  color: #353535;
+}
+
+.goods-wrap{
+  padding: 0rpx 40rpx;
+  background: #fff;
+  overflow: hidden;
+}
+
+.goods-item{
+  display: flex;
+  margin-bottom: 48rpx;
+}
+
+.goods-img{
+  height: 180rpx;
+  width: 180rpx;
+  margin-right: 32rpx;
+  background: #999
+}
+.goods-info{
+  flex: 1;
+}
+.goods-name{
+  color: #353535;
+  line-height: 40rpx;
+  height: 80rpx;
+  font-size: 26rpx;
+  margin-bottom: 16rpx;
+}
+.goods-size,
+.goods-num{
+  font-size: 22rpx;
+  color: #888;
+  line-height: 34rpx;
+}
+.goods-count{
+  display: flex;
+  justify-content: space-between
+}
+.goods-count .goods-price{
+  font-weight: bold;
+  margin-top: 10rpx;
+}
+.goods-count .goods-num{
+  margin-top: 10rpx;
+  line-height: 40rpx;
+}
+.goods-price{
+  color: #FF474C;
+  font-size: 28rpx;
+}
+.deliver-fee,.discount-fee,.pay-type,.order-remark{
+  display: flex;
+  justify-content: space-between;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color:#353535;
+}
+.discount-fee .go-icon{
+  float: right;
+  margin-top: 34rpx;
+}
+.fee-wrap{
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color:#353535;
+  text-align: right; 
+  background: #fff;
+  padding: 0 40rpx;
+  box-sizing: border-box
+}
+.fee-wrap .font-red{
+  font-weight: bold
+}
+.remark-input{
+  flex: 1;
+  height: 100rpx;
+  padding-top: 18rpx;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+.locate-icon{
+  height: 40rpx;
+  width: 40rpx;
+  margin-right: 16rpx;
+}
+.go-icon{
+  margin-top: 40rpx;
+  height: 30rpx;
+  width: 30rpx
+}
+.shop-icon{
+  float: left;
+  height: 40rpx;
+  width: 40rpx;
+  margin-right: 16rpx
+}
+
+.merchant_logo {
+  height: 36rpx;
+  width: 36rpx;
+}
+
+
+/* 优惠券模态框 */
+.discount-dialog{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.discount-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.discount-btn {
+  height: 94rpx;
+  line-height: 94rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 36rpx;
+  background: #FF474C;
+  z-index: 1111;
+}
+
+.discount-title{
+  font-weight: bold;
+  text-align: center;
+  line-height: 112rpx;
+  font-size: 32rpx;
+  height: 112rpx;
+}
+
+.discount-tab {
+  display: flex;
+  padding: 0 80rpx;
+  padding-bottom: 24rpx;
+  font-size: 28rpx;
+  justify-content: space-between;
+  height: 84rpx;
+  box-sizing: border-box;
+  z-index: 1111;
+}
+
+.discount-tab view {
+  height: 40rpx;
+  line-height: 40rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 4rpx solid #fff;
+  color: #353535;
+}
+
+.tab-item.active {
+  color: #FF474C;
+  border-bottom: 4rpx solid #FF474C
+}
+
+.close-dialog {
+  position: absolute;
+  right: 40rpx;
+  top: 40rpx;
+  width: 40rpx;
+  height: 40rpx;
+  z-index: 1;
+}
+
+.tab-content {
+  box-sizing: border-box;
+  flex: 1;
+  height: 100%;
+  padding: 0 20rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 196rpx;
+}
+
+.discount {
+  height: 180rpx;
+  display: flex;
+  position: relative;
+  margin-top: 20rpx;
+  border-radius: 0px 10rpx 10rpx 0px;
+}
+
+.discount-bj {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.discount:first-child {
+  margin-top: 0
+}
+
+.discount:last-child {
+  margin-bottom: 20rpx;
+}
+
+.discount .discount-price {
+  text-align: center;
+  font-size: 28rpx;
+  width: 390rpx;
+  overflow: hidden;
+  background-size: cover;
+  line-height: 40rpx
+}
+
+.discount-price .price {
+  margin-top: 20rpx;
+  overflow: hidden;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.discount-price .price .font {
+  font-size: 80rpx;
+  line-height: 100rpx;
+}
+
+.discount-price .rule {
+  font-size: 24rpx;
+}
+
+.discount-info {
+  width: 100%;
+  padding: 36rpx 52rpx 32rpx 32rpx;
+  box-sizing: border-box;
+  border-left: none;
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+
+.goods_check {
+  position: absolute;
+  right: 32rpx;
+  top: 50%;
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: -20rpx;
+}
+
+.discount-info .info {
+  font-size: 28rpx;
+  margin-bottom: 32rpx;
+  color: #353535;
+  height: 40rpx;
+  line-height: 40rpx;
+  display: flex;
+  align-items: center;
+}
+
+.discount-info .info text {
+  height: 32rpx;
+  line-height: 32rpx;
+  border-radius: 94rpx;
+  display: inline-block;
+  background: #D2D2D2;
+  color: #fff;
+  font-size: 18rpx;
+  padding: 0 14rpx;
+  margin-right: 8rpx;
+}
+
+.discount-info .info view {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  flex: 1;
+}
+
+.discount-info .time{
+  font-size: 22rpx;
+  color: #888
+}
+.discount-radio{
+  position: absolute;
+  right: 20rpx;
+  top: 70rpx;
+  z-index: 4;
+}
+
+
+.discount-wrap {
+  background: #fff;
+  padding: 0 40rpx;
+}
+
+.pay-type-wrap {
+  background: #fff;
+  padding: 0 40rpx;
+}
+
+.red .discount-price {
+  color: #FF474C;
+}
+
+.red .info text {
+  background: #FF474C;
+}
+
+.blue .discount-price {
+  color: #5DAFEC;
+}
+
+.blue .info text {
+  background: #5DAFEC;
+}

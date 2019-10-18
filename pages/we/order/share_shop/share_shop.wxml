@@ -1,0 +1,30 @@
+<!--pages/we/share_shop/share_shop.wxml-->
+<view class="container">
+  <!-- 商品 -->
+  <view class="goods passage">
+    <view class="goods_logo">
+      <image lazy-load="true" mode="aspectFit" src="{{order_note.goodsImg}}"></image>
+    </view>
+    <view class="goods_r">
+      <view class="goods_name">{{order_note.goodsName}}</view>
+    </view>
+  </view>
+
+  <!-- 分享内容 -->
+  <view class="share_note">
+    <view class="note radius">
+      <textarea bindinput="get_note" placeholder-class="placeholder" placeholder="这一刻，您想说点什么...\n分享内容超过50个字就获得积分；"></textarea>
+    </view>
+    <view class="share_title">上传图片</view>
+    <view class="shop_img">
+      <view wx:for="{{shopImg}}" wx:key="{{index}}" >
+        <image lazy-load="true" mode="aspectFit" class="radius" src="{{item}}"></image>
+        <image lazy-load="true" data-index="{{index}}" catchtap="del" class="del" src="{{imgSrc}}/images/online/common/close.png"></image>
+      </view>
+      <view>
+        <image lazy-load="true" catchtap="get_image" wx:if="{{shopImg.length<9}}" class="radius last" src="{{imgSrc}}/images/online/common/addImg.png"></image>
+      </view>
+    </view>
+    <view class="share" catchtap="share">发布分享<formId></formId></view>
+  </view>
+</view>

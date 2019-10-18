@@ -1,0 +1,25 @@
+<!--pages/we/address/index/index.wxml-->
+<view class="container">
+  <!-- 地址列表 -->
+  <view class="address_list passage" wx:for="{{addressList}}" wx:key="{{index}}" data-index="{{index}}" catchtap="get_address">
+    <view class="address_l">
+      <view class="basis_info">
+        <view class="name">{{item.linkmanName}}</view>
+        <view class="phone">{{item.linkmanPhone}}</view>
+        <text class="red" wx:if="{{item.isDefault == 1}}">{{item.isDefault == 0 ? '' : '默认'}}</text>
+        <text wx:if="{{item.labelName != '' && item.labelName != undefined}}">{{item.labelName}}</text>
+      </view>
+      <view class="address">{{item.provinceName}}{{item.cityName}}{{item.districtName}}{{item.address}}</view>
+    </view>
+    <view class="address_r" catchtap="go_address" id="{{item.id}}"><image lazy-load="true" src="{{imgSrc}}/images/online/common/modify.png"></image></view>
+  </view>
+
+  <!-- 订单列表为空 -->
+  <view class="not_online" wx:if="{{addressList.length <= 0}}">
+    <image lazy-load="true" src="{{imgSrc}}/images/online/common/not.png"></image>
+    <view>还没有收货地址哦~</view>
+    <!-- <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator> -->
+  </view>
+
+  <view class="bottom_btn" catchtap="add_address">新增收货地址</view>
+</view>

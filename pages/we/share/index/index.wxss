@@ -1,0 +1,85 @@
+/* pages/we/share/index/index.wxss */
+page {
+  height: 100%
+}
+
+.container {
+  height: 100%;
+  position: relative;
+  padding: 0;
+}
+
+.share_bj {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.share_note {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 56rpx 56rpx;
+}
+
+
+.user_info {
+  display: flex;
+  color: #fff;
+  font-size: 28rpx;
+  margin: 46rpx 0 20rpx 0;
+  align-items: center;
+}
+
+.user_info image {
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 30rpx;
+  border-radius: 50%;
+}
+
+.code {
+  height: 870rpx;
+  background: #fff;
+  box-sizing: border-box;
+  padding: 134rpx 0 174rpx 0;
+  text-align: center
+}
+
+.code image {
+  width: 380rpx;
+  height: 380rpx;
+}
+
+.platform_name {
+  font-size: 48rpx;
+  color: #FF474C;
+  margin-top: 50rpx;
+}
+
+.instructions {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #3E3D3D;
+}
+
+.save {
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #fff;
+  color: #101010;
+  font-size: 28rpx;
+  margin-top: 56rpx;
+}
+
+.prompt {
+  height: 36rpx;
+  color: #fff;
+  font-size: 24rpx;
+  margin-top: 14rpx;
+  text-align: center;
+}

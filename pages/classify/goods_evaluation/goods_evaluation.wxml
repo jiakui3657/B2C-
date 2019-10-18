@@ -1,0 +1,22 @@
+<view class="total-wrap"> 全部评价 <text class="num">{{comments.rowCount}}</text> </view>
+<view class="evaluation-list">
+  <view class="item" wx:for="{{comments.list}}" wx:for-index="idx" wx:key="{{index}}">
+    <view class="head-wrap">
+      <image lazy-load="true" mode="aspectFit" class="head-img" src="{{item.userAvatar}}" />
+      <view class="info">
+        <view class="name">{{item.userName}}</view>
+        <view class="star-wrap">
+          <image wx:for="{{5}}" lazy-load="true" wx:key="{{index}}" class="star" src="{{starIcon}}" />
+        </view>
+      </view>
+    </view>
+    <view class="time-wrap">
+      <text class="time">{{item.createTime}}</text>
+      <text class="goods-type">{{item.specView}}</text>
+    </view>
+    <view class="text-wrap">{{item.content}}</view>
+    <view class="imgs-wrap">
+      <image class="img-item" data-idx="{{idx}}" data-index="{{index}}" catchtap="preview" lazy-load="true" mode="aspectFit" wx:for="{{item.imgList}}" wx:key="{{index}}" src="{{item}}" />
+    </view>
+  </view>
+</view>

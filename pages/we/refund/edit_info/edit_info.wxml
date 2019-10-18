@@ -1,0 +1,30 @@
+<!--pages/we/refund/edit_info/edit_info.wxml-->
+<view class='container'>
+  <view class="content passage">
+    <view class='list'>
+      <view class="list-l">寄件人</view>
+      <view class='list-r'><input bindinput="get_name" value="{{name}}" class='in' type='text' maxlength='20' placeholder-class="placeholder" placeholder='请输入真实姓名' /></view>
+    </view>
+    <view class='list'>
+      <view class="list-l">联系电话</view>
+      <view class='list-r'><input bindinput="get_phone" value="{{phone}}" class='in' type='text' maxlength='20' placeholder-class="placeholder" placeholder='请输入联系电话' /></view>
+    </view>
+    <view class='list'>
+      <view class="list-l">所在地区</view>
+      <view class='list-r'>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+        <view class="picker">
+          {{region[0]}}<text wx:if="{{region.length > 0}}">，</text>{{region[1]}}<text wx:if="{{region.length > 0}}">，</text>{{region[2]}}<text style="color: #D2D2D2;" wx:if="{{region.length <= 0}}">请选择收货地址</text>
+        </view>
+      </picker>
+      </view>
+    </view>
+    <view class='list'>
+      <view class="list-l">详细地址</view>
+      <view class='list-r'>
+        <input value="{{address}}" bindinput="get_address" class='in' type='text' maxlength='20' placeholder-class="placeholder" placeholder='请输入详细地址' />
+      </view>
+    </view>
+  </view>
+  <button hover-class="none" catchtap="save">保存</button>
+</view>

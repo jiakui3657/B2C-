@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "订单确认",
+  "usingComponents": {
+    "jk-shopList": "/components/goodsList/goodsList",
+    "bwd-radio": "/components/radio/radio",
+    "formId": "/components/formId/formId"
+  }
+}

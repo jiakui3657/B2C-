@@ -1,0 +1,207 @@
+/* pages/we/logistics/logistics.wxss */
+.container {
+  overflow: hidden;
+}
+.order{
+  width: 100%;
+  background-color: #fff;
+}
+.order-up{ 
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding: 40rpx 20rpx 14rpx;
+  /* border-bottom: 1px solid #e0e0e0; */
+  font-size: 28rpx;
+  color: #101010;
+}
+.order-up-r{
+  flex: 1;
+}
+.list{
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  overflow: hidden;
+  font-weight: 600;
+}
+.list .copy {
+  width: 64rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  text-align: center;
+  border-radius: 28rpx;
+  background: #F4F4F4;
+  color: #353535;
+  font-size: 20rpx;
+  display: inline-block;
+  margin-left: 4rpx;
+  margin-top: -8rpx;
+}
+.list text {
+  font-weight: 300
+}
+/*物流信息*/
+.logistics_centent{
+  margin-left: 46rpx;
+  margin-top: -14rpx;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  flex: 1
+}
+
+.active .logistics_centent{
+  margin-left: 37rpx;
+}
+
+.code {
+  font-weight: 900;
+  font-size: 28rpx;
+}
+.icon{
+  width: 10rpx;
+  height: 10rpx;
+  background: #D2D2D2;
+  border-radius: 50%;
+  z-index: 1111
+}
+.icon image {
+  display: none;
+}
+.in{
+  background-color: #E51C23;
+}
+.on{
+  background: #D2D2D2; 
+  height: 100%;
+  width: 1px;
+  position: absolute;
+  left: 4.5rpx;
+  top: 0rpx;
+}
+.list2{
+  width: 100%;
+  overflow: hidden;
+}
+.order2{
+  width: 100%;
+  position: relative;
+  color: #888;
+  display: flex;
+  padding-bottom: 34rpx;
+}
+.order2:last-child .on {
+  height: 0;
+}
+.active {
+  color: #000;
+}
+.active .icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: -12rpx;
+  margin-top: -12rpx;
+  background: transparent
+}
+.active .icon image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.order-down{
+  width: 100%;
+  padding: 20rpx 60rpx 0 20rpx;
+  box-sizing: border-box;
+}
+.list3{
+  width: 100%;
+  height: 15pt;
+  line-height: 15pt;
+  overflow: hidden;
+}
+.gap{
+  padding-right: 5pt;
+  box-sizing: border-box;
+}
+.blue{
+  color: #5AA0FC;
+}
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}
+
+/* 推荐 */
+.recommended-title {
+  height: 110rpx;
+  line-height: 110rpx;
+  font-weight: 900;
+  font-size: 32rpx;
+  color: #353535;
+  text-align: center;
+}
+
+.recommended-shopping {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.shopping {
+  width: 350rpx;
+  background: #fff;
+  margin-bottom: 10rpx;
+  box-sizing: border-box;
+  padding: 16rpx 36rpx;
+  position: relative;
+}
+
+.shopping-logo {
+  width: 280rpx;
+  height: 280rpx;
+  margin: 0 auto;
+}
+
+.shopping-name {
+  font-size: 28rpx;
+  color: #464646;
+  height: 80rpx;
+}
+
+.shopping-introduce {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.shopping-price {
+  font-size: 28rpx;
+  color: #FF474C;
+  margin-top: 14rpx;
+}
+
+.shopping-cart {
+  position: absolute;
+  right: 36rpx;
+  bottom: 16rpx;
+  width: 46rpx;
+  height: 46rpx;
+  background: red;
+  border-radius: 50%;
+}
+
+.goods_title {
+  height: 48rpx;
+  text-align: center;
+  margin: 20rpx 0;
+  color: #444444;
+  font-weight: 900;
+}
+
+.goodsList {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

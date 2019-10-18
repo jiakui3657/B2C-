@@ -1,0 +1,19 @@
+<!--pages/login/login.wxml-->
+<view class='out'>
+  <view class='header'>
+    <image class='bg' lazy-load="true" src='{{imgSrc}}/images/online/login/login_bj.png'></image>
+    <view class='logo'>
+      <view class='logo-inner'>
+        <image lazy-load="true" src='{{imgSrc}}/images/online/logo.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='main'>
+    <view class='shop-text'>百万店购</view>
+    <view class='get'>
+      <view class='list big'>请确认以下授权信息</view>
+      <view class='list'>获取您的信息(头像、昵称)等</view>
+    </view>
+    <button class='btn' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  </view>
+</view>

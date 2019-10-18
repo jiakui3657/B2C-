@@ -1,0 +1,105 @@
+<!--pages/we/index/index.wxml-->
+<!-- 个人信息 -->
+<view class="userInfo">
+  <image class="userInfo_bj" lazy-load="true" src="{{imgSrc}}/images/online/we/userInfo_bj.png"></image>
+  <view class="user_info">
+    <view class="user_info_t">
+      <image class="user_logo" lazy-load="true" mode="aspectFit" catchtap="to_user" src="{{userInfo.avatar}}"></image>
+      <view class="user_info_r">
+        <view class="user_info_name">{{userInfo.nickName}} <text>{{vipInfo.memberGradeName}}</text></view>
+        <view class="sign" catchtap="awarded"><image lazy-load="true" src="{{imgSrc}}/images/online/common/sign.png"></image><text>每日签到</text></view>
+      </view>
+    </view>
+    <view class="user_info_b">
+      <view catchtap="integral" style="position: relative">
+        <view class="number">{{userInfo.integral || 0}}</view>
+        <view>积分</view>
+        <formId></formId>
+      </view>
+      <view catchtap="collect">
+        <view class="number">{{userInfo.markNum || 0}}</view>
+        <view>收藏</view>
+      </view>
+      <view catchtap="footprint">
+        <view class="number">{{userInfo.trackNum || 0}}</view>
+        <view>足迹</view>
+      </view>
+    </view>
+    <view class="share" catchtap="share">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/we/share.png"></image>
+      <view>分享小程序</view>
+    </view>
+  </view>
+  <view class="user_vip" catchtap="vip">
+    <image lazy-load="true" class="user_vip_bj" src="{{imgSrc}}/images/online/we/userInfo_vip_bj.png"></image>
+    <view class="userInfo_vip">
+      <view class="userInfo_vip_l">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/we/vip_icon.png"></image>
+        <text>超级会员 尊享7大特权</text>
+      </view>
+      <view class="userInfo_vip_r">
+        <text wx:if="{{userInfo.memberGradeCode == 'M101'}}">免费体验</text>
+        <text wx:if="{{userInfo.memberGradeCode == 'M102'}}">立即开通</text>
+        <text wx:if="{{userInfo.memberGradeCode == 'M103'}}">立即查看</text>
+        <image lazy-load="true" src="{{imgSrc}}/images/online/we/vip_more.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="container">
+  <!-- 我的订单 -->
+  <view class="we_order passage">
+    <view class="we_order_title">
+      <view>我的订单</view>
+      <view class="we_order_all" catchtap="we_order">
+        <text>查看全部</text>
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+      </view>
+    </view>
+    <view class="we_order_list">
+      <navigator wx:for="{{orderList}}" wx:key="{{index}}" url="{{item.path}}" hover-class="none">
+        <image lazy-load="true" src="{{item.src}}"></image>
+        <text>{{item.text}}</text>
+        <text class="orderNum" wx:if="{{item.orderNum > 0}}">{{item.orderNum}}</text>
+      </navigator>
+    </view>
+  </view>
+
+  <!-- 我的服务 -->
+  <view class="we_service passage">
+    <view class="we_service_title">我的服务</view>
+    <view class="we_service_list">
+      <view wx:for="{{serviceList}}" data-url="{{item.path}}" wx:key="{{index}}" catchtap="service">
+        <image lazy-load="true" src="{{item.src}}"></image>
+        <text>{{item.text}}</text>
+      </view>
+      <view catchtap="call">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/we/message.png"></image>
+        <text>联系客服</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 邀请合伙人 -->
+  <!-- <view class="partner passage">
+    <view>生意合伙人邀约</view>
+    <image lazy-load="true" src="{{imgSrc}}/images/test/7.png"></image>
+  </view> -->
+
+  <!-- 积分兑换 -->
+  <view class="points passage" wx:if="{{ads && ads.C_PERSONAL && ads.C_PERSONAL.length>0 }}">
+    <navigator url="{{ads.C_PERSONAL[0].url}}" hover-class="none">
+      <image lazy-load="true" src="{{ads.C_PERSONAL[0].source}}"></image>
+    </navigator>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="goods_title" wx:if="{{goodsList.list.length > 0}}">为你推荐</view>
+  <jk-goodsList animationFlag="true" coordinates="{{coordinates}}" list="{{goodsList.list}}" wx:if="{{goodsList.list.length > 0}}"/>
+
+  <!-- 触底提示 -->
+  <view class="bottom_line" wx:if="{{goodsList.pageIndex >= goodsList.pageCount && goodsList.list.length > 0}}">我是有底线的~</view>
+
+  <!-- 动画终点 -->
+  <view class="target" id="target"></view>
+</view>

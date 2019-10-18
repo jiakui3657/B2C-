@@ -1,0 +1,167 @@
+/* pages/we/vip_club/open_vip/open_vip.wxss */
+page {
+  height: 100%;
+  background: #f4f4f4;
+}
+
+.container {
+  position: relative;
+  top: -460rpx;
+  background-color: transparent;
+  padding-bottom: 110rpx;
+
+}
+
+/* header */
+.header {
+  height: 580rpx;
+  position: relative;
+}
+
+.header image {
+  width: 100%;
+  height: 100%;
+}
+
+.header view {
+  position: absolute;
+  left: 0;
+  top: 32rpx;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  font-size: 32rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-weight: 900;
+}
+
+.header text {
+  font-size: 48rpx;
+  color: #CAA148;
+}
+
+/* 导航 */
+.nav {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+  box-sizing: border-box;
+  padding: 0 80rpx 48rpx 88rpx;
+  height: 600rpx;
+}
+
+.nav navigator {
+  text-align: center;
+  margin-right: 100rpx;
+  margin-top: 48rpx;
+}
+
+.nav navigator:nth-child(3n) {
+  margin-right: 0rpx;
+}
+
+.nav image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.nav view {
+  font-size: 26rpx;
+  color: #353535;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-top: 16rpx;
+}
+
+/* 会员卡 */
+.vip_card {
+  display: -webkit-box;
+  justify-content: space-between;
+  overflow-x: auto;
+  border-radius: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.card {
+  width: 200rpx;
+  height: 240rpx;
+  margin-right: 16rpx;
+  text-align: center;
+  background: #fff;
+}
+
+.card:last-child {
+  margin-right: 0rpx;
+}
+
+.vip_card_time {
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #353535;
+  margin-top: 32rpx;
+}
+
+.vip_card_price {
+  height: 82rpx;
+  line-height: 82rpx;
+  font-size: 28rpx;
+  color: #CAA148;
+  margin-top: 16rpx;
+}
+
+.vip_card_price text {
+  font-size: 56rpx;
+}
+
+.vip_card_integral {
+  height: 34rpx;
+  line-height: 34rpx;
+  font-size: 22rpx;
+  color: #888;
+  margin-top: 16rpx;
+}
+
+.vip_card_active {
+  background: #F4EEE0;
+  border: 1px solid #CAA148
+}
+
+.vip_card_active .vip_card_time {
+  color: #956602;
+}
+
+.vip_card_active .vip_card_integral {
+  color: #956602;
+}
+
+/* 协议 */
+.agreement {
+  margin-top: 32rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #353535;
+  font-size: 24rpx;
+}
+
+.agreement text {
+  color: #CAA148;
+}
+
+/* 开通会员按钮 */
+.open_vip {
+  height: 94rpx;
+  line-height: 94rpx;
+  background: #CAA148;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: 900;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

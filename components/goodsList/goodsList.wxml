@@ -1,0 +1,22 @@
+<!--components/goodsList/goodsList.wxml-->
+<view class="goods_list" id="{{animationFlag}}">
+  <view class="goodsList"  wx:for="{{list}}" wx:key="{{index}}" id="{{item.goodsId}}" catchtap="{{couponsource == 2 ? 'shop_goods_detail' : 'goods_detail'}}">
+    <view class="goods">
+      <image lazy-load="true" class="goods_logo" src="{{item.goodsImg}}"></image>
+      <image lazy-load="true" class="goods_logo_animation" style="z-index: {{animationIndex == index ? '4' : '2'}};" id="goods_logo{{index}}" animation="{{animationList[index]}}" src="{{item.goodsImg}}"></image>
+      <view class="goods_name">{{item.goodsName}}</view>
+      <view class="goods_abstract">{{item.sup}}</view>
+      <!-- 普通商品价格 -->
+      <view class="goods_price" wx:if="{{item.actPrice <= 0 && item.vipPrice <= 0}}">￥{{item.price}}</view>
+      <!-- 活动商品价格 -->
+      <view class="goods_price" wx:if="{{item.actPrice > 0}}">￥{{item.actPrice}}<image class="goods_seconds_icon" src="{{imgSrc}}/images/online/common/seconds_icon.png"></image></view>
+      <view class="goods_original_price" wx:if="{{item.actPrice > 0}}">￥{{item.price}}</view>
+      <!-- VIP商品价格 -->
+      <view class="goods_price" wx:if="{{item.actPrice <= 0 && item.vipPrice > 0}}">￥{{item.price}}</view>
+      <view class="goods_vip_price" wx:if="{{item.actPrice <= 0 && item.vipPrice > 0}}">￥{{item.vipPrice}}<image src="{{imgSrc}}/images/online/common/vip_icon.png" class="goods_vip_icon"></image></view>
+
+      <image lazy-load="true" data-id="goods_logo{{index}}" data-index="{{index}}" catchtap="addCart" class="cart" src="{{imgSrc}}/images/online/common/shop_cart.png"></image>
+    </view>
+  </view>
+  <!-- <view class="target" id="target"></view> -->
+</view>

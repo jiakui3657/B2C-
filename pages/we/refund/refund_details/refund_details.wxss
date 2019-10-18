@@ -1,0 +1,141 @@
+/* pages/we/refund/refund_details/refund_details.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  padding: 0;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+/* 退款时间 */
+.sales_time {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  background: #FF474C;
+  padding: 0 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+}
+
+.sales_time text {
+  font-size: 24rpx;
+}
+
+/* 退款金额 */
+.sales_money {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  font-size: 28rpx;
+  padding: 0 40rpx;
+  border-bottom: 1px solid #EDEDED;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #fff;
+  margin-top: 16rpx;
+  border-top-right-radius: 10rpx;
+  border-top-left-radius: 10rpx;
+}
+
+.sales_money text {
+  color: #FF474C;
+}
+
+/* 退款进度 */
+.progress {
+  background: #fff;
+  padding: 32rpx 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #353535;
+  text-align: center;
+}
+
+.progress image {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.progress view view {
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-top: 16rpx;
+}
+
+.progress .item {
+  position: relative;
+}
+
+.progress .item text {
+  position: absolute;
+  top: 14rpx;
+  left: 72rpx;
+  background: #BBBBBB;
+  height: 1px;
+  width: 240rpx;
+  display: inline-block;
+}
+
+.progress .item:last-child text {
+  display: none
+}
+
+/* 退款商品 */
+.goods {
+  background: #fff;
+}
+
+.goods_title {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  padding: 0 40rpx;
+  border-bottom: 1px solid #EDEDED;
+}
+
+.goods_content {
+  display: flex;
+  padding: 32rpx 40rpx;
+}
+
+.goods_logo {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.goods_r {
+  flex: 1;
+  position: relative;
+}
+
+.goods_norms {
+  margin-top: 16rpx;
+}
+
+.goods_norms text:last-child {
+  margin-left: 16rpx;
+}
+
+/* 退款信息 */
+.refund_info {
+  padding: 0rpx 40rpx 32rpx;
+  background: #fff;
+  overflow: hidden;
+}
+
+.refund_info view {
+  display: flex;
+  font-size: 28rpx;
+  color: #888;
+  margin-top: 32rpx;
+}
+
+.refund_info text {
+  color: #353535;
+}

@@ -1,0 +1,14 @@
+/* pages/demo/demo.wxss */
+.Arrow{
+  background: #BB0227;
+  position:fixed;
+  bottom: 250rpx;
+  left: 48%;
+  z-index: 99;
+  border-radius: 50%;
+  padding: 5rpx;
+}
+.Arrow image{
+  width: 35rpx;
+  height: 35rpx;
+}

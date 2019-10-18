@@ -1,0 +1,50 @@
+<!--pages/classify/goods_search/goods_search.wxml-->
+<!-- 搜索 -->
+<view class="search">
+  <jk-search bind:componentsearch="componentsearch" class="search_box" placeholder="请输入要找的商品" value="{{value}}" focus="true"/>
+  <text catchtap="go_back" wx:if="{{!goodsListFlag}}">取消</text>
+</view>
+
+<!-- 搜索历史 -->
+<view class="history" wx:if="{{historyFlag && historyWords.length > 0}}">
+  <view class="history_title">
+    <text>历史搜索</text>
+    <view>
+      <image src="{{imgSrc}}/images/online/we/order/del.png" bindtap="clearHistory"></image>
+    </view>
+  </view>
+  <view class="list">
+    <text wx:for="{{historyWords}}" wx:key="{{index}}" data-content="{{item}}" bindtap="clickHistorySearch">{{item}}</text>
+  </view>
+</view>
+
+<!-- 热门历史 -->
+<view class="hot history" wx:if="{{historyFlag}}">
+  <view class="history_title">
+    <text>热门搜索</text>
+  </view>
+  <view class="list">
+    <text wx:for="{{hotwordList}}" wx:key="{{index}}" data-content="{{item}}" bindtap="clickHotSearch">{{item}}</text>
+  </view>
+</view>
+
+<view class="search-list" wx:if="{{!historyFlag && !goodsListFlag}}">
+  <view class="search-item" wx:for="{{goodsNameList}}" wx:key="{{index}}" id="{{item.goodsId}}" bindtap="goodsNameClick">
+    <!-- <text>进口</text> -->
+    <text class="font-lighter" data-index="{{index}}">{{item.name}}</text>
+  </view>
+</view>
+<view class="goods-list" wx:if="{{goodsListFlag}}">
+  <jk-goodsList2 bind:get_cart_num="get_cart_num" class="goods_list" coordinates="{{coordinates}}" list="{{goodsList.list}}" shopId="{{shopId}}" />
+</view>
+
+<view class="not_online" wx:if="{{goodsList.list.length <= 0}}">
+  <image src="{{imgSrc}}/images/online/common/goods_not.png"></image>
+  <view>未找到商品~</view>
+</view>
+
+<!-- 购物车 -->
+<view class="goods" id="goods" wx:if="{{goodsListFlag}}" bindtap="go_cart">
+  <image src="{{imgSrc}}/images/online/tabBar/shop_selected.png"></image>
+  <text>{{totalNumber}}</text>
+</view>

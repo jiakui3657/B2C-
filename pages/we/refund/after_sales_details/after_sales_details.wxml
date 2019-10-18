@@ -1,0 +1,71 @@
+<!--pages/we/after_sales_details/after_sales_details.wxml-->
+<view class="container">
+  <!-- 退货商品 -->
+  <view class="goods passage">
+    <view class="goods_logo">
+      <image lazy-load="true" src="{{goods.goodsImg}}"></image>
+    </view>
+    <view class="goods_r">
+      <view class="goods_name">{{goods.goodsName}}</view>
+      <view class="goods_norms">
+        <text>单价：￥{{goods.goodsSalePrice}}</text>
+        <text>申请数量：{{goods.applyNum}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退货原因 -->
+  <view class="return_why passage">
+    <view class="return_why_l">
+      <view class="return_why_title">申请原因</view>
+      <view>请您描述问题并上传照片</view>
+    </view>
+    <view class="return_why_r" catchtap="cancel">
+      <text>{{reason.name}}</text>
+      <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+    </view>
+  </view>
+
+  <!-- 退货描述 -->
+  <view class="describe passage">
+    <view>描述</view>
+    <textarea placeholder="请描述申请售后服务的具体原因" maxlength="200" placeholder-class="placeholder" bindinput="get_describe"></textarea>
+    <text>{{inputCount}}/200</text>
+  </view>
+
+  <!-- 凭证上传 -->
+  <view class="voucher passage">
+    <view class="voucher_title">凭证照片</view>
+    <view class="voucher_num">最多上传{{6-shopImg.length}}张哦</view>
+    <view class="voucherList">
+      <view wx:for="{{shopImg}}" wx:key="{{index}}">
+        <image lazy-load="true" src="{{item}}"></image>
+        <image lazy-load="true" data-index="{{index}}" catchtap="del" catchtap="del" class="del" src="{{imgSrc}}/images/online/common/close.png"></image>
+      </view>
+      <view>
+        <image lazy-load="true" catchtap="get_image" wx:if="{{shopImg.length < 6}}" src="{{imgSrc}}/images/online/common/addImg.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交 -->
+  <view class="bottom_btn" bindtap="commit">提交</view>
+
+  <!--退款退货模态框 -->
+  <view catchtouchmove="move" catchtap="cancel" class="mask {{modalFlag ? 'mask_active' : ''}}"></view>
+  <view class="modal {{modalFlag ? 'modal_active' : ''}}">
+    <view class="modal_title">
+      <text>申请原因</text>
+    </view>
+    <view class="modal_list">
+      <view wx:for="{{modalList}}" wx:key="{{index}}" id="{{index}}" catchtap="reason">
+        <text>{{item.name}}</text>
+        <image lazy-load="true" src="{{index == modalIndex ? imgSrc + '/images/online/common/selected.png' : imgSrc + '/images/online/common/uncheck.png'}}"></image>
+      </view>
+    </view>
+    <view class="modal_btn" catchtap="confirm">确定</view>
+    <view class="del" catchtap="cancel">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/common/close.png"></image>
+    </view>
+  </view>
+</view>

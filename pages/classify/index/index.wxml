@@ -1,0 +1,68 @@
+<!--pages/classify/index/index.wxml-->
+<view class="container">
+  <!-- 搜索 -->
+  <jk-search class="search" pathTo="/pages/classify/goods_search/goods_search" placeholder="全球美酒 进口美食" disabled="true" />
+
+  <!-- 商品分类 -->
+  <view class="shop_classify">
+    <scroll-view wx:if="{{shop_l_list && shop_l_list.length > 0}}" class="shop_l" lower-threshold="1" scroll-y scroll-with-animation="true" scroll-top="{{scroll_top}}">
+      <view class="shop_l_list {{shop_l_index === index ? 'shop_l_active' : ''}}" catchtap="shop_l_toggle" id="{{item.id}}" data-index="{{index}}" wx:for="{{shop_l_list}}" wx:key="{{index}}">
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+    <view class="shop_r" wx:if="{{shop_l_list && shop_l_list.length > 0}}" wx:for="{{shop_l_list}}" wx:key="{{index}}" wx:if="{{shop_l_index == index}}">
+      <view class="shop_r_t" wx:if="{{item.childList.length > 0}}">
+        <view class="shop_r_tab">
+          <scroll-view scroll-x="true" class="shop_r_l">
+            <view wx:if="{{!shop_all_flag}}" class="shop_r_tabList {{shop_r_index === index ? 'shop_r_active' : ''}}" wx:for="{{item.childList}}" wx:key="{{index}}" id="{{item.id}}" data-index="{{index}}" catchtap="shop_r_toggle">{{item.name}}</view>
+            <view class="shop_all_title" wx:if="{{shop_all_flag}}">全部分类</view>
+          </scroll-view>
+          <view class="more" catchtap="shop_all_toggle" wx:if="{{item.childList.length > 0}}">
+            <image lazy-load="true" style="{{shop_all_flag ? 'transform: rotate(-90deg)' : 'transform: rotate(90deg)'}}" src="{{imgSrc}}/images/online/common/more.png"></image>
+          </view>
+        </view>
+        <view class="shop_tab_all" wx:if="{{shop_all_flag}}">
+          <view class="shop_tabAll_list {{shop_r_index === index ? 'shop_r_active' : ''}}" wx:for="{{item.childList}}" wx:key="{{index}}" id="{{item.id}}" data-index="{{index}}" catchtap="shop_r_toggle">{{item.name}}</view>
+        </view>
+      </view>
+      <scroll-view style="padding-top: {{item.childList.length > 0 ? '90rpx' : '0rpx'}}" class="shop_r_content" lower-threshold="1" scroll-y bindscrolltolower="lower">
+        <view class="shop_r_list" wx:for="{{goodsList.list}}" wx:key="{{index}}" id="{{item.goodsId}}" catchtap="goods_detail">
+          <image lazy-load="true" class="shop_logo" src="{{item.goodsImg}}"></image>
+          <image lazy-load="true" class="shop_logo_animation" style="z-index: {{animationIndex == index ? '4' : '2'}};" id="shop_logo{{index}}" animation="{{animationList[index]}}" src="{{item.goodsImg}}"></image>
+          <view class="shop_r_list_r">
+            <view class="shop_name">{{item.goodsName}} </view>
+            <view class="shop_norms">{{item.supplierName}}</view>
+            <!-- 商品价 -->
+            <view class="shop_price" wx:if="{{item.actPrice <= 0}}">
+              <text>¥{{item.price}}</text>
+            </view>
+            <!-- 活动价 -->
+            <view class="shop_price" wx:if="{{item.actPrice > 0}}">
+              <text>¥{{item.actPrice}}</text>
+              <image src="{{imgSrc}}/images/online/common/seconds_icon.png"></image>
+            </view>
+            <view class="shop_original_price" wx:if="{{item.actPrice > 0}}">¥{{item.price}}</view>
+            <!-- 会员价 -->
+            <view class="shop_vip_price" wx:if="{{item.vipPrice > 0 && item.actPrice <= 0}}">
+              <text>¥{{item.vipPrice}}</text>
+              <image lazy-load="true" src="{{imgSrc}}/images/online/common/vip_icon.png"></image>
+            </view>
+            <image lazy-load="true" class="cart" data-id="shop_logo{{index}}" data-index="{{index}}" id="{{item.goodsId}}" catchtap="addCart" src="{{imgSrc}}/images/online/common/shop_cart.png"></image>
+          </view>
+          <!-- <image lazy-load="true" wx:if="{{item.actType == 2}}" class="angle" src="{{imgSrc}}/images/online/home/recomm/discount.png"></image> -->
+        </view>
+        <!-- 触底提示 -->
+        <view class="bottom_line" wx:if="{{goodsList.pageIndex >= goodsList.pageCount && goodsList.list.length > 0}}">我是有底线的~</view>
+      </scroll-view>
+    </view>
+
+     <!-- 附近店铺为空的样式 -->
+    <view class="not_online" wx:if="{{shop_l_list && shop_l_list.length <= 0}}">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/common/not.png"></image>
+      <view>暂无商品~</view>
+    </view>
+
+  </view>
+</view>
+<!-- 动画终点 -->
+<view class="target" id="target"></view>

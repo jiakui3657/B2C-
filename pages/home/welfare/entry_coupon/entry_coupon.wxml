@@ -1,0 +1,46 @@
+<!--pages/home/welfare/entry_coupon/entry_coupon.wxml-->
+<!-- 状态栏 -->
+<navbar page-name="百万店购" show-home="true"></navbar>
+
+<scroll-view class="container" scroll-y="true" style="padding-top: {{navHeight}}px;">
+  <!-- 个人信息 -->
+  <view class="user_info">
+    <image lazy-load="true" src="{{avatar}}"></image>
+    <view class="name">{{nickName}}</view>
+    <view>送你一张优惠券</view>
+  </view>
+
+  <!-- 分享内容 -->
+  <view class="share_content">
+    <image lazy-load="true" src="{{imgSrc}}/images/online/home/recomm/share_bj.png"></image>
+    <view class="content">
+      <view class="content_t">
+        <view class="securities">
+          <view class="securities_name">{{coupon.couponName}}</view>
+          <view class="securities_money"><text>{{coupon.type == 'PWAY101' ? '￥' : ''}}</text>{{coupon.type == 'PWAY101' ?coupon.useDenomination : coupon.discount*10}}<text>{{coupon.type == 'PWAY101' ? '' : '折'}}</text></view>
+          <view class="securities_condition">满{{coupon.useAmtLimit}}元使用</view>
+          <view class="securities_time">有效期：<text>{{coupon.useStartTime}} - {{coupon.useEndTime}}</text></view>
+        </view>
+      </view>
+      <view class="content_b" wx:if="{{couponType == 2}}">
+        <view class="receive_btn" wx:if="{{hasGetNum < getNumLimit}}" catchtap="securitiesShop">{{hasGetNum == 0 ? '立即领取' : '继续领取'}}</view>
+        <view class="receive_btn" wx:else catchtap="employ">立即使用</view>
+        <view class="receive_all" catchtap="go_securities">领取更多优惠劵>></view>
+      </view>
+      <view class="content_b" wx:else>
+        <view class="receive_btn" wx:if="{{coupon.isRecieved == 0}}" catchtap="securities">立即领取</view>
+        <view class="receive_btn" wx:else catchtap="employ">立即使用</view>
+        <view class="receive_all" catchtap="go_securities">领取更多优惠劵>></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="recommend">
+    <view class="goods_title" wx:if="{{goodsList.list.length > 0}}">为你推荐</view>
+    <jk-goodsList class="goods_list" list="{{goodsList.list}}" wx:if="{{goodsList.list.length > 0}}"/>
+  </view>
+
+  <!-- 触底提示 -->
+  <view class="bottom_line" wx:if="{{ goodsList.pageIndex >= goodsList.pageCount && goodsList.list.length > 0 }}">已经到底了~</view>
+</scroll-view>

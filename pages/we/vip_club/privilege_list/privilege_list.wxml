@@ -1,0 +1,125 @@
+<!--pages/we/vip_club/privilege_list/privilege_list.wxml-->
+<view class="vip_Content">
+  <scroll-view scroll-x="true" class="vip-tab" scroll-with-animation="true" scroll-left="{{scroll_left}}">
+    <view class="vip-tab-list {{currentTab==index ? 'on' : ''}}" wx:for="{{privilegeList}}" wx:key="{{index}}" data-current="{{index}}" catchtap="swichNav">
+      <view>
+        <image src="{{imgSrc}}/images/online/we/vip_club/{{item.privilegeCode}}.png"></image>
+      </view>
+      <text>{{item.privilegeName}}</text>
+    </view>
+  </scroll-view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange">
+  <!-- 购物省钱 -->
+  <swiper-item>
+    <scroll-view class="radius" scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+      <view class="title">VIP会员专属低价</view>
+      <view class="note">
+        <view class="two_title">适用会员</view>
+        <view class="two_note"><text class="text">VIP会员、试用会员</text></view>
+        <view class="two_title">权益介绍</view>
+        <view class="two_note"><text class="num">1</text><text class="text">VIP会员可在商城享受自营商品的会员价，以更低价格购买商品</text></view>
+        <view class="two_note"><text class="num">2</text><text class="text">VIP会员除享受超低的会员价外，还可同时享受其他满足条件的优惠，例如，优惠券、满减、满赠等</text></view>
+        <view class="two_note"><text class="num">3</text><text class="text">试用会员在试用期内可享受自营商品会员价</text></view>
+        <view class="two_title">使用指南</view>
+        <view class="two_note"><text class="num">1</text><text class="text">使用范围：如何识别VIP专享价商品：凡带有VIP 标识的商品，会员均可专享</text></view>
+        <view class="two_note"><text class="num">2</text><text class="text">其他：VIP价会员商品不定期更新</text></view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 免运费 -->
+  <swiper-item>
+    <scroll-view class="radius" scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="title">VIP会员全场免邮</view>
+      <view class="note">
+        <view class="two_title">适用会员</view>
+        <view class="two_note"><text class="text">VIP会员</text></view>
+        <view class="two_title">权益介绍</view>
+        <view class="two_note"><text class="num">1</text><text class="text">VIP会员享受全场商品免邮服务</text></view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 每月礼券 -->
+  <swiper-item>
+    <scroll-view class="radius" scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="title">每月领取全品类优惠券</view>
+      <view class="note">
+        <view class="two_title">适用会员</view>
+        <view class="two_note"><text class="text">VIP会员</text></view>
+        <view class="two_title">权益介绍</view>
+        <view class="two_note"><text class="num">1</text><text class="text">VIP会员每月可在领券中心领取专享优惠券</text></view>
+        <view class="two_note"><text class="num">2</text><text class="text">优惠券面额不等，用户可自行领取</text></view>
+        <view class="two_title">使用指南</view>
+        <view class="two_note"><text class="num">1</text><text class="text">使用范围：优惠券适用范围以下商品除外—商品详情页注明“不支持优惠礼券“的商品和部分特价活动商品</text></view>
+         <view class="two_note"><text class="num">2</text><text class="text">领取数量：每张券当月仅可领用一次，优惠券一旦确认领取，无论是否使用，都将扣除当月额度，请按需领取</text></view>
+          <view class="two_note"><text class="num">3</text><text class="text">查看及使用：已领取的优惠券可在"我的优惠券"中查看，领取后当月内有效</text></view>
+          <view class="two_note"><text class="num">4</text><text class="text">其他：专享优惠券减免金额/使用范围以实际领券为准； 优惠券不能分享，严禁出售</text></view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 积分加倍 -->
+  <swiper-item>
+    <scroll-view class="radius" scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="title">购物积分加倍</view>
+      <view class="note">
+        <view class="two_title">适用会员</view>
+        <view class="two_note"><text class="text">VIP会员、试用会员</text></view>
+        <view class="two_title">权益介绍</view>
+        <view class="two_note"><text class="num">1</text><text class="text">双倍积分：VIP会员在平台消费可得普通用户的双倍积分</text></view>
+        <view class="two_title">使用指南</view>
+        <view class="two_note"><text class="num">1</text><text class="text">如何使用：积分兑换中心兑换礼品；订单支付时根据商品的积分使用规则可用积分抵扣现金</text></view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 生日关怀 -->
+  <swiper-item>
+    <scroll-view class="radius" scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="title">专属生日大礼包</view>
+      <view class="note">
+        <view class="two_title">适用会员</view>
+        <view class="two_note"><text class="text">VIP会员</text></view>
+        <view class="two_title">权益介绍</view>
+        <view class="two_note"><text class="num">1</text><text class="text">VIP会员需完善生日信息，生日当天可领取专属生日礼包（含多张优惠券），具体以您实际领取为准；生日当天消费可享3倍积分；</text></view>
+        <view class="two_title">使用指南</view>
+        <view class="two_note"><text class="num">1</text><text class="text">领取时间：会员生日礼包在您生日前7天开始可领取</text></view>
+        <view class="two_note"><text class="num">2</text><text class="text">使用规则：生日礼包领取后有效期15天，或您在上述领取时间内未领取，不再进行补发，一个自然年每人可领取生日礼包一次</text></view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 专属兑换 -->
+  <swiper-item>
+    <scroll-view class="radius" scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="title">0元换好货</view>
+      <view class="note">
+        <view class="two_title">适用会员</view>
+        <view class="two_note"><text class="text">普通会员、试用会员、VIP会员</text></view>
+        <view class="two_title">权益介绍</view>
+        <view class="two_note"><text class="num">1</text><text class="text">vip会员可兑换VIP专属商品、礼券等，专属商品仅对会员开放兑换</text></view>
+        <view class="two_title">使用指南</view>
+        <view class="two_note"><text class="num">1</text><text class="text">如何使用：可在积分兑换中心进行积分兑换；订单支付时根据商品的积分使用规则可用积分抵扣现金</text></view>
+        <view class="two_note"><text class="num">2</text><text class="text">使用说明：积分兑换礼品成功后，会扣除相应积分</text></view>
+        <view class="two_note"><text class="num">3</text><text class="text">其他：积分不可兑现，不可转让</text></view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 退货无忧 -->
+  <swiper-item>
+    <scroll-view class="radius" scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="title">贴心退换货服务</view>
+      <view class="note">
+        <view class="two_title">适用会员</view>
+        <view class="two_note"><text class="text">普通会员、试用会员、VIP会员</text></view>
+        <view class="two_title">权益介绍</view>
+        <view class="two_note"><text class="num">1</text><text class="text">普通会员在收货后7天内支持退货退款</text></view>
+        <view class="two_note"><text class="num">2</text><text class="text">VIP会员在收货后30天内支持退货退款</text></view>
+        <view class="two_title">使用指南</view>
+        <view class="two_note"><text class="num">1</text><text class="text">使用范围：全平台自营商品</text></view>
+        <view class="two_note"><text class="num">2</text><text class="text">其他：生鲜类产品的售后根据平台的具体规则而定</text></view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
+
+<!-- 开通会员 -->
+<view class="bottom_btn" catchtap="toVip">立即开通￥{{cardPrice}}/月
+</view>

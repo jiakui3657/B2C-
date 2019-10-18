@@ -1,0 +1,75 @@
+<!--pages/classify/goods_search/goods_search.wxml-->
+<!-- 搜索 -->
+<view class="search">
+  <jk-search bind:componentsearch="componentsearch" class="search_box" placeholder="请输入要找的店铺" value="{{value}}" focus="true"/>
+  <text catchtap="go_back" wx:if="{{!goodsListFlag}}">取消</text>
+</view>
+
+<!-- 搜索历史 -->
+<view class="history" wx:if="{{historyFlag && historyWords.length > 0}}">
+  <view class="history_title">
+    <text>历史搜索</text>
+    <view>
+      <image src="{{imgSrc}}/images/online/we/order/del.png" bindtap="clearHistory"></image>
+    </view>
+  </view>
+  <view class="list">
+    <text wx:for="{{historyWords}}" wx:key="{{index}}" data-content="{{item}}" bindtap="clickHistorySearch">{{item}}</text>
+  </view>
+</view>
+
+<!-- 热门历史 -->
+<view class="hot history" wx:if="{{historyFlag}}">
+  <view class="history_title">
+    <text>热门搜索</text>
+  </view>
+  <view class="list">
+    <text wx:for="{{hotwordList}}" wx:key="{{index}}">{{item}}</text>
+  </view>
+</view>
+
+<view class="search-list" wx:if="{{!historyFlag && !goodsListFlag}}">
+  <view class="search-item" wx:for="{{shopNameList}}" wx:key="{{index}}" id="{{item.shopId}}" catchtap="shop">
+    <!-- <text>进口</text> -->
+    <text class="font-lighter" data-index="{{index}}">{{item.shopName}}</text>
+  </view>
+</view>
+<!-- <view class="goods-list" wx:if="{{goodsListFlag}}">
+  <jk-goodsList2 bind:get_cart_num="get_cart_num" class="goods_list" coordinates="{{coordinates}}" list="{{goodsList.list}}" shopId="{{shopId}}" />
+</view> -->
+
+<scroll-view scroll-y="true" bindscrolltolower="lower" scroll-top="0" style="height: {{scrollHeight}}px;" wx:if="{{goodsListFlag}}">
+  <!-- 商家列表 -->
+  <view class="container">
+    <view class="shop_list passage" wx:for="{{shops.list}}" data-index="{{index}}" id="{{item.shopId}}" wx:key="{{index}}" catchtap="shop">
+      <image mode="aspectFill" lazy-load="true" class="shop_logo" src="{{item.logo}}"></image>
+      <view class="shop_list_r">
+        <view class="shop_name">{{item.shopName}}</view>
+        <view class="shop_info">
+          <view class="shop_kind">
+            <view class="shop_level">
+              <image lazy-load="true" wx:for="{{5}}" wx:key="{{index}}" src="{{imgSrc}}/images/online/common/level_in.png"></image>
+            </view>
+            <view>{{item.shopTypeName}}</view>
+          </view>
+          <view class="shop_distance">{{item.distance}}</view>
+        </view>
+        <view class="shop_distribution">
+          <view wx:for="{{item.logisticsList}}" wx:key="{{index}}">{{item}}
+            <text>|</text>
+          </view>
+        </view>
+        <!-- <view class="shop_activity">
+              <text wx:for="{{item.activity}}">{{item}}</text>
+            </view> -->
+        <view class="shop_time">营业时间：{{item.opening}} - {{item.ending}}</view>
+      </view>
+      <image lazy-load="true" wx:if="{{item.isSign == 1}}" class="shop_code" src="{{imgSrc}}/images/online/common/shop_code.png"></image>
+    </view>
+    <!-- 附近店铺为空的样式 -->
+    <view class="not_online" wx:if="{{shops.list.length <= 0}}">
+      <image src="{{imgSrc}}/images/online/common/goods_not.png"></image>
+      <view>未找到店铺~</view>
+    </view>
+  </view>
+</scroll-view>

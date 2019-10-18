@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "天天有奖",
+  "usingComponents": {
+    "jk-goodsList": "/components/goodsList/goodsList"
+  }
+}

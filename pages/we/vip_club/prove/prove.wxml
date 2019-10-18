@@ -1,0 +1,8 @@
+<!--pages/we/vip_club/prove/prove.wxml-->
+<view class="container">
+  <view class="logo">
+    <image src="{{imgSrc}}/images/online/we/vip_club/autonym.png"></image>
+  </view>
+  <view class="title">您未进行实名认证，暂无法使用</view>
+  <view class="check radius" catchtap="ret">为了保障你的合法权利，请立即实名认证</view>
+</view>

@@ -1,0 +1,16 @@
+<!--components/goodsList/goodsList.wxml-->
+<view class="goods_list" id="{{animationFlag}}">
+  <view class="goodsList"  wx:for="{{list}}" wx:key="{{index}}" id="{{item.goodsId}}" catchtap="goods_detail">
+    <view class="goods">
+      <image lazy-load="true" class="goods_logo" src="{{item.image}}"></image>
+      <image lazy-load="true" class="goods_logo_animation" style="z-index: {{animationIndex == index ? '4' : '2'}};" id="goods_logo{{index}}" animation="{{animationList[index]}}" src="{{item.image}}"></image>
+      <view class="goods_name">{{item.name}}</view>
+      <view class="goods_abstract">{{item.sup}}</view>
+      <!-- 普通商品价格 -->
+      <view class="goods_price">￥{{item.price}}</view>
+
+      <image lazy-load="true" data-id="goods_logo{{index}}" data-index="{{index}}" catchtap="addCart" class="cart" src="{{imgSrc}}/images/online/common/shop_cart.png"></image>
+    </view>
+  </view>
+  <view class="target" id="target"></view>
+</view>

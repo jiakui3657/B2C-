@@ -1,0 +1,72 @@
+<!--pages/we/refund/refund_details/refund_details.wxml-->
+<view class="container">
+  <!-- 退款时间 -->
+  <view class="sales_time">
+    <view>退款中</view>
+    <text>3-5个工作日到账</text>
+  </view>
+
+  <!-- 退款金额 -->
+  <view class="sales_money">
+    <view>退款金额</view>
+    <text>￥{{detail.refundAmount}}</text>
+  </view>
+
+  <!-- 退款进度 -->
+  <view class="progress">
+    <view class="item">
+      <text></text>
+      <image src="{{imgSrc}}/images/online/we/refund/has.png"></image>
+      <view>平台退款</view>
+    </view>
+    <view class="item">
+      <text></text>
+      <image src="{{imgSrc}}/images/online/we/refund/{{(item.refundMoneyState==1 || item.refundMoneyState==2)?'has.png':'not.png'}}"></image>
+      <view>银行受理</view>
+    </view>
+    <view class="item">
+      <text></text>
+      <image src="{{imgSrc}}/images/online/we/refund/{{item.refundMoneyState==2?'has.png':'not.png'}}"></image>
+      <view>退款成功</view>
+    </view>
+  </view>
+
+  <!-- 退款商品 -->
+  <view class="goods passage">
+    <view class="goods_title">商品信息</view>
+    <view class="goods_content">
+      <view class="goods_logo">
+        <image src="{{detail.tRefundOrderItems[0].goodsImg}}"></image>
+      </view>
+      <view class="goods_r">
+        <view class="goods_name">{{detail.tRefundOrderItems[0].goodsName}}</view>
+        <view class="goods_norms">
+          <text>单价：￥{{detail.tRefundOrderItems[0].goodsSalePrice}}</text>
+          <text>申请数量：{{detail.tRefundOrderItems[0].goodsRefundNum}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退款信息 -->
+  <view class="refund_info passage">
+    <view>
+      申请原因：<text>{{detail.refundReason}}</text>
+    </view>
+    <view>
+      申请时间：<text>{{detail.applyTime}}</text>
+    </view>
+    <view>
+      审核时间：<text>{{detail.auditTime}}</text>
+    </view>
+    <!-- <view>
+      邮寄时间：<text>{{detail.logisticsTime}}</text>
+    </view> -->
+    <view wx:if="{{detail.affirmRefundTime}}">
+      预计退款时间：<text>{{detail.affirmRefundTime}}</text>
+    </view>
+    <view>
+      退款方式：<text>原路退回</text>
+    </view>
+  </view>
+</view>

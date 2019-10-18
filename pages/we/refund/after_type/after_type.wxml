@@ -1,0 +1,74 @@
+<!--pages/we/after_type/after_type.wxml-->
+<view class="container {{modalFlag ? 'noscroll' : ''}}">
+  <!-- 退货商品 -->
+  <view class="header passage">
+    <view class="goods">
+      <view class="goods_logo">
+        <image lazy-load="true" src="{{goods.goodsImg}}"></image>
+      </view>
+      <view class="goods_r">
+        <view class="goods_name">{{goods.goodsName}}</view>
+        <view class="goods_norms">
+          <text>单价：￥{{goods.goodsSalePrice}}</text>
+          <text style="margin-left: 32rpx;">数量：{{goods.goodsNum}}</text>
+          <text style="margin-left: 32rpx;">已退货：{{goods.backwardNum}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="number">
+      <view>申请数量</view>
+      <view class="number_r">
+        <image lazy-load="true" catchtap="minus" src="{{imgSrc}}/images/online/common/minus.png"></image>
+        <input bindinput="inputRefundNum" type="number" disabled="true" value="{{salesNumber}}"></input>
+        <image lazy-load="true" catchtap="add" src="{{imgSrc}}/images/online/common/add.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退货列表 -->
+  <view class="return passage">
+    <view class="returnList" catchtap="sales" wx:if="{{finish == 1}}">
+      <view class="return_l">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/we/refund/return.png"></image>
+        <text>退货退款</text>
+      </view>
+      <view class="return_r">
+        <view>
+          <view class="return_vip">VIP会员30天内支持退货</view>
+          <view>已发货，需退回该商品</view>
+        </view>
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+      </view>
+    </view>
+    <view class="returnList" catchtap="refund" wx:if="{{finish == 0}}">
+      <view class="return_l">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/we/refund/money.png"></image>
+        <text>仅退款</text>
+      </view>
+      <view class="return_r">
+        <view>
+          <view style="margin-top: 20rpx;">未发货</view>
+        </view>
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!--退款退货模态框 -->
+  <view catchtouchmove="move" catchtap="sales" class="mask {{salesFlag ? 'mask_active' : ''}}"></view>
+  <view class="modal {{salesFlag ? 'modal_active' : ''}}">
+    <view class="modal_title">
+      <text>申请原因</text>
+    </view>
+    <view class="modal_list">
+      <view wx:for="{{salesList}}" wx:key="{{index}}" id="{{index}}" catchtap="salesReason">
+        <text>{{item.name}}</text>
+        <image lazy-load="true" src="{{index == salesIndex ? imgSrc + '/images/online/common/selected.png' : imgSrc + '/images/online/common/uncheck.png'}}"></image>
+      </view>
+    </view>
+    <view class="modal_btn" catchtap="salesConfirm">确定</view>
+    <view class="del" catchtap="sales">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/common/close.png"></image>
+    </view>
+  </view>
+</view>

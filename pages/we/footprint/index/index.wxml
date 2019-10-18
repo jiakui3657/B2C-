@@ -1,0 +1,22 @@
+<!--pages/we/footprint/index/index.wxml-->
+<view class="container">
+  <view class="date_list" wx:for="{{visitedGoodsList}}" wx:key="{{index}}">
+    <view class="date">{{item.time}}</view>
+    <view class="goods_content">
+      <view class="goods_list" wx:for="{{item.list}}" wx:key="{{index}}" id="{{item.goodsId}}" 
+catchtap="{{item.state == 1 ? 'goods_detail' : ''}}">
+        <image src="{{item.goodsImg}}"></image>
+        <view class="goods_name">{{item.goodsName}}</view>
+        <view class="goods_price" wx:if="{{item.state == 1}}">¥{{item.price}}</view>
+        <view class="goods_price" wx:if="{{item.state == 0}}">已下架</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 优惠券列表为空 -->
+  <view class="not_online" wx:if="{{visitedGoodsList <= 0}}">
+    <image src="{{imgSrc}}/images/online/common/not.png"></image>
+    <view>还没有内容哦~</view>
+    <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator>
+  </view>
+</view>

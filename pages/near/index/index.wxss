@@ -1,0 +1,191 @@
+/* pages/near/index/index.wxss */
+page {
+  background: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container {
+  box-sizing: border-box;
+  padding-bottom: 16rpx;
+}
+
+.header {
+  height: 152rpx;
+}
+
+/* 商家分类 */
+.shop_classify {
+  width: 100%;
+  display: -webkit-box;
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-size: 28rpx;
+  color: #353535;
+  line-height: 56rpx;
+  height: 60rpx;
+  background: #fff;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.shop_classify_list {
+  padding: 0 24rpx;
+  display: inline-block;
+}
+
+/* .shop_classify_list:last-child {
+  display: none;
+} */
+
+.shop_classify_list text {
+  height: 100%;
+  display: inline-block;
+}
+
+.shop_classify_active text {
+  border-bottom: 4rpx solid #FF474C;
+  color: #FF474C;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+/* 商家列表 */
+.shop_list {
+  padding: 32rpx;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  position: relative;
+}
+
+.shop_list .rest_prompt {
+  display: none;
+}
+
+.rest {
+  opacity: .5;
+  padding-bottom: 72rpx;
+}
+
+.rest .rest_prompt {
+  position: absolute;
+  left: 32rpx;
+  top: 180rpx;
+  width: 140rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  background-color: #888;
+  color: #fff;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop_logo {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 6rpx;
+  margin-right: 28rpx;
+}
+
+.shop_list_r {
+  flex: 1;
+  color: #999999;
+  font-size: 24rpx;
+}
+
+.shop_name {
+  font-size: 28rpx;
+  color: #101010;
+  padding-right: 44rpx;
+}
+
+.shop_info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 10rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+}
+
+.shop_distribution {
+  margin-top: 10rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  display: flex;
+  align-items: center;
+}
+
+.shop_distribution view text {
+  display: inline-block;
+  margin: 0 10rpx;
+}
+
+.shop_distribution view:last-child text {
+  display: none;
+}
+
+.shop_time {
+  margin-top: 10rpx;
+}
+
+.shop_info image {
+  width: 26rpx;
+  height: 26rpx;
+  margin-right: 4rpx;
+  margin-top: 5rpx;
+}
+
+.shop_level {
+  display: flex;
+  margin-right: 20rpx;
+}
+
+.shop_kind {
+  display: flex;
+}
+
+.shop_code {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 0;
+}
+
+.shop_activity text {
+  display: inline-block;
+  padding: 0 20rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 20rpx;
+  margin-right: 16rpx;
+  color: #59A1FF;
+  border: 1px solid #59A1FF;
+  border-radius: 6rpx;
+  margin-top: 14rpx;
+}
+
+.shop_activity text:last-child {
+  margin-right: 0
+}
+
+.swiper-box {
+  padding: 0;
+  flex: 1
+}
+
+/* 暂无店铺的样式 */
+.not_online {
+  padding: 210rpx 0;
+}

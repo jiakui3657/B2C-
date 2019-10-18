@@ -1,0 +1,39 @@
+<view class="container">
+    <view class="tip-wrap passage">
+        <view class="tip-title clearfix">
+            <image lazy-load="true" class="tip-icon fl" src="{{imgSrc}}/images/online/shop/confirm_order/pay_success.png"/>
+            <text class="tip-status fl">支付成功</text>
+        </view>
+        <view class="tip-price">实付金额<text class="font-red">￥{{price}}</text></view>
+        <view class="tip-btns">
+            <view class="btn-item" bindtap="switchTab">返回首页</view>
+            <view class="btn-item" bindtap="linkTo">查看订单</view>
+        </view>
+    </view>
+
+  <!-- 商品列表 -->
+  <view class="goods_title" wx:if="{{goodsList.list.length > 0}}">为你推荐</view>
+  <jk-goodsList list="{{goodsList.list}}" />
+
+  <!-- 触底提示 -->
+  <view class="bottom_line" wx:if="{{goodsList.pageIndex >= goodsList.pageCount && goodsList.list.length > 0}}">我是有底线的~</view>
+</view>
+
+<!-- 优惠券 -->
+<view catchtouchmove="move" catchtap="close" class="mask" style="display: block;" wx:if="{{couponsState}}"></view>
+<view class="coupons" wx:if="{{couponsState}}">
+  <view class="coupons_info">
+    <image lazy-load="true" src="{{imgSrc}}/images/online/common/order_coupons.png"></image>
+    <view class="coupons_note">
+      <view class="coupons_info_l" wx:if="{{couponInfo.type == 'PWAY101'}}"><text>￥</text>{{couponInfo.useDenomination}}</view>
+      <view class="coupons_info_l" wx:if="{{couponInfo.type == 'PWAY102'}}">{{couponInfo.discount * 10}}<text>折</text></view>
+      <view class="coupons_info_r">
+        <view>优惠券</view>
+        <view>满{{couponInfo.useAmtLimit}}元可用</view>
+      </view>
+    </view>
+  </view>
+  <view class="coupons_title">已放入您的账户 可在我的优惠券中查看</view>
+  <button open-type="share" hover-class="none">我的小确幸分享给朋友们</button>
+  <image lazy-load="true" catchtap="close" class="coupons_del" src="{{imgSrc}}/images/online/we/awarded/del.png"></image>
+</view>

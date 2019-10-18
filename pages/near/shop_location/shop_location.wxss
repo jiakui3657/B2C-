@@ -1,0 +1,138 @@
+/* pages/near/shop_location/shop_location.wxss */
+page{
+  height: 100%;
+}
+.wrap{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#map{
+  width: 100%;
+  flex: 1;
+  box-sizing: border-box;
+  margin-bottom: 416rpx;
+  position: relative;
+}
+
+#map map {
+  height: 100%;
+  width: 100%;
+}
+
+.loacate-wrap{
+  position: fixed;
+  height: 416rpx;
+  width: 100%;
+  bottom: 0;
+  box-sizing: border-box;
+  background: #fff;
+  line-height: 40rpx;
+}
+
+.loacate-wrap swiper-item {
+  padding: 32rpx 40rpx 0;  
+  box-sizing: border-box;
+}
+
+.now-locate-wrap{
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 10rpx;
+  background-color: #f4f4f4;
+  color: #101010;
+  font-size: 24rpx;
+  padding-left: 32rpx;
+}
+.now-locate-wrap .title{
+  color: #888
+}
+.shop-wrap{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 32rpx;
+}
+.shop-info{
+  flex: 1;
+  display: flex;
+}
+.shop-info .icon{
+  height: 32rpx;
+  width: 32rpx;
+  margin-right: 8rpx;
+  margin-top: 4rpx;
+}
+.shop-info .info{
+  font-size: 28rpx;
+  color: #353535;
+}
+.shop-info .info .distance{
+  font-size: 24rpx;
+  color: #888;
+  margin-top: 16rpx;
+  line-height: 36rpx;
+}
+.shop-gps{
+  width: 120rpx;
+  margin-top: 20rpx;
+  text-align: center;
+}
+.shop-gps .icon{
+  height: 32rpx;
+  width: 32rpx;
+  margin: 0 auto
+}
+.shop-gps .gps-txt{
+  font-size: 24rpx;
+  color: #888;
+  margin-top: 8rpx;
+  line-height: 36rpx;
+}
+.go-btn{
+  margin-top: 48rpx;
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 10rpx;
+  background-color: #FF474C;
+  text-align: center;
+  color: #fff;
+}
+
+/* 指示器 */
+.indicator {
+  position: fixed;
+  bottom: 20rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.indicator text {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 10rpx;
+  background: #D2D2D2;
+  margin-left: 12rpx;
+}
+
+.indicator .active {
+  width: 20rpx;
+  background: #FF474C;
+}
+
+/* 中心点 */
+.centre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90rpx;
+  height: 90rpx;
+  margin-left: -45rpx;
+  margin-top: -45rpx;
+}
+
+.back-gray{
+  background-color: #B2B2B2;
+}

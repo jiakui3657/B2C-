@@ -1,0 +1,6 @@
+<!--pages/we/authenticationOk/authenticationOk.wxml-->
+<view class="container">
+  <image lazy-load="true" src="{{imgSrc}}/images/online/we/user_info/succeed.png"></image>
+  <view>认证成功</view>
+  <view class="btn" catchtap="open">立即体验30天会员</view>
+</view>

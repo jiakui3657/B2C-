@@ -1,0 +1,9 @@
+<view class="radio-wrap" bindtap="checkRadio" wx:if="{{show}}">
+  <view class="radio-btn">
+    <image wx:if="{{checked}}" class="btn" src="{{imgSrc}}/images/online/common/selected.png"></image>
+    <image wx:else class="btn" src="{{imgSrc}}/images/online/common/uncheck.png"></image>
+  </view>
+  <view class="radio-label {{checked && 'red'}}">
+    {{label}}
+  </view>
+</view>

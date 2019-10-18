@@ -1,0 +1,177 @@
+/* pages/home/recomm/recomm.wxss */
+
+page {
+  height: 100%;
+  background: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  background: transparent;
+  overflow: hidden;
+  padding: 0;
+  height: 100%;
+  flex: 1
+}
+
+/* 顶部header */
+.header {
+  height: 300rpx;
+  position: relative;
+}
+
+.header image {
+  height: 100%;
+  width: 100%;
+}
+
+/* 状态栏 */
+.status {
+  position: relative;
+  height: 170rpx;
+}
+
+.status image {
+  height: 100%;
+  width: 100%;
+}
+
+.state {
+  position: absolute;
+  top: 90rpx;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 36rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.state image {
+  position: absolute;
+  bottom: 20rpx;
+  left: 40rpx;
+  width: 32rpx;
+  height: 32rpx;
+  transform: rotate(-180deg)
+}
+
+.title {
+  position: absolute;
+  top: 40rpx;
+  left: 20rpx;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 700;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+/* 商品列表 */
+.content {
+  position: relative;
+  top: -168rpx;
+  padding: 0 16rpx;
+}
+
+.shop_list {
+  background: #fff;
+  box-sizing: border-box;
+  padding: 32rpx;
+}
+
+.shop_list:first-child {
+  margin-top: 0;
+}
+
+.shop_logo {
+  background: transparent;
+  padding: 0;
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.shop_list_r image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -12rpx;
+  right: 16rpx;
+}
+
+.shop_norms {
+  height: 32rpx;
+  line-height: 32rpx;
+  font-size: 24rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical
+}
+
+.shop_name {
+  margin-top: 16rpx;
+  height: 80rpx;
+}
+
+.shop_price {
+  margin-top: 14rpx;
+  font-weight: 700;
+}
+
+.shop_price text {
+  color: #999;
+  font-size: 22rpx;
+  margin-left: 14rpx;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.shop_bottom {
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 26rpx;
+  color: #868686;
+  margin: 32rpx 0;
+  text-align: center;
+  width: 100%;
+}
+
+/* 购物车 */
+.shop {
+  position: fixed;
+  left: 16rpx;
+  bottom: 25%;
+  margin-top: 40rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 5px 1px rgba(210, 210, 210, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.shop text {
+  width: 24rpx;
+  height: 24rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  background: #FF474C;
+  color: #fff;
+  font-size: 18rpx;
+  text-align: center;
+  line-height: 24rpx;
+  border-radius: 50%;
+}

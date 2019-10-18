@@ -1,0 +1,87 @@
+/* pages/we/order/logistics_list/logistics_list.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  min-height: 100%;
+  padding: 0;
+}
+
+.title {
+  height: 60rpx;
+  background: #FBECED;
+  display: flex;
+  align-items: center;
+  padding-left: 40rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  color: #FF474C;
+}
+
+/* 物流列表 */
+.logistics_list {
+  padding: 16rpx 40rpx 32rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.logistics {
+  display: flex;
+  justify-content: space-between;
+  height: 48rpx;
+  align-items: center;
+}
+
+.logistics .code {
+  font-size: 32rpx;
+  color: #FF474C;
+}
+
+.logistics .serial {
+  color: #999;
+  font-size: 26rpx;
+}
+
+.logistics_address {
+  margin-top: 12rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #353535;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: right;
+}
+
+.imgs_wrap{
+  display: flex;
+}
+
+.img_list {
+  margin-top: 40rpx;
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img_list image {
+  width: 140rpx;
+  height: 140rpx;
+  display: block;
+}
+
+.img_list text {
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #353535;
+  margin-top: 10rpx;  
+}

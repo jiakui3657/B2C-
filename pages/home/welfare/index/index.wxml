@@ -1,0 +1,349 @@
+<!--pages/home/welfare/welfare.wxml-->
+<wxs src="util.wxs" module="util" />
+<view class="order_Content">
+  <scroll-view class="swiper-tab" scroll-x="true">
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==0 ? 'on' : ''}}" data-current="0" catchtap="swichNav">领券中心</text>
+    </view>
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==1 ? 'on' : ''}}" data-current="1" catchtap="swichNav">闪电购</text>
+    </view>
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==2 ? 'on' : ''}}" data-current="2" catchtap="swichNav">VIP会员价</text>
+    </view>
+    <!-- <view class="swiper-tab-list">
+    <!--
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==3 ? 'on' : ''}}" data-current="3" catchtap="swichNav">免邮拼团</text>
+    </view>
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==4 ? 'on' : ''}}" data-current="4" catchtap="swichNav">满赠优惠</text>
+    </view> -->
+    <!-- <view class="swiper-tab-list">
+      <text class="{{currentTab==5 ? 'on' : ''}}" data-current="5" catchtap="swichNav">今日特价</text>
+    </view> -->
+    <view class='clear'></view>
+  </scroll-view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange">
+  <!-- 领券中心 -->
+  <swiper-item catchtouchmove='catchTouchMove'>
+    <scroll-view bindscroll="get_top" scroll-y="true" lower-threshold="5" bindscrolltolower="couponLower" scroll-into-view="{{toView}}" scroll-top="0" style="height: 100%;">
+      <!-- banner轮播图 -->
+      <view class="banner radius" wx:if="{{ ads && ads.C_COUPON && ads.C_COUPON.length>0}}">
+        <swiper autoplay="true" interval="3000" circular="true">
+          <swiper-item wx:for="{{ads.C_COUPON}}" wx:key="{{index}}">
+            <image class="radius" src="{{item.source}}" />
+          </swiper-item>
+        </swiper>
+
+        <!-- 指示器 -->
+        <view class="banner_indicator">{{indicatorIndex + 1}}/{{ads.C_COUPON && ads.C_COUPON.length}}</view>
+      </view>
+
+      <view class="securities">
+        <!-- 提示 -->
+        <!-- <view class="remind passage">
+          <view id="remind" style="position: {{scrollCode ? 'relative' : 'fixed'}}">
+            <text>重要提醒：</text>您有一张优惠券即将过期
+          </view>
+        </view> -->
+
+        <!-- 优惠券 -->
+        <!-- <view class="coupon_list {{util.couponStyle(item)}} passage" wx:for="{{couponList.list}}" wx:key="{{index}}">
+          <view class="coupon_info">
+            <view class="coupon_list_l">
+              <view class="coupon_list_l_content">
+                <view class="price" wx:if="{{item.type=='PWAY101'}}">
+                  <text>￥</text>{{item.useDenomination}}</view>
+                <view class="price" wx:elif="{{item.type=='PWAY102'}}">{{item.discount*10}}
+                  <text>折</text>
+                </view>
+                <view class="condition">满{{item.useAmtLimit}}元使用</view>
+              </view>
+              <image wx:if="{{item.isVipCoupon == 1}}" src="{{imgSrc}}/images/online/home/recomm/coupons.png"></image>
+            </view>
+            <view class="coupon_list_r">
+              <view class="coupon_list_t {{util.couponStyle(item)}}">
+                <view class="title">
+                  <text wx:if="{{item.type=='PWAY101'}}">满减券</text>
+                  <text wx:elif="{{item.type=='PWAY102'}}">折扣券</text>
+                  <view>{{item.couponName}}</view>
+                </view>
+                <view class="securities_time" wx:if="{{item.state==1 && item.isTake==0 && item.getNum < item.totalNum}}">
+                  <view class="complete">
+                    <view style="width:{{(item.getNum*100.0)/(item.totalNum*1.0)}}%"></view>
+                    <text>已抢<text>{{util.toFixed((item.getNum*100.0)/(item.totalNum*1.0))}}</text>%</text>
+                  </view>
+                  <view class="use" data-id="{{item.couponId}}" data-isVipCoupon="{{item.isVipCoupon}}" catchtap="getCouponBtn">立即领取</view>
+                </view>
+                <view class="securities_time" wx:if="{{item.state==0 && item.isTake==0}}">
+                  <text>开始时间：{{item.getStartTime}}</text>
+                  <view class="use2">未开始</view>
+                </view>
+                <view class="securities_time" wx:if="{{item.isTake==1}}">
+                  <view class="complete">
+                    <view style="width:{{(item.getNum*100.0)/(item.totalNum*1.0)}}%"></view>
+                    <text>已抢<text>{{util.toFixed((item.getNum*100.0)/(item.totalNum*1.0))}}</text>%</text>
+                  </view>
+                  <view class="use" catchtap="use" data-couponid="{{item.couponId}}">立即使用</view>
+                </view>
+                <view class="securities_time" wx:if="{{item.isTake==0 && item.getNum >= item.totalNum}}">
+                  <view class="complete">
+                    <view style="width:{{(item.getNum*100.0)/(item.totalNum*1.0)}}%"></view>
+                    <text>已抢<text>{{(item.getNum*100.0)/(item.totalNum*1.0)}}</text>%</text>
+                  </view>
+                  <view class="use">已抢光</view>
+                </view>
+              </view>
+
+              <button open-type="share" data-couponid="{{item.couponId}}" class="coupon_list_b" wx:if="{{item.shareSupport == 1 && item.state==1 && (item.getNum<item.totalNum)}}">
+                <text>分享给好友</text>
+                <view catchtap1="share_coupon" data-couponid="{{item.couponId}}">
+                  <image src="{{imgSrc}}/images/online/common/share.png"></image>
+                </view>
+              </button>
+              <image wx:if="{{item.getNum==item.totalNum}}" class="code" src="{{imgSrc}}/images/online/we/coupons/gone.png"></image>
+              <image wx:if="{{item.isTake==1}}" class="code" src="{{imgSrc}}/images/online/we/coupons/receive.png"></image>
+            </view>
+            <image class="coupon_info_bj" lazy-load="true" src="{{imgSrc}}/images/online/we/coupons/coupons_bj.png"></image>
+          </view>
+        </view> -->
+
+        <view class="coupons_list passage red {{util.couponStyle(item)}} {{couponsFlag == index ? 'active' : ''}}" wx:for="{{couponList.list}}" wx:key="{{index}}">
+          <view class="coupons_list_t">
+            <view class="coupons_info">
+              <view class="coupons_info_l">
+                <view class="coupons_info_price" wx:if="{{item.type=='PWAY101'}}"><text>￥</text>{{item.useDenomination}}</view>
+                <view class="coupons_info_price" wx:elif="{{item.type=='PWAY102'}}">{{item.discount*10}}<text>折</text></view>
+                <view class="coupons_info_limit">满{{item.useAmtLimit}}元可用</view>
+              </view>
+              <view class="coupons_info_r">
+                <view class="coupons_name">{{item.couponName}}</view>
+                <view class="securities_time" wx:if="{{item.state==1 && item.isTake==0 && item.getNum < item.totalNum}}">
+                  <view class="complete">
+                    <view style="width:{{(item.getNum*100.0)/(item.totalNum*1.0)}}%"></view>
+                    <text>已抢<text>{{util.toFixed((item.getNum*100.0)/(item.totalNum*1.0))}}</text>%</text>
+                  </view>
+                  <view class="use" data-id="{{item.couponId}}" data-isVipCoupon="{{item.isVipCoupon}}" catchtap="getCouponBtn">立即领取</view>
+                </view>
+                <view class="securities_time" wx:if="{{item.state==0 && item.isTake==0}}">
+                  <text>{{item.getStartTime}}开抢</text>
+                  <view class="use2">未开始</view>
+                </view>
+                <view class="securities_time" wx:if="{{item.isTake==1}}">
+                  <view class="complete">
+                    <view style="width:{{(item.getNum*100.0)/(item.totalNum*1.0)}}%"></view>
+                    <text>已抢<text>{{util.toFixed((item.getNum*100.0)/(item.totalNum*1.0))}}</text>%</text>
+                  </view>
+                  <view class="use" catchtap="use" data-couponid="{{item.couponId}}">立即使用</view>
+                </view>
+                <view class="securities_time" wx:if="{{item.isTake==0 && item.getNum >= item.totalNum}}">
+                  <view class="complete">
+                    <view style="width:{{(item.getNum*100.0)/(item.totalNum*1.0)}}%"></view>
+                    <text>已抢<text>{{(item.getNum*100.0)/(item.totalNum*1.0)}}</text>%</text>
+                  </view>
+                  <view class="use">已抢光</view>
+                </view>
+              </view>
+            </view>
+            <view class="coupons_list_func">
+              <button open-type="share" data-couponid="{{item.couponId}}" class="coupon_list_b" wx:if="{{item.shareSupport == 1 && item.state==1 && (item.getNum<item.totalNum)}}">
+                <image lazy-load="true" src="{{imgSrc}}/images/online/common/share.png"></image>
+                <text>分享给好友</text>
+              </button>
+              <view wx:else></view>
+              <view class="coupons_detailed_info" data-index="{{index}}" catchtap="explainToggle">
+                <view>详细信息</view>
+                <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+              </view>
+            </view>
+            <image class="coupons_info_bj" lazy-load="true" src="/images/online/we/coupons/coupons2_bj.png"></image>
+            <view class="coupons_vip" wx:if="{{item.isVipCoupon == 1}}">VIP专享</view>
+            <image wx:if="{{item.getNum==item.totalNum}}" class="code" src="{{imgSrc}}/images/online/we/coupons/gone.png"></image>
+            <image wx:if="{{item.isTake==1}}" class="code" src="{{imgSrc}}/images/online/we/coupons/receive.png"></image>
+          </view>
+          <view class="coupons_list_b">
+            <view>{{item.remark}}</view>
+          </view>
+        </view>
+
+
+        <!-- 商品劵 -->
+        <!--
+        <view class="goods_securities">
+          <view class="goods_securities_list passage" wx:for="{{10}}" wx:key="{{index}}">
+            <view class="goods_securities_t">
+              <view class="goods_securities_l">
+                <view class="goods_securities_prick"><text>￥</text>10</view>
+                <view class="goods_securities_condition">满100元使用</view>
+              </view>
+              <view class="goods_securities_r">
+                <text>立即使用</text>
+              </view>
+            </view>
+            <view class="goods_securities_c">
+              <image class="shop_logo" src="{{imgSrc}}/images/test/seckill_shop.png"></image>
+              <view class="shop_name">新西兰进口蓝莓优质蓝莓新西兰进口蓝莓优质蓝莓</view>
+            </view>
+            <view class="goods_securities_b blue">
+              <view class="complete">
+                <view></view>
+                <text>已抢<text>10</text>%</text>
+              </view>
+              <view class="share">
+                <image src="{{imgSrc}}/images/online/common/share.png"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+        -->
+
+        <!-- 商品列表为空 -->
+        <view class="not_online" wx:if="{{couponList.list.length <= 0}}">
+          <image src="{{imgSrc}}/images/online/common/order_not.png"></image>
+          <view>还没有优惠券哦~</view>
+          <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator>
+        </view>
+
+        <!-- 触底提示 -->
+        <view class="bottom_line" wx:if="{{ couponList.pageIndex >= couponList.pageCount && couponList.list.length > 0 }}">已经到底了~</view>
+
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 闪电购 -->
+  <swiper-item class="seckill" catchtouchmove='catchTouchMove'>
+    <!-- 秒杀切换 -->
+    <view class="timeTable" data-index="0" catchtap="timeToggle" wx:if="{{flashActivityList && flashActivityList.length > 1}}">
+      <!-- <view class="timeList {{timeFlag == 0 ? 'activeTime' : ''}}">
+        <view>
+          <text class="time">{{day}}</text>
+          <text>:</text>
+          <text class="time">{{hour}}</text>
+          <text>:</text>
+          <text class="time">{{minute}}</text>
+        </view>
+        <view>正在抢购</view>
+      </view>
+      <view class="timeList {{timeFlag == 1 ? 'activeTime' : ''}}" data-index="1" catchtap="timeToggle">
+        <view>13:00</view>
+        <view>即将开始</view>
+      </view> -->
+      <view class="timeList {{timeFlag == index ? 'activeTime' : ''}}" wx:for="{{flashActivityList}}" wx:key="{{index}}" id="{{item.activityId}}" data-index="{{index}}" catchtap="timeToggle" style="width:{{100/flashActivityList.length}}%">
+        <view wx:if="{{!item.flag}}">{{item.time}}</view>
+        <view wx:if="{{item.flag}}">
+          <text class="time">{{hour}}</text>
+          <text>:</text>
+          <text class="time">{{minute}}</text>
+          <text>:</text>
+          <text class="time">{{second}}</text>
+        </view>
+        <view wx:if="{{!item.flag}}">即将开抢</view>
+        <view wx:if="{{item.flag}}">正在抢购</view>
+      </view>
+    </view>
+
+    <swiper current="{{flashCurrentTab}}" class="swiper-box" duration="300" wx:if="{{flashActivityList.length>0}}">
+      <swiper-item wx:for="{{flashActivityList}}" wx:key="{{actIndex}}" wx:for-item="act" wx:for-index="actIndex" id="{{act.activityId}}" data-index="{{actIndex}}" catchtouchmove='catchTouchMove'>
+        <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="seckillLower" scroll-into-view="{{toView}}" scroll-top="0" style="height: 100%;z-index: 1111;padding-top: {{flashActivityList.length>1?90 :0}}rpx;box-sizing: border-box;">
+          <!-- 商品列表 -->
+          <view class="seconds goods_list passage" id="{{item.goodsId}}" wx:for="{{flashActivityGoodsList[act.activityId] && flashActivityGoodsList[act.activityId].list}}" wx:key="{{index}}">
+            <image lazy-load="true" class="goods_logo" src="{{item.goodsImg}}"></image>
+            <view class="goods_list_r">
+              <view class="goods_name">{{item.goodsName}}</view>
+              <view class="goods_price">
+                <view>¥{{item.actPrice}}
+                  <image src="{{imgSrc}}/images/online/common/seconds_icon.png"></image>
+                </view>
+                <text>￥{{item.price}}</text>
+              </view>
+              <view class="percentage {{item.stock - item.saleNum <= 0 ? 'notstart' : ''}}" wx:if="{{flashActivityList[timeFlag].state == 1}}">
+                <view class="percentage_l">
+                  <view class="complete">
+                    <view style="width:{{(item.saleNum*100.0)/(item.stock*1.0)}}%"></view>
+                    <text>已抢<text>{{util.toFixed((item.saleNum*100.0)/(item.stock*1.0))}}</text>%</text>
+                  </view>
+                </view>
+                <view class="btn" id="{{item.goodsId}}" data-goods_spec_id="{{item.goodsSpecId}}" catchtap="{{item.stock - item.saleNum <= 0 ? '' : 'goods_detail'}}">{{item.stock - item.saleNum <= 0 ? '已抢光' : '立即抢购'}}</view>
+              </view>
+              <view class="percentage notstart" wx:else>
+                <view class="percentage_l">
+                </view>
+                <view class="btn">未开始</view>
+              </view>
+            </view>
+          </view>
+
+          <!-- 触底提示 -->
+          <view class="bottom_line" wx:if="{{ flashActivityGoodsList[act.activityId].pageIndex >= flashActivityGoodsList[act.activityId].pageCount && flashActivityGoodsList[act.activityId].list.length > 0 }}">已经到底了~</view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+
+    <!-- 商品列表为空 -->
+    <view class="not_online" wx:if="{{flashActivityList.length<=0}}">
+      <image src="{{imgSrc}}/images/online/common/order_not.png"></image>
+      <view>还没有闪电购哦~</view>
+      <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator>
+    </view>
+  </swiper-item>
+  <!-- VIP会员价 -->
+  <swiper-item catchtouchmove='catchTouchMove'>
+    <!-- 开通会员 -->
+    <view class="open_vip" wx:if="{{userInfo.memberGradeCode != 'M103'}}">
+      <view>
+        <image src="{{imgSrc}}/images/online/home/recomm/vip.jpg"></image>
+        <text>您暂未开通超级会员</text>
+      </view>
+      <navigator url="/pages/we/vip_club/open_vip/open_vip" hover-class="none">
+        <text>立即开通</text>
+      </navigator>
+    </view>
+
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="vipGoodslower" scroll-into-view="{{toView}}" scroll-top="0" style="z-index: -1;position: absolute;top: 0;height: 100%;padding-top: {{vipGoodsPaddingTop}};box-sizing: border-box;">
+      <view class="vip">
+
+        <!-- 商品列表 -->
+        <jk-goodsList animationFlag="true" class="goods_list" bind:get_cart_num="get_cart_num" coordinates="{{coordinates}}" list="{{vipGoodsList.list}}" />
+        <!-- 商品列表为空 -->
+        <view class="not_online" wx:if="{{vipGoodsList.list.length <= 0}}">
+          <image src="{{imgSrc}}/images/online/common/order_not.png"></image>
+          <view>还没有商品哦~</view>
+          <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator>
+        </view>
+
+        <!-- 触底提示 -->
+        <view class="bottom_line" wx:if="{{ vipGoodsList.pageIndex >= vipGoodsList.pageCount && vipGoodsList.list.length > 0 }}">已经到底了~</view>
+
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 免邮拼团
+  <!-- <swiper-item>
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="not_online"><image src="{{imgSrc}}/images/online/common/not.png"></image><view>暂无内容 敬请期待</view></view>
+    </scroll-view>
+  </swiper-item> -->
+  <!-- 满赠优惠 -->
+  <!-- <swiper-item>
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="not_online"><image src="{{imgSrc}}/images/online/common/not.png"></image><view>暂无内容 敬请期待</view></view>
+    </scroll-view>
+  </swiper-item> -->
+  <!-- 今日特价 -->
+  <!-- <swiper-item>
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="not_online"><image src="{{imgSrc}}/images/online/common/not.png"></image><view>暂无内容 敬请期待</view></view>
+    </scroll-view>
+  </swiper-item> -->
+</swiper>
+
+<!-- 劵 -->
+<view wx:if="{{currentTab == 0}}" class="we_securities" catchtap="coupons">我的券</view>
+
+<!-- 购物车 -->
+<view class="cart" wx:if="{{currentTab == 1 || currentTab == 2}}" catchtap="go_cart">
+  <image src="{{imgSrc}}/images/online/tabBar/shop_selected.png"></image>
+  <text>{{cartNum}}</text>
+</view>

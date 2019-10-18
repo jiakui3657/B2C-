@@ -1,0 +1,8 @@
+<!--pages/demo/demo.wxml-->
+<view>
+  <view catchtap="middlejia">1212121</view>
+  <view class='Arrow' animation="{{animation}}" wx:if="{{showAnmimation}}">
+      <image src="{{imgSrc}}/images/test/商品.png"></image>    
+  </view>
+</view>
+

@@ -1,0 +1,12 @@
+<!--pages/we/awarded/invited_record/invited_record.wxml-->
+<view class="container">
+
+  <!-- 邀请用户列表 -->
+  <view class="recordList passage" wx:for="{{list.list}}" wx:key="{{index}}">
+    <image src="{{item.avatar}}"></image>
+    <view class="recordList_r">
+      <view class="name">{{item.nickName}}</view>
+      <view class="time">{{item.createTime}}</view>
+    </view>
+  </view>
+</view>

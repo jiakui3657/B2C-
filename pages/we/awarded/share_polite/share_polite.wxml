@@ -1,0 +1,66 @@
+<!--pages/we/awarded/share_polite/share_polite.wxml-->
+
+<!-- header -->
+<view class="header">
+  <image lazy-load="true" src="{{imgSrc}}/images/online/we/awarded/sign_bj.png"></image>
+  <view class="header_content radius">
+    <view class="header_note">
+      <view class="invitation_number"><text>{{userInfo.integral}}</text></view>
+      <view class="invitation_record"><text>已获得积分</text></view>
+    </view>
+  </view>
+</view>
+
+ <!-- 分享流程 -->
+<view class="share_process radius">
+  <view class="process_list">
+    <view class="process_logo">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/we/awarded/share1.png"></image>
+      <text></text>
+    </view>
+    <view class="process_text">分享好友</view>
+  </view>
+  <view class="process_list">
+    <view class="process_logo">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/we/awarded/share2.png"></image>
+      <text></text>
+    </view>
+    <view class="process_text">好友点击查看</view>
+  </view>
+  <view class="process_list">
+    <view class="process_logo">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/we/awarded/share3.png"></image>
+    </view>
+    <view class="process_text">奖励积分到账</view>
+  </view>
+</view>
+
+<view class="container radius">
+
+  <!-- 分享商品 -->
+  <view class="share_shop passage">
+    <view catchtap="goods_list">
+      <image lazy-load="true" src="{{imgSrc}}/images/test/shop1.png"></image>
+      <view class="shop_title">分享商品得积分</view>
+      <view class="shop_number">+{{shareInfo.shareIntegral}}积分/人</view>
+    </view>
+    <view catchtap="goods_list1">
+      <image lazy-load="true" src="{{imgSrc}}/images/test/shop2.png"></image>
+      <view class="shop_title">分享好物得积分</view>
+      <view class="shop_number">+{{shareInfo.shareIntegral}}积分/人</view>
+    </view>
+  </view>
+
+  <!-- 分享规则 -->
+  <view class="share_rules passage">
+    <view class="rules_title">邀请规则</view>
+    <view class="rules_list">
+      <text>1</text>
+      <view>通过分享平台自营商品和好物，邀请好友点击查看，即可获得{{shareInfo.shareIntegral}}积分/人，每日最多可获得10积分，同一微信号为1人。</view>
+    </view>
+    <view class="rules_list">
+      <text>2</text>
+      <view>分享过程中，有可能因为切换页面，关闭小程序等因素导致分享失败。</view>
+    </view>
+  </view>
+</view>

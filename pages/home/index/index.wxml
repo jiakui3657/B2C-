@@ -1,0 +1,209 @@
+<!--pages/home/index/index.wxml-->
+<!-- search -->
+<view class="search_box">
+  <jk-search class="{{searchCode? 'search' : ''}}" pathTo="/pages/classify/goods_search/goods_search" mapCode="false" place="{{city}}" placeholder="全球美酒 进口美食" disabled="true" />
+</view>
+
+<!-- banner轮播图 -->
+<view class="banner" wx:if="{{ads.C_INDEX_BANNER && ads.C_INDEX_BANNER.length>0}}">
+  <view class="banner_bj"></view>
+  <swiper bindchange="get_banner" autoplay="true" interval="3000" circular="true">
+    <swiper-item wx:for="{{ads.C_INDEX_BANNER}}" wx:key="{{index}}">
+      <image mode="" class="radius" src="{{item.source}}" />
+    </swiper-item>
+  </swiper>
+
+  <!-- 指示器 -->
+  <view class="banner_indicator">{{indicatorIndex + 1}}/{{ads.C_INDEX_BANNER && ads.C_INDEX_BANNER.length}}</view>
+</view>
+
+<!-- 快捷入口 -->
+<view class="quick">
+  <swiper>
+    <swiper-item>
+      <navigator open-type="{{index < 5 ? 'switchTab' : 'navigate'}}" wx:for="{{quickList}}" wx:key="{{index}}" url="{{item.url}}" hover-class="none">
+        <image src="{{item.src}}"></image>
+        <view class="quick_name">{{item.text}}</view>
+      </navigator>
+    </swiper-item>
+  </swiper>
+</view>
+
+<view class="container">
+
+  <!-- 广告位 -->
+  <view class="advertising radius" wx:if="{{ads.C_INDEX_CENTER && ads.C_INDEX_CENTER.length>0}}">
+    <image lazy-load="true" wx:if="{{ads.C_INDEX_CENTER && ads.C_INDEX_CENTER.length>0}}" src="{{ ads.C_INDEX_CENTER[0].source}}"></image>
+    <!-- <image wx:else src="{{imgSrc}}/images/test/ad.png"></image> -->
+  </view>
+
+  <!-- 秒杀 -->
+  <view class="seckill passage" wx:if="{{lightningActivity.goods && lightningActivity.goods.length>0}}">
+    <view class="seckill_title">
+      <view class="seckill_title_l">
+        <text>闪电购</text>
+        <view class="countdown">
+          <text>{{time.hour}}</text> :
+          <text>{{time.minute}}</text> :
+          <text>{{time.second}}</text>
+        </view>
+      </view>
+      <view class="seckill_title_r" catchtap="seckill">
+        <text>更多</text>
+        <image src="{{imgSrc}}/images/online/common/more.png"></image>
+      </view>
+    </view>
+    <view class="seckill_content">
+
+      <swiper bindchange="get_current" autoplay="true" interval="3000" circular="true" indicator-color="#D2D2D2" indicator-active-color="#FF474C">
+        <swiper-item wx:for="{{lightningActivity.goods}}" wx:if="{{index < lightningActivity.goods.length / 3}}" wx:key="{{index}}">
+          <view class="seckill_shop" id="{{lightningActivity.goods[index*3].goodsId}}" data-goods_spec_id="{{lightningActivity.goods[index*3].goodsSpecId}}" catchtap="goods_detail">
+            <view class="seckill_shop_img">
+              <image lazy-load="true" src="{{lightningActivity.goods[index*3].goodsImg}}"></image>
+              <image class="shop_logo_animation" lazy-load="true" style="z-index: {{animationIndex == index*3 ? '4' : '2'}};" id="shop_logo{{index*3}}" animation="{{animationList[index*3]}}" src="{{lightningActivity.goods[index*3].goodsImg}}"></image>
+              <view wx:if="{{item.stock - item.saleNum <= 0}}" class="seckill_mask">
+                <image src="{{imgSrc}}/images/online/we/credits_exchange/grab.png"></image>
+              </view>
+            </view>
+            <view class="seckill_shop_name">{{lightningActivity.goods[index*3].goodsName}}</view>
+            <view class="seckill_shop_price">¥{{lightningActivity.goods[index*3].actPrice}}
+              <image src="{{imgSrc}}/images/online/common/seconds_icon.png"></image>
+            </view>
+            <view class="seckill_shop_original_price">¥{{lightningActivity.goods[index*3].price}}</view>
+            <image catchtap="{{lightningActivity.goods[index*3].stock-lightningActivity.goods[index*3].saleNum <= 0 ? '' : 'addCart'}}" data-id="shop_logo{{index*3}}" data-index="{{index*3}}" id="{{lightningActivity.goods[index*3].goodsId}}" class="cart" src="{{imgSrc}}/images/online/common/shop_cart.png"></image>
+          </view>
+          <view class="seckill_shop" wx:if="{{lightningActivity.goods[index*3+1].goodsImg}}" id="{{lightningActivity.goods[index*3+1].goodsId}}" data-goods_spec_id="{{lightningActivity.goods[index*3+1].goodsSpecId}}" catchtap="goods_detail">
+            <view class="seckill_shop_img">
+              <image lazy-load="true" src="{{lightningActivity.goods[index*3+1].goodsImg}}"></image>
+              <image class="shop_logo_animation" lazy-load="true" style="z-index: {{animationIndex == index*3+1 ? '4' : '2'}};" id="shop_logo{{index*3+1}}" animation="{{animationList[index*3+1]}}" src="{{lightningActivity.goods[index*3+1].goodsImg}}"></image>
+            </view>
+            <view class="seckill_shop_name">{{lightningActivity.goods[index*3+1].goodsName}}</view>
+            <view class="seckill_shop_price">¥{{lightningActivity.goods[index*3+1].actPrice}}
+              <image src="{{imgSrc}}/images/online/common/seconds_icon.png"></image>
+            </view>
+            <view class="seckill_shop_original_price">¥{{lightningActivity.goods[index*3+1].price}}</view>
+            <image catchtap="{{lightningActivity.goods[index*3+1].stock-lightningActivity.goods[index*3+1].saleNum <= 0 ? '' : 'addCart'}}" data-id="shop_logo{{index*3+1}}" data-index="{{index*3+1}}" id="{{lightningActivity.goods[index*3+1].goodsId}}" class="cart"
+              src="{{imgSrc}}/images/online/common/shop_cart.png"></image>
+          </view>
+          <view class="seckill_shop" wx:if="{{lightningActivity.goods[index*3+2].goodsImg}}" id="{{lightningActivity.goods[index*3+2].goodsId}}" data-goods_spec_id="{{lightningActivity.goods[index*3+2].goodsSpecId}}" catchtap="goods_detail">
+            <view class="seckill_shop_img">
+              <image lazy-load="true" src="{{lightningActivity.goods[index*3+2].goodsImg}}"></image>
+              <image class="shop_logo_animation" lazy-load="true" style="z-index: {{animationIndex == index*3+2 ? '4' : '2'}};" id="shop_logo{{index*3+2}}" animation="{{animationList[index*3+2]}}" src="{{lightningActivity.goods[index*3+2].goodsImg}}"></image>
+            </view>
+            <view class="seckill_shop_name">{{lightningActivity.goods[index*3+2].goodsName}}</view>
+            <view class="seckill_shop_price">¥{{lightningActivity.goods[index*3+2].actPrice}}
+              <image src="{{imgSrc}}/images/online/common/seconds_icon.png"></image>
+            </view>
+            <view class="seckill_shop_original_price">¥{{lightningActivity.goods[index*3+2].price}}</view>
+            <image catchtap="{{lightningActivity.goods[index*3+2].stock-lightningActivity.goods[index*3+2].saleNum <= 0 ? '' : 'addCart'}}" data-id="shop_logo{{index*3+2}}" data-index="{{index*3+2}}" id="{{lightningActivity.goods[index*3+2].goodsId}}" class="cart"
+              src="{{imgSrc}}/images/online/common/shop_cart.png"></image>
+          </view>
+        </swiper-item>
+      </swiper>
+
+      <view class="seckill_indicator">
+        <text wx:for="{{lightningActivity.goods}}" wx:if="{{index < lightningActivity.goods.length / 3}}" wx:key="{{index}}" class="{{seckill_current == index ? 'active' : '' }}"></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 置顶板块 -->
+  <view class="plate passage" wx:if="{{ads.C_INDEX_TOPLEFT && ads.C_INDEX_TOPLEFT.length>0}}">
+    <navigator url="{{ads.C_INDEX_TOPLEFT[0].url}}" hover-class="none">
+      <image lazy-load="true" src="{{ ads.C_INDEX_TOPLEFT[0].source}}"></image>
+    </navigator>
+    <!--
+    <navigator wx:else hover-class="none">
+      <image lazy-load="true" src="{{imgSrc}}/images/test/plate.png"></image>
+    </navigator>
+    -->
+
+    <navigator wx:if="{{ads.C_INDEX_TOPRIGHT && ads.C_INDEX_TOPRIGHT.length>0}}" url="{{ads.C_INDEX_TOPRIGHT[0].url}}" hover-class="none">
+      <image lazy-load="true" src="{{ ads.C_INDEX_TOPRIGHT[0].source}}"></image>
+    </navigator>
+    <!--
+    <navigator wx:else hover-class="none">
+      <image lazy-load="true" src="{{imgSrc}}/images/test/plate.png"></image>
+    </navigator>
+    -->
+
+    <navigator wx:if="{{ads.C_INDEX_LOWERLEFT && ads.C_INDEX_LOWERLEFT.length>0}}" url="{{ads.C_INDEX_LOWERLEFT[0].url}}" hover-class="none">
+      <image lazy-load="true" src="{{ ads.C_INDEX_LOWERLEFT[0].source}}"></image>
+    </navigator>
+    <!--
+    <navigator wx:else hover-class="none">
+      <image lazy-load="true" src="{{imgSrc}}/images/test/plate.png"></image>
+    </navigator>
+    -->
+
+    <navigator wx:if="{{ads.C_INDEX_LOWERRIGHT && ads.C_INDEX_LOWERRIGHT.length>0}}" url="{{ads.C_INDEX_LOWERRIGHT[0].url}}" hover-class="none">
+      <image lazy-load="true" src="{{ ads.C_INDEX_LOWERRIGHT[0].source}}"></image>
+    </navigator>
+    <!--
+    <navigator wx:else hover-class="none">
+      <image lazy-load="true" src="{{imgSrc}}/images/test/plate.png"></image>
+    </navigator>
+    -->
+  </view>
+
+  <!-- 会员广告 -->
+  <view class="vip passage" wx:if="{{ads.C_INDEX_VIP && ads.C_INDEX_VIP.length>0}}">
+    <image lazy-load="true" wx:if="{{ads.C_INDEX_VIP && ads.C_INDEX_VIP.length>0}}" src="{{ ads.C_INDEX_VIP[0].source}}"></image>
+    <image lazy-load="true" wx:else src="{{imgSrc}}/images/test/vip_ad.png"></image>
+  </view>
+
+  <!-- 秒杀 -->
+  <view class="recommend passage" wx:if="{{shopList && shopList.length > 0}}">
+    <view class="recommend_title">
+      <view class="recommend_title_l">
+        推荐好店
+        <text>更优质的购物体验</text>
+      </view>
+      <view class="recommend_title_r">
+        <view hover-class="none" catchtap="moreShop">
+          <text>更多</text>
+          <image src="{{imgSrc}}/images/online/common/more.png"></image>
+        </view>
+      </view>
+    </view>
+    <scroll-view class="recommend_content" scroll-x="true">
+      <view class="recommend_shop" wx:for="{{shopList}}" wx:key="{{index}}" data-index="{{index}}" id="{{item.shopId}}" catchtap="store_details">
+        <image lazy-load="true" class="recommend_shop_img" src="{{item.logo||imgSrc+'/images/online/near/shop.png'}}"></image>
+        <view class="recommend_shop_name">{{item.shopName}}</view>
+        <view class="recommend_shop_code">
+          <text>{{item.shopTypeName}}</text>
+          <text>{{item.distance}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 商品分组 -->
+  <view class="goods_group" wx:if="{{goodsGroupList && goodsGroupList.length > 0}}">
+    <scroll-view scroll-x="true" class="box" id="box" scroll-with-animation="true" scroll-left="{{scroll_left}}" style="position: {{scrollCode ? 'relative;top: 0;' : 'fixed;background: #fff;top: 92rpx;'}}">
+      <view catchtap="goodsGroupToggle" data-index="{{index}}" id="{{item.id}}" class="goodsGroupList {{goodsGroupIndex === index ? 'goodsGroupActive' : ''}}" wx:for="{{goodsGroupList}}" wx:key="{{index}}">
+        <text>{{item.name}}</text>
+        <view>{{item.description}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 商品列表 -->
+  <jk-goodsList animationFlag="true" class="goods_list1" bind:get_cart_num="get_cart_num" coordinates="{{coordinates}}" list="{{goodsList && goodsList[goodsGroupId] && goodsList[goodsGroupId].list}}"></jk-goodsList>
+
+  <!-- 触底提示 -->
+  <view class="bottom_line" wx:if="{{goodsList[goodsGroupId].pageIndex >= goodsList[goodsGroupId].pageCount}}">我是有底线的~</view>
+
+  <!-- 购物车终点 -->
+  <view class="target" id="target"></view>
+</view>
+
+<!-- 新客福利 -->
+<view catchtouchmove="move" catchtap="close" class="mask" style="display: block;" wx:if="{{coupons.state == 1 && welfare_state}}"></view>
+<view class="welfare" catchtouchmove="move" wx:if="{{coupons.state == 1 && welfare_state}}">
+  <image catchtouchmove="move" src="{{imgSrc}}/images/online/home/recomm/welfare_bj.png"></image>
+  <view class="price">
+    <text>￥</text>{{coupons.useDenomination}}</view>
+  <view catchtouchmove="move" catchtap="coupons"></view>
+  <image lazy-load="true" catchtap="close" class="welfare_del" src="{{imgSrc}}/images/online/we/awarded/del.png"></image>
+</view>

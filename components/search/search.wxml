@@ -1,0 +1,16 @@
+<!--components/search/search.wxml-->
+<view class="search">
+  <view class="map" wx:if="{{mapCode}}" catchtap="shop_location">
+    <image src="{{imgSrc}}/images/online/common/map_icon.png"></image>
+    {{place}}
+  </view>
+  <navigator url="{{pathTo}}" hover-class="none">
+    <image catchtap="search" src="{{imgSrc}}/images/online/common/search_icon.png"></image>
+    <input bindconfirm="search" confirm-type='search' type='text' value="{{value}}" bindinput="get_value" placeholder="{{placeholder}}" disabled="{{disabled}}" focus="{{focus}}" bindfocus="bindfocus"></input>
+    <view>
+      <cover-view class="del" catchtap="del" wx:if="{{delFlag}}">
+        <cover-image src="{{imgSrc}}/images/online/common/close.png"></cover-image>
+      </cover-view>
+    </view>
+  </navigator>
+</view>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "搜索",
+  "usingComponents": { 
+    "jk-goodsList2": "/components/goodsList2/goodsList2",
+    "jk-search": "/components/search/search"
+   }
+}

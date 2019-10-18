@@ -1,0 +1,292 @@
+<!--pages/home/circle/index/index.wxml-->
+<view class="order_Content">
+  <scroll-view class="swiper-tab" scroll-x="true">
+    <view class="swiper-tab-list">
+      <text class="{{currentTab == 0 ? 'on' : ''}}" data-current="{{0}}" catchtap="swichNav">全部</text>
+    </view>
+    <view class="swiper-tab-list" wx:for="{{thingTypeList}}" wx:key="{{index}}">
+      <text class="{{currentTab == index + 1 ? 'on' : ''}}" data-current="{{index + 1}}" catchtap="swichNav">{{item.name}}</text>
+    </view>
+    <view class='clear'></view>
+  </scroll-view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{scrollHeight}}px;display:{{choice}}" bindchange="bindChange">
+  <!-- 全部 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="container">
+        <view class="dynamicList passage" wx:for="{{thingList.all.list}}" wx:key="{{index}}">
+          <!-- 动态个人信息 -->
+          <view class="dynamic_personal_info">
+            <view class="personal_info_l">
+              <image lazy-load="true" mode="aspectFit" src="{{item.userAvatar ? item.userAvatar : imgSrc+'/images/online/logo.png'}}"></image>
+              <view>
+                <text>{{item.userName}}</text>
+                <text>{{item.createTime}}</text>
+              </view>
+            </view>
+            <view class="personal_info_r">
+              <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/browse.png"></image>
+              <text>{{item.visitNum}}人看过</text>
+            </view>
+          </view>
+          <view data-id="{{item.id}}" data-thingTypeCode="{{item.thingTypeCode}}" catchtap="dynamic_details">
+            <!-- 动态列表 -->
+            <view class="dynamic_img_list {{item.imgList.length == 1 ? 'one_list' : item.imgList.length == 2 ? 'two_list' : ''}}">
+              <image lazy-load="true" mode="scaleToFill" class="radius" wx:for="{{item.imgList}}" wx:key="{{index}}" wx:if="{{index < 3}}" src="{{item}}"></image>
+            </view>
+            <!-- 动态文字 -->
+            <view class="dynamic_text">
+              <view>
+                <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/merchant_bj.png"></image>
+                <text>{{item.thingTypeName}}</text>
+              </view>
+              <text decode="true">{{item.content}}</text>
+            </view>
+          </view>
+          <!-- 动态互动 -->
+          <view class="dynamic_interact">
+            <view class="praise" catchtap="praise" data-item="thingList.all.list[{{index}}]." data-priseNum="{{item.priseNum}}" data-id="{{item.id}}" data-isPrised="{{item.isPrised}}">
+              <image lazy-load="true" src="{{item.isPrised == 1 ? imgSrc + '/images/online/we/collect/has_praise.png' : imgSrc + '/images/online/we/collect/not_praise.png'}}"></image>
+              <text>{{item.priseNum}}</text>
+            </view>
+            <button class="said" hover-class="none" data-title="{{item.title ? item.title : ''}}" data-src="{{item.imgList[0] ? item.imgList[0] : ''}}" data-type="{{item.thingTypeCode}}" data-shareId="{{item.id}}" open-type="share">
+              <image lazy-load="true" mode="aspectFit" src="{{imgSrc}}/images/online/common/share.png"></image>
+              <text>{{item.shareNum}}</text>
+            </button>
+          </view>
+        </view>
+      </view>
+
+      <!-- 好物列表为空 -->
+      <view class="not_online" wx:if="{{thingList.all.list.length <= 0}}">
+        <image src="{{imgSrc}}/images/online/common/not.png"></image>
+        <view>暂无内容，敬请期待~</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 会员推荐 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="container">
+        <view class="dynamicList passage" wx:for="{{thingList.vip.list}}" wx:key="{{index}}">
+          <!-- 动态个人信息 -->
+          <view class="dynamic_personal_info">
+            <view class="personal_info_l">
+              <image lazy-load="true" mode="aspectFit" src="{{item.userAvatar ? item.userAvatar : imgSrc+'/images/online/logo.png'}}"></image>
+              <view>
+                <text>{{item.userName}}</text>
+                <text>{{item.createTime}}</text>
+              </view>
+            </view>
+            <view class="personal_info_r">
+              <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/browse.png"></image>
+              <text>{{item.visitNum}}人看过</text>
+            </view>
+          </view>
+
+          <view data-id="{{item.id}}" data-thingTypeCode="{{item.thingTypeCode}}" catchtap="dynamic_details">
+            <!-- 动态列表 -->
+            <view class="dynamic_img_list {{item.imgList.length == 1 ? 'one_list' : item.imgList.length == 2 ? 'two_list' : ''}}">
+              <image lazy-load="true" mode="scaleToFill" class="radius" wx:for="{{item.imgList}}" wx:key="{{index}}" wx:if="{{index < 3}}" src="{{item}}"></image>
+            </view>
+            <!-- 动态文字 -->
+            <view class="dynamic_text">
+              <view>
+                <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/merchant_bj.png"></image>
+                <text>{{item.thingTypeName}}</text>
+              </view>
+              <text decode="true">{{item.content}}</text>
+            </view>
+          </view>
+
+          <!-- 动态互动 -->
+          <view class="dynamic_interact">
+            <view class="praise">
+              <image lazy-load="true" src="{{item.isPrised == 1 ? imgSrc + '/images/online/we/collect/has_praise.png' : imgSrc + '/images/online/we/collect/not_praise.png'}}"></image>
+              <text>{{item.priseNum}}</text>
+            </view>
+            <button class="said" hover-class="none" data-title="{{item.title ? item.title : ''}}" data-src="{{item.imgList[0] ? item.imgList[0] : ''}}" data-type="{{item.thingTypeCode}}" data-shareId="{{item.id}}" open-type="share">
+              <image lazy-load="true" mode="aspectFit" src="{{imgSrc}}/images/online/common/share.png"></image>
+              <text>{{item.shareNum}}</text>
+            </button>
+          </view>
+        </view>
+      </view>
+
+      <!-- 好物列表为空 -->
+      <view class="not_online" wx:if="{{thingList.vip.list.length <= 0}}">
+        <image src="{{imgSrc}}/images/online/common/not.png"></image>
+        <view>暂无内容，敬请期待~</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 上新 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="container">
+        <view class="dynamicList passage" wx:for="{{thingList.news.list}}" wx:key="{{index}}">
+          <!-- 动态个人信息 -->
+          <view class="dynamic_personal_info">
+            <view class="personal_info_l">
+              <image lazy-load="true" mode="aspectFit" src="{{item.userAvatar ? item.userAvatar : imgSrc+'/images/online/logo.png'}}"></image>
+              <view>
+                <text>{{item.userName}}</text>
+                <text>{{item.createTime}}</text>
+              </view>
+            </view>
+            <view class="personal_info_r">
+              <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/browse.png"></image>
+              <text>{{item.visitNum}}人看过</text>
+            </view>
+          </view>
+
+          <view data-id="{{item.id}}" data-thingTypeCode="{{item.thingTypeCode}}" catchtap="dynamic_details">
+            <!-- 动态列表 -->
+            <view class="dynamic_img_list {{item.imgList.length == 1 ? 'one_list' : item.imgList.length == 2 ? 'two_list' : ''}}">
+              <image lazy-load="true" mode="scaleToFill" class="radius" wx:for="{{item.imgList}}" wx:key="{{index}}" wx:if="{{index < 3}}" src="{{item}}"></image>
+            </view>
+            <!-- 动态文字 -->
+            <view class="dynamic_text">
+              <view>
+                <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/merchant_bj.png"></image>
+                <text>{{item.thingTypeName}}</text>
+              </view>
+              <text decode="true">{{item.content}}</text>
+            </view>
+          </view>
+
+          <!-- 动态互动 -->
+          <view class="dynamic_interact">
+            <view class="praise">
+              <image lazy-load="true" src="{{item.isPrised == 1 ? imgSrc + '/images/online/we/collect/has_praise.png' : imgSrc + '/images/online/we/collect/not_praise.png'}}"></image>
+              <text>{{item.priseNum}}</text>
+            </view>
+            <button class="said" hover-class="none" data-title="{{item.title ? item.title : ''}}" data-src="{{item.imgList[0] ? item.imgList[0] : ''}}" data-type="{{item.thingTypeCode}}" data-shareId="{{item.id}}" open-type="share">
+              <image lazy-load="true" mode="aspectFit" src="{{imgSrc}}/images/online/common/share.png"></image>
+              <text>{{item.shareNum}}</text>
+            </button>
+          </view>
+        </view>
+      </view>
+
+      <!-- 好物列表为空 -->
+      <view class="not_online" wx:if="{{thingList.news.list.length <= 0}}">
+        <image src="{{imgSrc}}/images/online/common/not.png"></image>
+        <view>暂无内容，敬请期待~</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 晒单 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="container">
+        <view class="dynamicList passage" wx:for="{{thingList.share.list}}" wx:key="{{index}}">
+          <!-- 动态个人信息 -->
+          <view class="dynamic_personal_info">
+            <view class="personal_info_l">
+              <image lazy-load="true" mode="aspectFit" src="{{item.userAvatar ? item.userAvatar : imgSrc+'/images/online/logo.png'}}"></image>
+              <view>
+                <text>{{item.userName}}</text>
+                <text>{{item.createTime}}</text>
+              </view>
+            </view>
+            <view class="personal_info_r">
+              <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/browse.png"></image>
+              <text>{{item.visitNum}}人看过</text>
+            </view>
+          </view>
+
+          <view data-id="{{item.id}}" data-thingTypeCode="{{item.thingTypeCode}}" catchtap="dynamic_details">
+            <!-- 动态列表 -->
+            <view class="dynamic_img_list {{item.imgList.length == 1 ? 'one_list' : item.imgList.length == 2 ? 'two_list' : ''}}">
+              <image lazy-load="true" mode="scaleToFill" class="radius" wx:for="{{item.imgList}}" wx:key="{{index}}" wx:if="{{index < 3}}" src="{{item}}"></image>
+            </view>
+            <!-- 动态文字 -->
+            <view class="dynamic_text">
+              <view>
+                <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/merchant_bj.png"></image>
+                <text>{{item.thingTypeName}}</text>
+              </view>
+              <text decode="true">{{item.content}}</text>
+            </view>
+          </view>
+
+          <!-- 动态互动 -->
+          <view class="dynamic_interact">
+            <view class="praise">
+              <image lazy-load="true" src="{{item.isPrised == 1 ? imgSrc + '/images/online/we/collect/has_praise.png' : imgSrc + '/images/online/we/collect/not_praise.png'}}"></image>
+              <text>{{item.priseNum}}</text>
+            </view>
+            <button class="said" hover-class="none" data-title="{{item.title ? item.title : ''}}" data-src="{{item.imgList[0] ? item.imgList[0] : ''}}" data-type="{{item.thingTypeCode}}" data-shareId="{{item.id}}" open-type="share">
+              <image lazy-load="true" mode="aspectFit" src="{{imgSrc}}/images/online/common/share.png"></image>
+              <text>{{item.shareNum}}</text>
+            </button>
+          </view>
+        </view>
+      </view>
+
+      <!-- 好物列表为空 -->
+      <view class="not_online" wx:if="{{thingList.share.list.length <= 0}}">
+        <image src="{{imgSrc}}/images/online/common/not.png"></image>
+        <view>暂无内容，敬请期待~</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 好店 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;">
+      <view class="container">
+        <view class="dynamicList passage" wx:for="{{thingList.shop.list}}" wx:key="{{index}}">
+          <!-- 动态个人信息 -->
+          <view class="dynamic_personal_info">
+            <view class="personal_info_l">
+              <image lazy-load="true" mode="aspectFit" src="{{item.userAvatar ? item.userAvatar : imgSrc+'/images/online/logo.png'}}"></image>
+              <view>
+                <text>{{item.userName}}</text>
+                <text>{{item.createTime}}</text>
+              </view>
+            </view>
+            <view class="personal_info_r">
+              <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/browse.png"></image>
+              <text>{{item.visitNum}}人看过</text>
+            </view>
+          </view>
+
+          <view data-id="{{item.id}}" data-thingTypeCode="{{item.thingTypeCode}}" catchtap="dynamic_details">
+            <!-- 动态列表 -->
+            <view class="dynamic_img_list {{item.imgList.length == 1 ? 'one_list' : item.imgList.length == 2 ? 'two_list' : ''}}">
+              <image lazy-load="true" mode="scaleToFill" class="radius" wx:for="{{item.imgList}}" wx:key="{{index}}" wx:if="{{index < 3}}" src="{{item}}"></image>
+            </view>
+            <!-- 动态文字 -->
+            <view class="dynamic_text">
+              <view>
+                <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/merchant_bj.png"></image>
+                <text>{{item.thingTypeName}}</text>
+              </view>
+              <text decode="true">{{item.content}}</text>
+            </view>
+          </view>
+
+          <!-- 动态互动 -->
+          <view class="dynamic_interact">
+            <view class="praise">
+              <image lazy-load="true" src="{{item.isPrised == 1 ? imgSrc + '/images/online/we/collect/has_praise.png' : imgSrc + '/images/online/we/collect/not_praise.png'}}"></image>
+              <text>{{item.priseNum}}</text>
+            </view>
+            <button class="said" hover-class="none" data-title="{{item.title ? item.title : ''}}" data-src="{{item.imgList[0] ? item.imgList[0] : ''}}" data-type="{{item.thingTypeCode}}" data-shareId="{{item.id}}" open-type="share">
+              <image lazy-load="true" mode="aspectFit" src="{{imgSrc}}/images/online/common/share.png"></image>
+              <text>{{item.shareNum}}</text>
+            </button>
+          </view>
+        </view>
+      </view>
+
+      <!-- 好物列表为空 -->
+      <view class="not_online" wx:if="{{thingList.shop.list.length <= 0}}">
+        <image src="{{imgSrc}}/images/online/common/not.png"></image>
+        <view>暂无内容，敬请期待~</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

@@ -1,0 +1,35 @@
+<!--pages/we/vip_club/open_vip/open_vip.wxml-->
+<!-- header -->
+<view class="header">
+  <image lazy-load="true" src="{{imgSrc}}/images/online/we/vip_club/header.png"></image>
+  <view>开通超级会员 专享
+    <text>{{privilegeList.length}}</text>大特权</view>
+</view>
+<view class="container">
+  <!-- 导航 -->
+  <view class="nav radius">
+    <navigator hover-class="none" url="/pages/we/vip_club/privilege_list/privilege_list?current={{index}}" wx:for="{{privilegeList}}" wx:key="{{index}}">
+      <image src="{{imgSrc}}/images/online/we/vip_club/{{item.available == 0 ? 'not_' : ''}}{{item.privilegeCode}}.png"></image>
+      <view>{{item.privilegeName}}</view>
+    </navigator>
+  </view>
+
+  <!-- 会员卡 -->
+  <view class="vip_card passage">
+    <view catchtap="vipCardToggle" id="{{item.vipCardCode}}" data-grade="{{item.memberGradeCode}}" data-index="{{index}}" class="card radius {{vip_card_index == index ? 'vip_card_active' : ''}}" wx:for="{{vipCardList}}" wx:key="{{index}}">
+      <view class="vip_card_time">{{item.vipCardName}}</view>
+      <view class="vip_card_price">￥
+        <text>{{item.vipCardPrice}}</text>
+      </view>
+      <view class="vip_card_integral">{{item.integral}}</view>
+    </view>
+  </view>
+
+  <!-- 协议 -->
+  <view class="agreement">开通即视为同意
+    <text bindtap="vipProtocol">《百万店购VIP会员协议》</text>
+  </view>
+
+  <!-- 开通会员按钮 -->
+  <view class="open_vip" catchtap="open_start">立即开通(限时优惠)</view>
+</view>

@@ -1,0 +1,68 @@
+/* pages/we/footprint/index/index.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  padding: 0;
+  min-height: 100%;
+}
+
+.date {
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #353535;
+  font-size: 28rpx;
+  padding: 0 20rpx;
+}
+
+.goods_content {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.goods_list {
+  width: 33.33333%;
+  box-sizing: border-box;
+  border-right: 6rpx solid #f4f4f4;
+  padding: 20rpx 12rpx;
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.goods_list:nth-last-child(1) {
+  margin-bottom: 0rpx;
+}
+
+.goods_list:nth-last-child(2) {
+  margin-bottom: 0rpx;
+}
+
+.goods_list:nth-last-child(3) {
+  margin-bottom: 0rpx;
+}
+
+.goods_list image {
+  width: 180rpx;
+  height: 180rpx;
+  display: block;
+  margin: 0 auto;
+}
+
+.goods_name {
+  height: 80rpx;
+  margin-top: 20rpx;
+}
+
+.goods_price {
+  margin-top: 8rpx;
+}
+
+.goods_list:nth-child(3n) {
+  border-right: 0rpx solid #f4f4f4;
+}
+
+/* 足迹为空的样式 */
+.not_online {
+  padding: 264rpx 0;
+}

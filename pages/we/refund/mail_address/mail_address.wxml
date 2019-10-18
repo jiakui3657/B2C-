@@ -1,0 +1,68 @@
+<!--pages/we/mail_address/mail_address.wxml-->
+<view class="container">
+  <view class="sales_time">
+    <view>等待退货</view>
+    <text>还剩{{time.day}}天{{time.hour}}时{{time.minute}}分{{time.second}}秒</text>
+  </view>
+
+  <!-- 收货人 -->
+  <view class="user_info_t passage">
+    <image lazy-load="true" src="{{imgSrc}}/images/online/we/refund/closed.png"></image>
+    <view class="info">
+      <view class="user_name">{{salesInfo[0].deliveryLinkman}}<text>{{salesInfo[0].deliveryLinkmanPhone}}</text></view>
+      <view class="user_address">{{salesInfo[0].deliveryAddress}}</view>
+    </view>
+  </view>
+
+  <!-- 退货商品 -->
+  <view class="goods passage">
+    <view class="goods_title">退货信息</view>
+    <view class="goods_content" wx:for="{{salesInfo[0].tRefundOrderItems}}" wx:key="{{index}}">
+      <view class="goods_logo">
+        <image lazy-load="true" src="{{item.goodsImg}}"></image>
+      </view>
+      <view class="goods_r">
+        <view class="goods_name">{{item.goodsName}}</view>
+        <view class="goods_norms">
+          <text>单价：{{item.goodsSalePrice}}</text>
+          <text>申请数量：{{item.goodsRefundNum}}</text>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+
+  <!-- 寄货人 -->
+  <view class="user_info_t passage">
+    <image lazy-load="true" src="{{imgSrc}}/images/online/we/refund/send.png"></image>
+    <view class="info">
+      <view class="user_name">{{salesInfo[0].logisticsLinkman}}<text>{{salesInfo[0].logisticsLinkmanPhone}}</text></view>
+      <view class="user_address">
+        <view>{{salesInfo[0].logisticsAddress}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快递信息 -->
+  <view class="courier_info passage">
+    <view class="courier_list">
+      <view>快递公司</view>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{courierList}}">
+        <view class="picker">
+          {{courierList[index]}}
+        </view>
+      </picker>
+      <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+    </view>
+    <view class="courier_list">
+      <view>快递单号</view>
+      <input bindinput="inputLogisticsNo" value="{{logisticsNo}}" maxlength="30"></input>
+      <image lazy-load="true" class="scan" src="{{imgSrc}}/images/online/we/refund/scan.png" catchtap="scanning"></image>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom_btn" catchtap="submit">
+    <text>确定</text>
+  </view>
+</view>

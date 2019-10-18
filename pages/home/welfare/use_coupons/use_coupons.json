@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "使用优惠券",
+  "usingComponents": {
+    "jk-search": "/components/search/search",
+    "jk-goodsList": "/components/goodsList/goodsList"
+  }
+}

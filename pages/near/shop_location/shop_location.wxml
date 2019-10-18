@@ -1,0 +1,39 @@
+<!--pages/near/shop_location/shop_location.wxml-->
+<view class="wrap">
+  <view id="map">
+    <map id="shopMap" markers="{{markers}}" 
+  latitude="{{latitude}}" 
+  longitude="{{longitude}}" bindmarkertap="markertap" show-location bindregionchange="regionchange"></map>
+
+    <!-- 中心点 -->
+    <cover-image class="centre" src="{{imgSrc}}/images/online/near/map_local.png"></cover-image>
+  </view>
+  
+  <swiper class="loacate-wrap" bindchange="get_current" autoplay="true" circular="true">
+    <swiper-item class="" item-id="">
+      <view class="now-locate-wrap">
+        <text class="title">当前位置：</text>
+        <text class="locate">{{address}}</text>
+      </view>
+      <view class="shop-wrap">
+        <view class="shop-info">
+          <image class="icon" lazy-load="true" src="{{imgSrc}}/images/online/shop/confirm_order/shop.png"></image>
+          <view class="info">
+            <view class="name">{{shop.shopName}}</view>
+            <view class="distance">距离：{{shop.distance}}</view>
+          </view>
+        </view>
+        <view class="shop-gps" bindtap="shopNavi">
+          <image class="icon" lazy-load="true" src="{{imgSrc}}/images/online/common/map_icon.png"></image>
+          <view class="gps-txt">导航到店</view>
+        </view>
+      </view>
+      <view class="go-btn {{markers.length==0?'back-gray':''}}" bindtap="goShop">进入店铺</view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 指示器 -->
+  <!-- <view class="indicator">
+    <text wx:for="{{4}}" wx:key="{{index}}" class="{{current == index ? 'active' : ''}}"></text>
+  </view> -->
+</view>

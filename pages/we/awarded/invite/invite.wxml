@@ -1,0 +1,77 @@
+<!--pages/we/awarded/invite/invite.wxml-->
+<!-- header -->
+<view class="header">
+  <image lazy-load="true" src="{{imgSrc}}/images/online/we/awarded/invite_bj.png"></image>
+  <view class="activity_title">
+    <view wx:if="{{securities.type == 'PWAY101'}}">满{{securities.useAmtLimit}}减{{securities.useDenomination}}</view>
+    <view wx:if="{{securities.type == 'PWAY102'}}">{{securities.discount}}折优惠券</view>    
+    <text wx:if="{{yorker.type == 'PWAY101'}}">好友得新人礼包{{yorker.useDenomination}}元</text>
+    <text wx:if="{{yorker.type == 'PWAY102'}}">好友得{{securities.discount}}折新人礼包</text>
+  </view>
+  <view catchtap="cancel" class="rules_name" wx:if="{{securities.remark}}">活动规则</view>
+  <!-- <view class="staff">
+    <swiper vertical="true" circular="true" interval="3000" autoplay="true" >
+      <swiper-item wx:for="{{10}}" wx:key="{{index}}">HUO***G 邀请好邀请好友获得30元友获得30元</swiper-item>
+    </swiper>
+  </view> -->
+</view>
+<view class="container">
+
+  <!-- 邀请攻略 -->
+  <view class="strategy passage">
+    <view class="title">邀请攻略</view>
+    <view class="strategy_process">
+      <view class="process_list">
+        <view class="process_num">1</view>
+        <view class="process_name">发邀请给好友</view>
+        <view class="process_title">发群聊机会更多</view>
+      </view>
+      <view class="process_list">
+        <view class="process_num">2</view>
+        <view class="process_name">好友领取福利</view>
+        <view class="process_title">下单并签收</view>
+      </view>
+      <view class="process_list">
+        <view class="process_num">3</view>
+        <view class="process_name">现金红包到账</view>
+        <view class="process_title">多邀多得 无上限</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 邀请人数排行榜 -->
+  <view class="friends passage">
+    <view class="title">邀请人数PK榜</view>
+    <view class="friends_list" wx:for="{{invitationList}}" wx:key="{{index}}" id="{{item.consumerId}}" catchtap="consumerDetail">
+      <view class="ranking {{index == 0 ? 'first' : (index == 1 ? 'two' : (index == 2 ? 'three' : '')) }}">NO.{{index + 1}}</view>
+      <image src="{{item.avatar}}"></image>
+      <view>
+        <view class="friends_name">{{item.nickName}}</view>
+        <view class="friends_num">共邀请{{item.pullNewNum}}位好友</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 邀请按钮 -->
+  <button hover-class="none" open-type="share" class="bottom_btn">立即邀请</button>
+
+  <!-- 规则模态框 -->
+  <view catchtouchmove="move" catchtap="cancel" class="mask" wx:if="{{modalFlag}}"></view>
+  <view catchtouchmove="move" class="rules radius" wx:if="{{modalFlag}}">
+    <view class="rules_title">
+      <text>活动规则</text>
+    </view>
+    <view class="rules_note">
+      <scroll-view  scroll-y="true">
+        <text>{{securities.remark}}</text>
+      </scroll-view>
+    </view>
+    <image catchtap="cancel" class="del" src="{{imgSrc}}/images/online/we/awarded/del.png"></image>
+  </view>
+</view>
+
+<!-- 优惠券列表为空 -->
+<!-- <view class="not_online">
+  <image lazy-load="true" src="{{imgSrc}}/images/online/common/not.png"></image>
+  <view>暂无内容，敬请期待~</view>
+</view> -->

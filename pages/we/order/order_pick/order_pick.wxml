@@ -1,0 +1,112 @@
+<!--pages/we/order_pick/order_pick.wxml-->
+<view class="container">
+
+  <!-- 订单头部 -->
+  <view class="header">
+    <view class="header-l">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/we/order/pick.png"></image>  
+      <text>待提货</text> 
+    </view>
+    <view class="header-r">
+      <view>门店自提</view>
+      <view>营业时间：{{order_note.shopOpening}} - {{order_note.shopEnding}}</view>
+    </view>
+  </view>
+
+  <!-- 订单内容 -->
+  <view class="content">
+
+    <!-- 个人信息 -->
+    <view class="user_info radius">
+      <view class="pick_code">
+        <canvas class='canvas' canvas-id='canvas'></canvas>
+      </view>
+      <view class="pick_num"><text>{{order_note.ladeCode}}</text></view>
+      <view class="pick_prompt">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/prompt.png"></image>
+        <text>向商家出示提货码，领取订单商品</text>
+      </view>
+      <view class="pick_address">
+        <view class="address">
+          <text>商家地址：</text><view>
+          {{order_note.shopAddress}}</view>
+        </view>
+        <view class="pick_phone">
+          <text>商家电话：</text>
+          {{order_note.shopPhone}}
+        </view>
+      </view>
+      <view class="map" catchtap="map_go">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/common/map.png"></image>
+        <view>查看路线</view>
+      </view>
+    </view>
+
+    <!-- 商品信息 -->
+    <view class="merchants passage">
+      <view class="merchants_title">
+        <view>
+          <image lazy-load="true" lazy-load="true" class="{{order_note.isSelf == 2 ? 'shop-icon' : ''}}" src="{{order_note.isSelf == 2 ? imgSrc + '/images/online/logo.png' : imgSrc + '/images/online/shop/confirm_order/shop.png'}}"></image>
+          <text class='shop-text' wx:if="{{order_note.isSelf == 2}}">自营店铺</text> 
+          <text class='shop-text' wx:if="{{order_note.isSelf == 1}}">{{order_note.shopName}}</text>
+        </view>
+      </view>
+
+      <!-- 商品列表 -->
+      <view class="goods_list" wx:for="{{order_note.items}}" wx:key="{{index}}">
+        <view class="goods_logo">
+          <image lazy-load="true" mode="aspectFit" src="{{item.goodsImg}}"></image>
+        </view>
+        <view class="goods_list_r">
+          <view class="goods_name">{{item.goodsName}}</view>
+          <view class="goods_norms"><text>数量：{{item.goodsNum}}</text><text>规格：{{item.goodsSpecName}}</text></view>
+          <view class="goods_price">¥{{item.goodsSalePrice}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品金额、运费、优惠 -->
+    <view class="price passage">
+      <view class="price_list">
+        <text>商品总额：</text>
+        <view>￥{{order_note.goodsAmount}}</view>
+      </view>
+      <view class="price_list">
+        <text>运费：</text>
+        <view>￥{{order_note.logisticsAmount}}</view>
+      </view>
+      <view class="price_list">
+        <text>商品优惠：</text>
+        <view>￥{{order_note.isSelf == 2 ? order_note.discountAmount : order_note.couponAmount}}</view>
+      </view>
+      <view class="price_total">应付总额：<text>￥{{order_note.payAmount}}</text></view>
+      <view class="integral" catchtap="credits_exchange" wx:if="{{order_note.integral}}">
+        <view class="integral_l">确认收货可得<text>{{order_note.integral}}</text>个积分</view>
+        <view class="integral_r">
+          积分兑好礼
+          <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+        </view>
+      </view>                                                       
+    </view>
+
+    <!-- 订单 -->
+    <view class="order passage">
+      <view class="order_list">
+        <text>订单编号：</text>
+        <view>{{order_note.orderNo}}</view>
+      </view>
+      <view class="order_list">
+        <text>下单时间：</text>
+        <view>{{order_note.prepareTime}}</view>
+      </view>
+      <view class="order_list">
+        <text>支付方式：</text>
+        <view>{{order_note.payTypeName}}</view>
+      </view>
+      <view class="order_list">
+        <text>配送方式：</text>
+        <view>{{order_note.logisticsType == 1 ? '物流快递' : order_note.logisticsType == 2 ? '送货上门' : '到店自提'}}</view>
+      </view>
+    </view>
+  </view>
+</view>

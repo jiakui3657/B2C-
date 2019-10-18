@@ -1,0 +1,188 @@
+/* pages/we/mail_address/mail_address.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  padding: 0;
+  overflow: hidden;
+  min-height: 100%;
+  padding-bottom: 116rpx;
+  box-sizing: border-box;
+}
+
+/* 退货时间 */
+.sales_time {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  background: #FF474C;
+  padding: 0 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+}
+
+.sales_time text {
+  font-size: 24rpx;
+}
+
+/* 寄件人---收件人 */
+.user_info_t {
+  display: flex;
+  background: #fff;
+  padding: 32rpx 40rpx;
+}
+
+.user_info_t image {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 32rpx;
+}
+
+.user_info_t .info {
+  flex: 1;
+}
+
+.user_name {
+  color: #353535;
+  font-size: 28rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.user_name text {
+  margin-left: 16rpx;
+}
+
+.user_address {
+  color: #888;
+  font-size: 24rpx;
+  margin-top: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: flex;
+}
+
+.user_address view {
+  flex: 1;
+  padding-right: 20rpx;
+}
+
+.user_address image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-top: 28rpx;
+}
+
+/* 退货商品 */
+.goods {
+  background: #fff;
+}
+
+.goods_title {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  padding: 0 40rpx;
+  border-bottom: 1px solid #F4F4F4;
+}
+
+.goods_content {
+  display: flex;
+  padding: 32rpx 40rpx;
+}
+
+.goods_logo {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.goods_r {
+  flex: 1;
+  position: relative;
+}
+
+.goods_norms {
+  margin-top: 16rpx;
+}
+
+.goods_norms text:last-child {
+  margin-left: 32rpx;
+}
+
+/* 快递信息 */
+.courier_info {
+  padding: 0 20rpx;
+  background: #fff;
+}
+
+.courier_list {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-left: 20rpx;
+  color: #353535;
+  font-size: 28rpx;
+  border-bottom: 1px solid #F2EFF2;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+}
+
+.courier_list picker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.courier_list text {
+  font-size: 26rpx;
+}
+
+.courier_list image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-top: 30rpx;
+  transform: rotate(90deg);
+}
+
+.courier_list .scan {
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 20rpx;
+}
+
+.courier_list:last-child {
+  border: 0;
+}
+
+/* 底部按钮 */ 
+.bottom_btn {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height: 94rpx;
+  line-height: 94rpx;
+  font-size: 36rpx;
+}
+
+.bottom_btn text {
+  width: 100%;
+  color: #fff;
+  background: #FF474C;
+  display: inline-block;
+}
+
+.bottom_btn view {
+  flex: 1;
+  background: #fff;
+}

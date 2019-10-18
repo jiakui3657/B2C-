@@ -1,0 +1,58 @@
+<!--pages/home/use_coupons/use_coupons.wxml-->
+<view class="container">
+  <!-- 搜索 -->
+  <view class="search">
+    <jk-search class="search" pathTo="/pages/classify/goods_search/goods_search?couponSource={{couponSource}}&&couponId={{couponId}}" placeholder="搜索该优惠券适用商品" disabled="true" />
+  </view>
+
+  <!-- 优惠券信息 -->
+  <view class="coupons_info">
+    <view>限时促销：<text wx:if="{{couponInfo.type == 'PWAY101'}}">满{{couponInfo.useAmtLimit}}减{{couponInfo.useDenomination}}元</text><text wx:if="{{couponInfo.type == 'PWAY102'}}">满{{couponInfo.useAmtLimit}}打{{couponInfo.discount*10}}折的</text></view>   
+  </view>
+
+
+  <!-- <scroll-view scroll-y="true" lower-threshold="30" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="0" style="height: {{scrollHeight}}px;box-sizing: border-box;padding-top: 10rpx;">
+    <view class="goods_list passage" wx:for="{{goodsList}}" wx:key="{{index}}" data-id="{{item.goodsId}}" bindtap="toGoodsDetail">
+      <view class="goods_logo">
+        <image src="{{item.goodsImg}}"></image>
+      </view>
+      <view class="goods_list_r">
+        <view class="goods_name">{{item.goodsName}}</view>
+        <view class="goods_norms">{{item.sup}}</view>
+        <view class="goods_price">￥{{item.price}}</view>
+        <view class="goods_original_price">{{item.price}}</view>
+        <image class="goods_btn" src="{{imgSrc}}/images/online/common/shop_cart.png" catchtap="addCart" id="{{item.goodsId}}" data-index="{{index}}"></image>
+      </view>
+      <image class="mark" src="{{imgSrc}}/images/online/home/recomm/discount.png"></image>
+    </view>
+  </scroll-view> -->
+
+  <!-- 商品列表 -->
+  <jk-goodsList couponsource="{{couponSource}}" shopid="{{couponInfo.shopId || 0}}" animationFlag="true" class="goods_list1" bind:get_cart_num="get_cart_num" coordinates="{{coordinates}}" list="{{goodsList}}"></jk-goodsList>
+
+
+  <!-- 商品列表为空 -->
+  <view class="not_online" wx:if="{{goodsList.length <= 0}}">
+    <image lazy-load="true" src="{{imgSrc}}/images/online/common/order_not.png"></image>
+    <view>您来晚了，商品已抢光~</view>
+    <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator>
+  </view>
+</view>
+
+<!-- 购物车 -->
+<view class="shop_cart">
+  <view class="shop_cart_l">
+    <view class="shop_cart_num">
+      <image class="target" lazy-load="true" src="{{imgSrc}}/images/online/classify/detail/car.png"></image>
+      <text>{{cartNum}}</text>
+    </view>
+    <view class="shop_cart_money">
+      <!-- <view>总计：<text>¥389</text></view>
+      <view>还差256元可用券</view> -->
+    </view>
+  </view>
+  <view class="shop_cart_r" catchtap="toCart">去购物车</view>
+</view>
+
+<!-- 商家按钮 -->
+<image wx:if="{{couponSource == 2}}" class="shop_btn" lazy-load="true" src="{{couponInfo.shopLogo}}" catchtap="shop"></image>

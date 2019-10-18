@@ -1,0 +1,31 @@
+<!--pages/we/certification/certification.wxml-->
+<view class='container'>
+  <view class="content passage">
+    <view class='list'>
+      <view class="list-l">姓名</view>
+      <view class='list-r'>
+        <input bindinput="get_name" value="{{name}}" class='in' type='text' maxlength='20' placeholder-class="placeholder" placeholder='请输入真实姓名' />
+      </view>
+    </view>
+    <view class='list'>
+      <view class="list-l">身份证号</view>
+      <view class='list-r'>
+        <input bindinput="get_card" value="{{card}}" class='in' type='idcard' maxlength='18' placeholder-class="placeholder" placeholder='请输入身份证号' />
+      </view>
+    </view>
+    <view class='list'>
+      <view class="list-l">手机号</view>
+      <view class='list-r'>
+        <input class='in' value="{{phone}}" bindinput="get_phone" type='number' maxlength='11' placeholder-class="placeholder" placeholder='请输入手机号码'></input>
+      </view>
+    </view>
+    <view class='list'>
+      <view class="list-l">验证码</view>
+      <view class='list-r code'>
+        <input bindinput="get_code" class='in' value="{{code}}" type='number' bindinput="get_code" maxlength='8' placeholder-class="placeholder" placeholder='请输入验证码' />
+        <text catchtap="code">{{num}}</text>
+      </view>
+    </view>
+  </view>
+  <button hover-class="none" catchtap="validation">立即验证</button>
+</view>

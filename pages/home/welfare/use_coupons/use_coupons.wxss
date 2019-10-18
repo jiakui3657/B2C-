@@ -1,0 +1,174 @@
+/* pages/home/use_coupons/use_coupons.wxss */
+
+page {
+  height: 100%;
+}
+
+.container {
+  min-height: 100%;
+  overflow: hidden;
+  padding-bottom: 110rpx;
+  padding-top: 192rpx;
+}
+
+/* 优惠券信息 */
+.coupons_info {
+  position: fixed;
+  top: 92rpx;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1111;
+  box-sizing: border-box;
+  padding: 16rpx 40rpx 32rpx;
+  font-size: 24rpx;
+  color: #353535;
+}
+
+.coupons_info view {
+  height: 36rpx;
+  display: flex;
+  align-items: center;
+}
+
+/* 优惠券列表 */
+.goods_list {
+  background: #fff;
+  padding: 32rpx 10rpx 32rpx 40rpx;
+  position: relative;
+}
+
+.goods_logo {
+  padding: 0;
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.goods_name {
+  -webkit-line-clamp: 1;
+}
+
+.goods_norms {
+  margin-top: 4rpx;
+}
+
+.goods_price {
+  margin-top: 12rpx;
+  font-weight: 700;
+}
+
+.goods_original_price {
+  font-size: 22rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.goods_btn {
+  position: absolute;
+  bottom: 0;
+  right: 20rpx;
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.mark {
+  position: absolute;
+  top: 0;
+  left: 0rpx;
+  width: 52rpx;
+  height: 32rpx;
+}
+
+/* 购物车 */
+.shop_cart {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #353535;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 11111;
+}
+
+.shop_cart_l {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.shop_cart_num {
+  width: 148rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60rpx;
+  border-right: 1px solid #EDEDED;
+  position: relative;
+}
+
+.shop_cart_num image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.shop_cart_num text {
+  width: 24rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+  text-align: center;
+  display: inline-block;
+  background: #FF474C;
+  border-radius: 50%;
+  font-size: 16rpx;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 48rpx;
+}
+
+.shop_cart_money {
+  flex: 1;
+  padding-left: 48rpx;
+  box-sizing: border-box;
+}
+
+.shop_cart_money text {
+  color: #FF474C;
+  font-weight: 700;
+}
+
+.shop_cart_money view {
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.shop_cart_money view:last-child {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.shop_cart_r {
+  width: 240rpx;
+  text-align: center;
+  color: #fff;
+  height: 94rpx;
+  line-height: 94rpx;
+  background: #FF474C;
+}
+
+.shop_btn {
+  position: fixed;
+  left: 16rpx;
+  bottom: 200rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 1px solid #fff;
+  z-index: 999999;
+}

@@ -1,0 +1,18 @@
+/* pages/registered/registered.wxss */
+
+.container {
+  padding: 0 40rpx;
+  background: #fff;
+  text-align: center;
+}
+
+.scroll {
+  height: 100%;
+  margin: 20rpx 0
+}
+
+.content {
+  font-size: 26rpx;
+  text-align: left;
+  line-height: 40rpx
+}

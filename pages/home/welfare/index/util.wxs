@@ -1,0 +1,98 @@
+var substr = function(str, index, len) {
+  if (str == undefined || str.length == 0) {
+    return;
+  }
+  return str.substring(index, len);
+};
+/**
+ * 判断当前优惠券是否可以领取
+ * 0：未开始，1：可领取，-1：已过期
+ */
+var canIfTake = function(startTime, endTime) {
+  var now = getDate();
+  var startDate = getDate(startTime);
+  var endDate = getDate(endTime);
+  if (now.getTime() < startDate.getTime()) {
+    return 0;
+  }
+
+  if (now.getTime() > endDate.getTime()) {
+    return -1;
+  }
+
+  if (now.getTime() >= startDate.getTime()) {
+    return 1;
+  }
+};
+
+/**
+ * 判断当前时间是否在区间内
+ */
+var isValidTime = function (startTime, endTime, serverTime) {
+  if (!startTime || !endTime) {
+    return -1;
+  }
+  var now = getDate(serverTime);
+  var startDate = getDate(startTime);
+  var endDate = getDate(endTime);
+
+  if (now.getTime() < startDate.getTime()) {
+    return 0;
+  }
+
+  if (now.getTime() > endDate.getTime()) {
+    return -1;
+  }
+
+  if (now.getTime() >= startDate.getTime()) {
+    return 1;
+  }
+};
+
+var couponStyle = function(coupon) {
+  if (coupon.state == 1 && coupon.isTake == 0 && coupon.getNum >= coupon.totalNum) {
+    return 'dark';
+  }
+
+  if (coupon.state == 1 && coupon.isTake == 0) {
+    return 'red';
+  }
+
+  if (coupon.state == 0 && coupon.isTake == 0) {
+    return 'red';
+  }
+
+  if (coupon.isTake == 1) {
+    return 'white';
+  }
+
+  if (coupon.getNum == coupon.totalNum) {
+    return 'gray';
+  }
+};
+
+var dateConvert = function(datestr, option) {
+  let date = new Date(datastr);
+  if (option == 'hour') {
+    return date.getHours();
+  }
+
+  if (option == 'minute') {
+    return date.getMinutes();
+  }
+
+  if (option == 'second') {
+    return date.getSeconds();
+  }
+};
+
+var toFixed = function(value) {
+  return value.toFixed(2)
+}
+
+module.exports.substr = substr;
+module.exports.canIfTake = canIfTake;
+module.exports.couponStyle = couponStyle;
+module.exports.dateConvert = dateConvert;
+module.exports.isValidTime = isValidTime;
+module.exports.toFixed = toFixed;

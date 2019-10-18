@@ -1,0 +1,165 @@
+/* pages/we/after_type/after_type.wxss */
+page {
+  height: 100%
+}
+
+.container {
+  height: 100%;
+  overflow: hidden;
+  padding: 0
+}
+
+.header {
+  overflow: hidden
+}
+
+.goods {
+  padding: 30rpx 40rpx;
+  display: flex;
+  border-bottom: 1px solid #EEEDED;
+  background: #fff;
+}
+
+.goods_logo {
+  width: 180rpx;
+  height: 180rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.goods_r {
+  flex: 1;
+  position: relative;
+}
+
+.goods_norms {
+  margin-top: 16rpx;
+}
+
+.number {
+  height: 96rpx;
+  line-height: 96rpx;
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  color: #353535;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.number_r {
+  display: flex;
+  padding-top: 28rpx;
+  box-sizing: border-box;
+}
+
+.number_r image {
+  width: 42rpx;
+  height: 42rpx;
+}
+
+.number_r input {
+  width: 40rpx;
+  height: 26rpx;
+  margin: 0 12rpx;
+  font-size: 24rpx;
+  color: #606266;
+  text-align: center;
+}
+
+/* 商品列表 */
+.return {
+  background: #fff;
+}
+
+.returnList {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20rpx 0 64rpx;
+  height: 148rpx;
+  border-bottom: 1px solid #EEEDED;
+}
+
+.return_l {
+  display: flex;
+  font-size: 28rpx;
+  color: #101010;
+  padding: 44rpx 0;
+  line-height: 61rpx;
+}
+
+.return_l image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 24rpx;
+}
+
+.return_r {
+  display: flex;
+  color: #999999;
+  font-size: 24rpx;
+  padding-top: 36rpx;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.return_r image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 8rpx;
+  margin-top: 20rpx;
+}
+
+.return_vip {
+  color: #FF474C;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+/* 模态框 */
+.modal {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal_title {
+  height: 104rpx;
+  font-size: 32rpx;
+  color: #101010;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_list {
+  flex: 1;
+  overflow: auto;
+  padding: 0 36rpx;
+  box-sizing: border-box;
+}
+
+.modal_list view {
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  align-items: center;
+  color: #101010;
+  font-size: 28rpx;
+}
+
+.modal_list image {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+}
+
+.modal_btn {
+  height: 94rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #F9464A;
+  color: #fff;
+  font-size: 36rpx;
+}

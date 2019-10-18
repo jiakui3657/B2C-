@@ -1,0 +1,117 @@
+<!--pages/we/logistics/logistics.wxml-->
+<view class="container">
+  <view class='order passage'>
+    <view class='order-up'>
+      <view class='order-up-r'>
+        <view class='list'><text class='grey'>物流公司：</text>{{logistics.logisticsCompanyName}}</view>
+        <view class='list'><text class='grey'>物流单号：</text>{{logistics.logisticsNo}}<text class="copy">复制</text></view>
+      </view>
+    </view>
+    <view class='order-down'>
+      <block wx:for="{{logistics.traces}}" wx:key="{{index}}">
+        <view class='order2 {{index == 0 ? "active" : ""}}'>
+          <!-- in no_in -->
+          <view class='icon no_in'><image src="{{imgSrc}}/images/online/common/selected.png"></image></view>
+          <view class='logistics_centent page_clu'>
+            <!-- <view class="code">已签收</view> -->
+            <view class='list2'>
+               <!-- [西安市]
+               <text class='gap'>快件已被西安宜兴大厦1店代签收，如有问题请电联业务员 小明[18569854124]</text> -->
+               {{item.AcceptStation}}
+            </view>
+            <view class='list3'>{{item.AcceptTime}}</view>
+          </view>
+          <view><view class='on'></view></view>
+        </view>
+      </block>
+      <!-- <block>
+        <view class='order2'>
+          <view class='icon'></view>
+          <view class='logistics_centent page_clu'>
+            <view class="code">派送中</view>
+            <view class='list2'>
+               [西安市]
+               <text class='gap'>陕西西安南郊一部电子正街分部 派件员 小明[18569854124]正在为您派件</text>
+            </view>
+            <view class='list3'>2018-11-12 14:00:00</view>
+          </view>
+          <view class='on'></view>
+        </view>
+      </block> -->
+      <!-- <block>
+        <view class='order2'>
+          <view class='icon'></view>
+          <view class='logistics_centent page_clu'>
+            <view class="code">运输中</view>
+            <view class='list2'>
+               [西安市]
+               <text class='gap'>[西安市]已离开 陕西西安南郊分拨中心；发往 陕西电子城一公司</text>
+            </view>
+            <view class='list3'>2018-11-12 14:00:00</view>
+          </view>
+          <view class='on'></view>
+        </view>
+      </block>
+      <block>
+        <view class='order2'>
+          <view class='icon'></view>
+          <view class='logistics_centent page_clu'>
+            <view class="code"></view>
+            <view class='list2'>
+               [西安市]
+               <text class='gap'>[西安市]已离开 陕西西安仓配中心；发往 陕西西安南郊分拨中心</text>
+            </view>
+            <view class='list3'>2018-11-12 14:00:00</view>
+          </view>
+          <view class='on'></view>
+        </view>
+      </block>
+      <block>
+        <view class='order2'>
+          <view class='icon'></view>
+          <view class='logistics_centent page_clu'>
+            <view class="code">已揽收</view>
+            <view class='list2'>
+               [西安市]
+               <text class='gap'>[西安市]北郊草滩服务部 已揽收</text>
+            </view>
+            <view class='list3'>2018-11-12 14:00:00</view>
+          </view>
+          <view class='on'></view>
+        </view>
+      </block>
+      <block>
+        <view class='order2'>
+          <view class='icon'></view>
+          <view class='logistics_centent page_clu'>
+            <view class="code">仓库处理中</view>
+            <view class='list2'>
+               [西安市]
+               <text class='gap'>您的订单拣货完成，待出库您的订单拣货完成，待出库您的订单拣货完成，待出库您的订单拣货完成，待出库您的订单拣货完成，待出库您的订单拣货完成，待出库您的订单拣货完成，待出库</text>
+            </view>
+            <view class='list3'>2018-11-12 14:00:00</view>
+          </view>
+          <view class='on'></view>
+        </view>
+      </block>
+      <block>
+        <view class='order2'>
+          <view class='icon'></view>
+          <view class='logistics_centent page_clu'>
+            <view class="code">已下单</view>
+            <view class='list2'>
+               [西安市]
+               <text class='gap'>您提交了订单，请等待系统确认</text>
+            </view>
+            <view class='list3'>2018-11-12 14:00:00</view>
+          </view>
+          <view class='on'></view>
+        </view>
+      </block> -->
+    </view>
+  </view>
+
+  <!-- 商品列表 -->
+  <!-- <view class="goods_title">为你推荐</view>
+  <jk-goodspList class="goodsList" list="{{goodsList}}" /> -->
+</view>

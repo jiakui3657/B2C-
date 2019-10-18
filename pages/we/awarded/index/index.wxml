@@ -1,0 +1,114 @@
+<view>
+  <view class="integral-info">
+    <image lazy-load="true" class="integral-bg" src="{{imgSrc}}/images/online/we/awarded/sign_bj.png"></image>
+
+    <view class="integral" data-index="{{signIndex}}" data-retroactive="{{signList.signin[signIndex].retroactive}}" data-issignin="{{signList.signin[signIndex].isSignin}}" catchtap="sign">
+      <text wx:if="{{signList.signin[signIndex].isSignin != 0}}">我的积分</text>
+      <view>{{signList.signin[signIndex].isSignin == 0 ? '签到' : userInfo.integral }}</view>
+      <!-- 签到 -->
+    </view>
+
+    <view class="integral-rule" catchtap="cancel" wx:if="{{signList.introduce}}">
+      积分规则
+    </view>
+
+    <!-- 分享好物 -->
+    <!-- <view class="bubble share">  
+      <view>+10</view>
+      <text>分享好物</text>
+    </view> -->
+
+    <!-- 签到 -->
+    <view class="bubble sign" wx:if="{{signList.signin[signIndex].isSignin == 0}}">
+      <view>+{{signList.signin[signIndex].integral}}</view>
+      <text>签到</text>
+    </view>
+
+    <!-- 分享商品 -->
+    <!-- <view class="bubble shop">
+      <view>+10</view>
+      <text>分享商品</text>
+    </view> -->
+  </view>
+  
+</view>
+
+<view class="container">
+  <view class="sign-wrap">
+    <view class="sign-box radius" wx:if="{{signList.signin.length > 1}}">
+      <view class="sign-tip">
+        已连续签到 <text class="font-red">{{signList.runningDays}}</text> 天
+      </view>
+      <view class="sign-tip2 font-red">
+        连续签到{{signList.signin.length}}天 领惊喜好礼
+      </view>
+      <scroll-view scroll-x="true" class="sign-line">
+        <view class="sign-item {{item.isSignin == 1 || item.date == '今日' ? 'current-icon' : ''}}" data-index="{{index}}" data-retroactive="{{item.retroactive}}" data-isSignin="{{item.isSignin}}" catchtap="sign" wx:for="{{signList.signin}}" wx:key="{{index}}" wx:if="{{signList.signin.length - 1 != index}}">
+          <view class="icon-box">
+            <view class="icon">
+              <view wx:if="{{item.isSignin == 0}}" class="item-text">{{item.date != "今日" ? (item.retroactive ? '补' : item.integral) : "签"}}</view>
+              <image wx:if="{{item.isSignin == 1}}" lazy-load="true" src="{{imgSrc}}/images/online/common/selected.png"></image>
+              
+            </view>
+            <view class="date">{{item.date}}</view>
+          </view>
+          <view class="line"></view>
+        </view>
+        <view class="sign-item current-icon" data-index="{{signList.signin.length - 1}}" data-retroactive="{{signList.signin[signList.signin.length - 1].retroactive}}" data-isSignin="{{signList.signin[signList.signin.length - 1].isSignin}}" catchtap="sign">
+          <view class="line left"></view>
+          <view class="icon-box">
+            <view class="icon">
+              <image lazy-load="true" src="{{signList.signin[signList.signin.length - 1].isSignin ? imgSrc + '/images/online/we/awarded/open.png' : imgSrc + '/images/online/we/awarded/last.png'}}"></image>
+            </view>
+            <view class="date">{{signList.signin[signList.signin.length - 1].date}}</view>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="sign-reminder">
+        <!-- 签到提醒<switch color="#F94929" checked /> -->
+      </view>
+    </view>
+    <view class="sign-box radius" style="display: flex;align-items: center;justify-content: center;" wx:if="{{signList.signin.length < 1}}">暂无活动</view>
+  </view>
+  <view class="activity-wrap passage">
+    <image lazy-load="true" catchtap="invite" src="{{imgSrc}}/images/test/one.png"></image>
+    <image lazy-load="true" catchtap="help" src="{{imgSrc}}/images/test/two.png"></image>
+    <image lazy-load="true" catchtap="share_goods" src="{{imgSrc}}/images/test/three.png"></image>
+    <image lazy-load="true" catchtap="integral" src="{{imgSrc}}/images/test/five.png"></image>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="goods_title" wx:if="{{goodsList.list.length > 1}}">为你推荐</view>
+  <jk-goodsList class="goodsList" list="{{goodsList.list}}" wx:if="{{goodsList.list.length > 1}}" />
+
+  <!-- 触底提示 -->
+  <view class="bottom_line" wx:if="{{goodsList.pageIndex >= goodsList.pageCount && goodsList.list.length > 1}}">我是有底线的~</view>
+</view>
+
+<!-- 积分规则模态框 -->
+<view catchtouchmove="move" catchtap="cancel" class="mask" wx:if="{{modalFlag}}"></view>
+<view catchtouchmove="move" class="rules radius" wx:if="{{modalFlag}}">
+  <view class="rules_title">
+    <text>活动规则</text>
+  </view>
+  <view class="rules_note">
+    <scroll-view  scroll-y="true">
+      <rich-text nodes="{{signList.introduce}}"></rich-text>
+    </scroll-view>
+  </view>
+  <image lazy-load="true" catchtap="cancel" class="del" src="{{imgSrc}}/images/online/we/awarded/del.png"></image>
+</view>
+
+<!-- 领劵提示框 -->
+<view catchtouchmove="move" catchtap="close" class="mask" wx:if="{{securitiesFlag}}"></view>
+<view lazy-load="true" class="securities" wx:if="{{securitiesFlag}}">
+  <image lazy-load="true" src="{{imgSrc}}/images/online/we/awarded/securities_title.png"></image>
+  <view class="securities_content">
+    <view class="securities_title">恭喜获得{{bangCoupon.type == 'PWAY101' ? '立减' : '折扣'}}神券</view>
+    <view class="securities_money"><text>{{bangCoupon.type == 'PWAY101' ? bangCoupon.useDenomination : bangCoupon.discount}}</text>{{bangCoupon.type == 'PWAY101' ? '元' : '折'}}</view>
+    <view class="securities_rules">邀请{{bangCoupon.needNum}}位好友帮忙，即可领取</view>
+    <button hover-class="none" open-type="share" class="securities_btn">邀好友  领神券</button>
+    <view class="securities_time">距优惠券消失剩：{{time.hour}} : {{time.minute}} : {{time.seconds}}</view>
+  </view>
+  <image lazy-load="true" catchtap="close" class="securities_del" src="{{imgSrc}}/images/online/we/awarded/del.png"></image>
+</view>

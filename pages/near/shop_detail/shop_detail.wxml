@@ -1,0 +1,254 @@
+<!--pages/near/shop_detail/shop_detail.wxml-->
+<!-- 状态栏 -->
+<navbar page-name="商品详情" show-nav="{{shareState != 1 ? true : false}}" show-home="{{shareState == 1 ? true : false}}"></navbar>
+<view style="height:{{navHeight}}px;background: #f4f4f4;"></view>
+
+<view class="container">
+  <!-- 轮播 -->
+  <view class="goods-img-wrap">
+    <swiper class="goods-swiper" current="{{current}}" autoplay="true" interval="3000" circular="true" bindchange="sliding">
+      <swiper-item class="goods-swiper-item" wx:for="{{goods_data.imgList}}" wx:key="{{index}}">
+        <image class="goods-swiper-img" lazy-load="true" mode="aspectFill" src="{{item}}" />
+      </swiper-item>
+    </swiper>
+
+    <!-- 指示器 -->
+    <view class="indicator">{{current + 1}}/{{goods_data.imgList.length}}</view>
+  </view>
+
+  <!-- 商品信息 -->
+  <view class="goods-info-wrap">
+
+    <!-- 普通商品价格 -->
+    <view class="goods-price">
+      <view class="font-red fl">￥
+        <text>{{shop_price}}</text>
+      </view>
+      <view class="s-price" wx:if="{{line_price > 0}}">￥{{line_price}}</view>
+    </view>
+
+    <view class="goods-name-wrap">
+      <view class="goods-name">
+        {{goods_data.name}}
+      </view>
+    </view>
+    <view class="goods-desc">{{goods_data.sup}}</view>
+
+    <!-- 分享商品 -->
+    <button open-type="share" class="goods-share" data-type="0">
+      <image class="icon" lazy-load="true" src="{{imgSrc}}/images/online/classify/detail/share.png" />
+      <text>分享</text>
+    </button>
+  </view>
+
+  <!-- 商品选项 -->
+  <view class="goods-choice-wrap radius">
+    <view class="choice-item" data-type="1" bindtap="open_specification">
+      <view class="label">已选</view>
+      <view class="option ellipsis">{{shop_specName}}，×{{shop_num}}</view>
+      <view class="icon" style="background-image:url({{arrowIcon}})"></view>
+    </view>
+
+    <view class="choice-item" data-type="2" bindtap="open_coupons" wx:if="{{coupons_list.length > 0}}">
+      <view class="label">领券</view>
+      <view class="option ellipsis font-red">
+        <text wx:if="{{coupons_list[0].typeCode=='PWAY101'}}">满{{coupons_list[0].useAmtLimit}}元减{{coupons_list[0].denomination}}元,</text>
+        <text wx:if="{{coupons_list[0].typeCode=='PWAY102'}}">满{{coupons_list[0].useAmtLimit}}元打{{coupons_list[0].discount*10}}折,</text>
+        <text wx:if="{{coupons_list[1].typeCode=='PWAY101'}}">满{{coupons_list[1].useAmtLimit}}元减{{coupons_list[1].denomination}}元</text>
+        <text wx:if="{{coupons_list[1].typeCode=='PWAY102'}}">满{{coupons_list[1].useAmtLimit}}元打{{coupons_list[1].discount*10}}折</text>
+      </view>
+      <view class="icon" style="background-image:url({{arrowIcon}})"></view>
+    </view>
+  </view>
+
+  <!-- 运费 -->
+  <!-- 
+  <view class="deliver-wrap radius" data-type="4" bindtap="open_freight">
+    <view class="choice-item">
+      <view class="label">运费</view>
+      <view class="option ellipsis">配送费<text class="font-red" style="margin-right:16rpx">￥10.00</text>满<text class="font-red">￥10.00</text>免运费</view>
+      <view class="icon" style="background-image:url({{arrowIcon}})"></view>
+    </view>
+  </view>
+  -->
+
+  <!-- 评价 -->
+  <view class="evaluation-wrap radius" wx:if="{{commentList && commentList.length>0}}">
+    <view class="title-wrap">
+      <text class="title">商品评价</text>
+      <view class="percent-wrap" data-path="../goods_evaluation/goods_evaluation" bindtap="linkTo">
+        <view class="icon fr" style="background-image:url({{arrowIcon}})"></view>
+        <text class="percent fr" catchtap="goods_evaluation">全部评价</text>
+      </view>
+    </view>
+    <view class="evaluation-list">
+      <view class="item">
+        <view class="head-wrap">
+          <image lazy-load="true" mode="aspectFill" class="head-img" src="{{commentList[0].userAvatar}}" />
+          <view class="info">
+            <view class="name">{{commentList[0].userName}}</view>
+            <view class="star-wrap">
+              <image lazy-load="true" wx:for="{{5}}" wx:key="{{index}}" class="star" src="{{imgSrc}}/images/online/common/level_in.png" />
+            </view>
+          </view>
+        </view>
+        <view class="time-wrap">
+          <text class="time">{{commentList[0].createTime}}</text>
+          <text class="goods-type">{{commentList[0].specView}}</text>
+        </view>
+        <view class="text-wrap">{{commentList[0].content}}</view>
+        <view class="imgs-wrap">
+          <image lazy-load="true" mode="aspectFill" wx:if="{{index < 3}}" data-index="{{index}}" catchtap="preview" wx:for="{{commentList[0].imgList}}" wx:key="{{index}}" class="img-item" src="{{item}}" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商家描述 -->
+  <view class="shop_describe passage">
+
+    <!-- 商家信息 -->
+    <view class="shop">
+      <image class="goods_logo" lazy-load="true" mode="aspectFill" src="{{shop.logo == '' ? imgSrc + '/images/online/near/shop.png' : shop.logo}}"></image>
+      <view class="shop_r">
+        <view class="shop_list_name">{{shop.shopName}}</view>
+        <view class="shop_level">
+          <text>店铺星级</text>
+          <view>
+            <image lazy-load="true" wx:for="{{5}}" wx:key="{{index}}" src="{{imgSrc}}/images/online/common/level_in.png"></image>
+          </view>
+        </view>
+        <view class="shop_num">
+          <view class="shop_num_list">
+            <view>全部商品</view>
+            <view>{{shop.goodsNum}}</view>
+          </view>
+          <view class="shop_num_list">
+            <view>会员人数</view>
+            <view>{{shop.memberNum}}</view>
+          </view>
+        </view>
+        <view class="into_shop" catchtap="shop">
+          <view>进店逛逛</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品信息 -->
+    <view class="shop_content">
+      <view class="seckill_shop" wx:for="{{latest_goods}}" wx:key="{{index}}" id="{{item.goodsId}}" bindtap="shopGoodsDetail">
+        <view class="seckill_shop_img">
+          <image lazy-load="true" mode="aspectFill" src="{{item.image}}"></image>
+        </view>
+        <view class="seckill_shop_name">{{item.name}}</view>
+        <view class="seckill_shop_original_price" wx:if="{{goods_data.sup}}">{{item.sup}}</view>
+        <view class="seckill_shop_price">¥{{item.price}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品描述 -->
+  <view class="goods-detail-wrap passage" wx:if="{{goods_data.describtion != undefined && goods_data.describtion != ''}}">
+    <view class="title-wrap">
+      <text class="title">商品详情</text>
+    </view>
+    <view class="detail-img">
+      <rich-text nodes="{{goods_data.describtion}}"></rich-text>
+    </view>
+  </view>
+
+  <!-- 模态框 -->
+  <view catchtouchmove="move" catchtap="close" class="mask {{specification_state || coupons_state || promotion_state || freight_state || store_state ? 'mask_active' : ''}}"></view>
+
+  <!-- 运费说明模态框 -->
+  <view catchtouchmove="move" style="height: 520rpx;" class="modal {{freight_state ? 'modal_active' : ''}}">
+    <image lazy-load="true" class="close-dialog" src="{{imgSrc}}/images/online/shop/confirm_order/q.png" catchtap="close" />
+    <view class="deliver-dialog-wrap">
+      <view class="title">运费说明</view>
+      <view class="content">
+        <text wx:if="{{goods_data.logisticsFeeType==1}}">
+          订单运费起步价{{goods_data.firstFee}}元({{goods_data.firstValue || 1}}件内)，超出数量加收{{goods_data.eachAddFee}}元/{{goods_data.eachAddValue}}件续量费用，实际收取运费以提交订单页面内的运费金额为准
+        </text>
+        <text wx:if="{{goods_data.logisticsFeeType==2}}">
+          订单运费起步价{{goods_data.firstFee}}元({{goods_data.firstValue}}kg内)，超出重量加收{{goods_data.eachAddFee}}元/{goods_data.eachAddValue}}kg续重费用，实际收取运费以提交订单页面内的运费金额为准
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 店铺商品规格模态框 -->
+  <view catchtouchmove="move" style="height: 860rpx;" class="modal {{specification_state ? 'modal_active' : ''}}">
+    <view class="munit_info">
+      <view class="munit_shop">
+        <image mode="aspectFill" lazy-load="true" src="{{goods_data.imgList[0]}}"></image>
+        <text>￥{{shop_price}}</text>
+      </view>
+      <view class="munit_taste">
+        <view class="munit_title">规格</view>
+        <view class="munit_note">
+          <text catchtap="munit_toggle" class="{{goods_spec_id == item.goodsSpecId ? 'munit_text_active' : ''}}" id="" data-index="{{index}}" wx:for="{{goods_data.goodsSpecList}}" wx:key="{{index}}">{{item.specName}}</text>
+        </view>
+      </view>
+      <view class="munit_weight">
+        <view class="munit_title">数量</view>
+        <view class="goods_measure">
+          <view catchtap="reduction"><image lazy-load="true" src="{{imgSrc}}/images/online/common/minus.png"></image></view>
+          <input type="number" bindblur="get_number" disabled="true" value="{{shop_num}}"></input>
+          <view catchtap="add"><image lazy-load="true" src="{{imgSrc}}/images/online/common/add.png"></image></view>
+        </view>
+      </view>
+      <image lazy-load="true" catchtap="close" class="close" src="{{imgSrc}}/images/online/common/close.png"></image>
+    </view>
+    <!-- <view class="munit_btn">确定</view> -->
+  </view>
+
+  <!-- 优惠券模态框 -->
+  <view catchtouchmove="move" style="height: 800rpx;z-index: 11111;" class="modal {{coupons_state ? 'modal_active' : ''}}">
+    <view class="coupons-wrap">
+      <view class="title">领券</view>
+      <scroll-view class="coupons-list" scroll-y>
+        <view class="discount red" wx:for="{{coupons_list}}" wx:key="{{index}}">
+          <view class="discount-price">
+            <view class="price" wx:if="{{item.typeCode == 'PWAY101'}}">
+              <text class="fl icon">￥</text>
+              <text class="font fl">{{item.denomination}}</text>
+            </view>
+            <view class="price" wx:if="{{item.typeCode == 'PWAY102'}}">
+              <text class="font fl">{{item.discount*10}}</text>
+              <text class="fl icon">折</text>
+            </view>
+            <view class="rule">满{{item.useAmtLimit}}元可用</view>
+          </view>
+          <view class="discount-info">
+            <view class="info">
+              <view>{{item.name}}</view>
+            </view>
+            <view class="time">{{item.startTime}}-{{item.endTime}}</view>
+            <image wx:if="{{item.getNumLimit == item.hadGetNum}}" src="{{imgSrc}}/images/online/common/has-c.png"></image>
+            <!-- <image src="{{imgSrc}}/images/online/common/no-c.png"></image> -->
+          </view>
+          <view class="discount-btn style1" wx:if="{{item.getNumLimit > item.hadGetNum}}" data-index="{{index}}" catchtap="getCouponBtn">{{item.hadGetNum == 0?'点击领取':'继续领取'}}</view>
+          <image class="coupon_bj" src="{{imgSrc}}/images/online/classify/detail/coupons_bj.png"></image>
+          <view class="welfare" wx:if="{{item.isNewConsumerWelfare == 1}}">新客福利</view>
+        </view>
+      </scroll-view>
+      <image catchtap="close" class="close" src="{{imgSrc}}/images/online/common/close.png"></image>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="goods-bar-wrap {{showTop == 1 ? 'show-top' : ''}}" style="z-index: {{specification_state ? '111' : '0'}}">
+    <view class="cart-wrap" catchtap="cart">
+      <image lazy-load="true" class="icon" src="{{imgSrc}}/images/online/classify/detail/car.png" />
+      <view class="num" wx:if="{{shop_cart_num > 0}}">{{shop_cart_num}}</view>
+    </view>
+    <view class="collect-wrap" catchtap="collection" data-isCollected="{{goods_data.isCollected}}">
+      <image lazy-load="true" class="icon" src="{{goods_data.isCollected == 0 ? imgSrc + '/images/online/classify/detail/collect.png' : imgSrc + '/images/online/classify/detail/in_collect.png'}}" />
+    </view>
+    <!-- <view class="collect-wrap" catchtap="home">
+      <image lazy-load="true" class="icon" src="{{imgSrc}}/images/online/tabBar/home.png" />
+    </view> -->
+    <view class="add-cart-wrap" catchtap="add_cart">加入购物车</view>
+    <view class="buy-wrap {{isRest ? '' : 'shop-rest'}}" catchtap="confirm_order">{{isRest ? '立即购买' : '休息中'}}</view>
+  </view>
+</view>

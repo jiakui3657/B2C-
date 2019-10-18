@@ -1,0 +1,125 @@
+<!--pages/we/we_order_ delivery/we_order_ delivery.wxml-->
+<view class="container">
+
+  <!-- 订单头部 -->
+  <view class="header">
+    <view class="header-l">
+      <image lazy-load="true" src="{{imgSrc}}/images/online/we/order/delivery.png"></image>  
+      <text>待发货</text> 
+    </view>
+    <view class="header-r"></view>
+  </view>
+
+  <!-- 订单内容 -->
+  <view class="content">
+
+    <!-- 个人信息 -->
+    <view class="user_info radius">
+      <view class="user_info_t">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/we/order/address.png"></image>
+        <view class="info">
+          <view class="user_name">{{order_note.deliveryLinkmanName}}<text>{{order_note.deliveryLinkmanPhone}}</text></view>
+          <view class="user_address">{{order_note.deliveryAddress}}</view>
+        </view>
+      </view>
+      <view class="user_info_t logistics" catchtap="logistics" wx:if="{{order_note.logisticsType == 1}}">
+        <image lazy-load="true" src="{{imgSrc}}/images/online/we/order/logistics.png"></image>
+        <view class="info">
+          <view class="logistics_name">第三方提供物流信息</view>
+          <view class="logistics_address">物流信息：查看物流信息</view>
+          <!--<view class="logistics_time">{{order_note.acceptTime}}</view> -->
+        </view>
+        <image lazy-load="true" class="logistics_more" src="{{imgSrc}}/images/online/common/more.png"></image>
+      </view>
+    </view>
+
+    <!-- 商品信息 -->
+    <view class="merchants passage">
+      <view class="merchants_title">
+        <view>
+          <image lazy-load="true" lazy-load="true" class="{{order_note.isSelf == 2 ? 'shop-icon' : ''}}" src="{{order_note.isSelf == 2 ? imgSrc + '/images/online/logo.png' : imgSrc + '/images/online/shop/confirm_order/shop.png'}}"></image>
+          <text class='shop-text' wx:if="{{order_note.isSelf == 2}}">自营店铺</text> 
+          <text class='shop-text' wx:if="{{order_note.isSelf == 1}}">{{order_note.shopName}}</text>
+        </view>
+      </view>
+
+      <!-- 商品列表 -->
+      <view class="goods_list" wx:for="{{order_note.items}}" wx:key="{{index}}">
+        <view class="goods_logo">
+          <image lazy-load="true" mode="aspectFit" src="{{item.goodsImg}}"></image>
+        </view>
+        <view class="goods_list_r">
+          <view class="goods_name">{{item.goodsName}}</view>
+          <view class="goods_norms"><text>数量：{{item.goodsNum}}</text><text>规格：{{item.goodsSpecName}}</text></view>
+          <view class="goods_price">¥{{item.goodsSalePrice}}</view>
+          <view class="goods_code" catchtap="afterType" data-goods="{{item}}" wx:if="{{item.goodsNum > item.backwardNum}}">
+            <text>申请退款</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- <view class="shop_list" wx:for="{{order_note.items}}" wx:key="{{index}}">
+        <view class="shop_logo">
+          <image lazy-load="true" mode="aspectFit" src="{{item.goodsImg}}"></image>
+        </view>
+        <view class="shop_list_r">
+          <view class="shop_name">{{item.goodsName}}</view>
+          <view class="shop_norms"><text>数量：{{item.goodsNum}}</text><text>规格：{{item.attrView}}</text></view>
+          <view class="shop_price">¥{{item.goodsSalePrice}}</view>
+          <view class="shop_code shop_code_modify">
+            <text>已退货</text>
+          </view>
+        </view>
+      </view> -->
+    </view>
+
+    <!-- 商品金额、运费、优惠 -->
+    <view class="price passage">
+      <view class="price_list">
+        <text>商品总额：</text>
+        <view>￥{{order_note.goodsAmount}}</view>
+      </view>
+      <view class="price_list">
+        <text>运费：</text>
+        <view>￥{{order_note.logisticsAmount}}</view>
+      </view>
+      <view class="price_list">
+        <text>商品优惠：</text>
+        <view>￥{{order_note.isSelf == 2 ? order_note.discountAmount : order_note.couponAmount}}</view>
+      </view>
+      <view class="price_total">应付总额：<text>￥{{order_note.payAmount}}</text></view>
+      <view class="integral" catchtap="credits_exchange" wx:if="{{order_note.integral}}">
+        <view class="integral_l">确认收货可得<text>{{order_note.integral}}</text>个积分</view>
+        <view class="integral_r">
+          积分兑好礼
+          <image lazy-load="true" src="{{imgSrc}}/images/online/common/more.png"></image>
+        </view>
+      </view>                                                       
+    </view>
+
+    <!-- 备注 -->
+    <!-- <view class="note passage">
+      <textarea placeholder="订单备注：请周末送货。" placeholder-class="placeholder"></textarea>
+    </view> -->
+
+    <!-- 订单 -->
+    <view class="order passage">
+      <view class="order_list">
+        <text>订单编号：</text>
+        <view>{{order_note.orderNo}}</view>
+      </view>
+      <view class="order_list">
+        <text>下单时间：</text>
+        <view>{{order_note.prepareTime}}</view>
+      </view>
+      <view class="order_list">
+        <text>支付方式：</text>
+        <view>{{order_note.payTypeName}}</view>
+      </view>
+      <view class="order_list">
+        <text>配送方式：</text>
+        <view>{{order_note.logisticsType == 1 ? '物流快递' : order_note.logisticsType == 2 ? '送货上门' : '到店自提'}}</view>
+      </view>
+    </view>
+  </view>
+</view>

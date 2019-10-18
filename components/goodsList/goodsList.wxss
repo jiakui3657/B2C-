@@ -1,0 +1,145 @@
+/* components/shopingList/shopList.wxss */
+.goods_list {
+  display: flex;
+  flex-wrap: wrap;
+  background: transparent !important;
+}
+
+.goodsList {
+  padding-right: 5rpx;
+  box-sizing: border-box;
+  width: 50%;
+  margin-bottom: 10rpx;
+}
+
+.goodsList:nth-child(2n) {
+  padding-right: 0;
+  padding-left: 5rpx;
+}
+
+.goods {
+  padding: 16rpx 36rpx 46rpx;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background: #fff;
+}
+
+.goodsList:nth-last-child(2) {
+  margin-bottom: 0rpx;
+}
+
+.goodsList:nth-last-child(1) {
+  margin-bottom: 0rpx;
+}
+
+.goods_logo {
+  width: 280rpx;
+  height: 280rpx;
+}
+
+.goods_logo_animation {
+  width: 280rpx;
+  height: 280rpx;
+  position: absolute;
+  top: 16rpx;
+  left: 36rpx;
+}
+
+.goods_name {
+  font-size: 28rpx;
+  color: #353535;
+  line-height: 40rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-top: 12rpx;
+  width: 100%;
+  height: 80rpx;
+  text-align: left;
+}
+
+.goods_abstract {
+  font-size: 24rpx;
+  color: #888888;
+  margin-top: 4rpx;
+  width: 100%;
+  height: 32rpx;
+  line-height: 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.goods_price {
+  font-size: 28rpx;
+  color: #FF474C;
+  margin-top: 18rpx;
+  width: 100%;
+  text-align: left;
+}
+
+.goods_price image {
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.goods_original_price {
+  color: #888888;
+  font-size: 22rpx;
+  text-decoration:line-through;
+  position: absolute;
+  bottom: 15rpx;
+  left: 38rpx;
+}
+
+.goods_vip_price {
+  font-size: 24rpx;
+  color: #353535;
+  position: absolute;
+  bottom: 10rpx;
+  left: 36rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+}
+
+.goods_vip_price image {
+  width: 44rpx;
+  height: 20rpx;
+}
+
+.cart {
+  position: absolute;
+  bottom: 36rpx;
+  right: 36rpx;
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.goods_bottom {
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 26rpx;
+  color: #868686;
+  margin: 32rpx 0;
+  text-align: center;
+  width: 100%;
+}
+
+/* 目标 */
+.target {
+  position: fixed;
+  bottom: -160rpx;
+  right: 20%;
+  width: 20%;
+  height: 160rpx;
+  background: red;
+}

@@ -1,0 +1,93 @@
+/* pages/we/awarded/share_goods/share_goods.wxss */
+page {
+  background: #f4f4f4;
+  font-family: "Microsoft YaHei";
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80rpx;
+}
+/*tab*/
+
+.order_Content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1111;
+}
+
+.swiper-tab-list {
+  width: 50%;
+}
+
+/*列表*/
+.goods_list {
+  background: #fff;
+  padding: 30rpx 12rpx 30rpx 40rpx;
+  box-sizing: border-box;
+}
+
+.goods_list:first-child {
+  margin: 0;
+}
+
+.goods_logo {
+  width: 160rpx;
+  height: 160rpx;
+  background: transparent;
+  padding: 0;
+  margin-right: 48rpx;
+}
+
+.goods_name {
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+.goods_norms {
+  font-size: 24rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  line-height: 40rpx;
+  margin-top: 8rpx;
+  height: 40rpx;
+  padding-right: 40rpx;
+}
+
+.goods_number {
+  margin-top: 30rpx;
+  font-size: 24rpx;
+  color: #F94929;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding-right: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.goods_number button {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.goods_number text {
+  color: #999;
+}
+
+.goods_number image {
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+}
+
+.not_online  {
+  padding: 264rpx 0;
+}

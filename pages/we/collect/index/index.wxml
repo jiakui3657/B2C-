@@ -1,0 +1,95 @@
+<!--pages/we/collect/collect.wxml-->
+<view class="order_Content">
+  <view class="swiper-tab">
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==0 ? 'on' : ''}}" data-current="0" catchtap="swichNav">商品</text>
+    </view>
+    <view class="swiper-tab-list">
+      <text class="{{currentTab==1 ? 'on' : ''}}" data-current="1" catchtap="swichNav">好物</text>
+    </view>
+    <view class='clear'></view>
+  </view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{scrollHeight}}px;display:{{choice}}" bindchange="bindChange">
+  <!-- 商品 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" bindscrolltolower="goods_lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;overflow: hidden;">
+      <view class="container">
+        <!-- 商品列表 -->
+        <view class="goodsList" wx:for="{{collectedGoodsRs && collectedGoodsRs.list}}" wx:key="{{index}}" id="{{item.goodsId}}" catchtap="goods_detail">
+          <view class="goods">
+            <image class="goods_logo" src="{{item.goodsImg}}"></image>
+            <view class="goods_name">{{item.goodsName}}</view>
+            <view class="goods_abstract">{{item.sup}}</view>
+            <!-- 普通商品价格 -->
+            <view class="goods_price" wx:if="{{item.actPrice <= 0 && item.vipPrice <= 0}}">￥{{item.price}}</view>
+            <!-- 活动商品价格 -->
+            <view class="goods_price" wx:if="{{item.actPrice > 0}}">￥{{item.actPrice}}<image class="goods_seconds_icon" src="{{imgSrc}}/images/online/common/seconds_icon.png"></image></view>
+            <view class="goods_original_price" wx:if="{{item.actPrice > 0}}">￥{{item.price}}</view>
+            <!-- vip会员商品价格 -->
+            <view class="goods_price" wx:if="{{item.actPrice <= 0 && item.vipPrice > 0}}">￥{{item.price}}</view>
+            <view class="goods_vip_price" wx:if="{{item.actPrice <= 0 && item.vipPrice > 0}}">￥{{item.vipPrice}}<image src="{{imgSrc}}/images/online/common/vip_icon.png" class="goods_vip_icon"></image></view>
+            
+            <image data-id="goods_logo{{index}}" data-index="{{index}}" catchtap="addCart" class="cart" src="{{imgSrc}}/images/online/common/shop_cart.png"></image>
+          </view>
+        </view>
+        <view class="goods_bottom" wx:if="{{goods_line}}">我是有底线的~</view>
+        <!-- 购物车为空的样式 -->
+        <view class="not_online" wx:if="{{collectedGoodsRs && collectedGoodsRs.list.length == 0}}">
+          <image src="{{imgSrc}}/images/online/common/not.png"></image>
+          <view>还没有内容哦~</view>
+          <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 好物 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" bindscrolltolower="thing_lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: 100%;overflow: hidden;">
+    <view class="container">
+      <view class="dynamicList passage" wx:for="{{collectedThingRs && collectedThingRs.list}}" wx:key="{{index}}">
+        <!-- 动态个人信息 -->
+        <view class="dynamic_personal_info">
+          <view class="personal_info_l">
+            <image lazy-load="true" src="{{item.userAvatar}}"></image>
+            <view>
+              <text>{{item.userName}}</text>
+              <text>{{item.createTime}}</text>
+            </view>
+          </view>
+          <view class="personal_info_r">
+            <image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/browse.png"></image>
+            <text>{{item.visitNum}}人看过</text>
+          </view>
+        </view>
+        <!-- 动态列表 -->
+        <view class="dynamic_img_list {{item.imgList.length == 1 ? 'one_list' : item.imgList.length == 2 ? 'two_list' : ''}}">
+          <image lazy-load="true" class="radius" wx:for="{{item.imgList}}" wx:key="{{index}}" wx:if="{{index < 3}}" src="{{item}}"></image>
+        </view>
+        <!-- 动态文字 -->
+        <view class="dynamic_text">
+          <view><image lazy-load="true" src="{{imgSrc}}/images/online/we/collect/merchant_bj.png"></image><text>{{item.thingTypeName}}</text></view>
+         {{item.content}}
+        </view>
+        <!-- 动态互动 -->
+        <view class="dynamic_interact">
+          <view class="praise" catchtap="praise" data-item="collectedThingRs.list[{{index}}]." data-priseNum="{{item.priseNum}}" data-id="{{item.id}}" data-isPrised="{{item.isPrised}}">
+            <image lazy-load="true" src="{{item.isPrised == 1 ? imgSrc + '/images/online/we/collect/has_praise.png' : imgSrc + '/images/online/we/collect/not_praise.png'}}"></image>
+            <text>{{item.priseNum}}</text>
+          </view>
+          <button class="said" hover-class="none" data-title="{{item.title ? item.title : ''}}" data-src="{{item.imgList[0] ? item.imgList[0] : ''}}" data-type="{{item.thingTypeCode}}" data-shareId="{{item.id}}" open-type="share">
+            <image lazy-load="true" mode="aspectFit" src="{{imgSrc}}/images/online/common/share.png"></image>
+            <text>{{item.shareNum}}</text>
+          </button>
+        </view>
+      </view>
+      <!-- 购物车为空的样式 -->
+      <view class="not_online" wx:if="{{collectedThingRs && collectedThingRs.list.length == 0}}">
+        <image src="{{imgSrc}}/images/online/common/not.png"></image>
+        <view>还没有内容哦~</view>
+        <navigator open-type="switchTab" url='/pages/home/index/index' hover-class="none">去逛逛</navigator>
+      </view>
+    </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

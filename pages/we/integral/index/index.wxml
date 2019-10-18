@@ -1,0 +1,79 @@
+<!--pages/we/integral/integral.wxml-->
+
+<!-- header -->
+<view class="header">
+  <image lazy-load="true" src="{{imgSrc}}/images/online/we/integral/integral_bj.png"></image>
+  <view class="integral">
+    <text>当前积分</text>
+    <view>{{userInfo.integral}}分</view>
+  </view>
+</view>
+
+<!-- 明细流水 -->
+<view class="container radius">
+
+  <!-- 积分通知 -->
+  <view class="integral_notice radius">
+    <image lazy-load="true" src="{{imgSrc}}/images/online/we/integral/notice.png"></image>
+    <view class="integral_notice_r">{{message.summary == undefined?'暂无消息~':message.summary}}</view>
+  </view>
+
+  <view class="integral_detail_title">积分明细</view>
+    <view class="integral_detail_tab">
+      <view wx:for="{{tablist}}" catchtap="tabToggle" id="{{item.id}}" wx:key="{{index}}" class="{{item.id == tabIndex ? 'active' : ''}}">{{item.text}}</view>
+    </view>
+
+  <!-- 积分明细 -->
+  <view class="integral_detail">
+    <swiper style="flex: 1;height: {{scrollHeight}}px" current="{{tabIndex}}" bindchange="get_current">
+      <swiper-item style="height: 100%;width: 100%;">
+        <scroll-view class="integral_detail_content" scroll-y="true" bindscrolltolower="lower">
+          <view class="shop_list" wx:for="{{list.list}}" wx:key="{{index}}">
+            <view class="shop_list_r">
+              <view class="shop_name">{{item.typeName}}</view>
+              <view class="shop_norms">{{item.createTime}}</view>
+              <view class="shop_integral {{item.paymentType == 1 ? 'add_integral' : ''}}">{{item.paymentType == 1 ? '+' : ''}}{{item.integral}}</view>
+            </view>
+          </view>
+          <!-- 购物车为空的样式 -->
+          <view class="not_online" wx:if="{{list.list.length <= 0}}">
+            <image src="{{imgSrc}}/images/online/common/not.png"></image>
+            <view>还没有积分哦~</view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item style="height: 100%;width: 100%;">
+        <scroll-view class="integral_detail_content" scroll-y="true" bindscrolltolower="lower">
+          <view class="shop_list" wx:for="{{incomeList.list}}" wx:key="{{index}}" wx:if="{{item.paymentType == 1}}">
+            <view class="shop_list_r">
+              <view class="shop_name">{{item.typeName}}</view>
+              <view class="shop_norms">{{item.createTime}}</view>
+              <view class="shop_integral add_integral">+{{item.integral}}</view>
+            </view>
+          </view>
+          <!-- 购物车为空的样式 -->
+          <view class="not_online" wx:if="{{incomeList.list.length <= 0}}">
+            <image src="{{imgSrc}}/images/online/common/not.png"></image>
+            <view>还没有积分哦~</view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item style="height: 100%;width: 100%;">
+        <scroll-view class="integral_detail_content" scroll-y="true" bindscrolltolower="lower">
+          <view class="shop_list" wx:for="{{spendingList.list}}" wx:key="{{index}}" wx:if="{{item.paymentType == 2}}">
+            <view class="shop_list_r">
+              <view class="shop_name">{{item.typeName}}</view>
+              <view class="shop_norms">{{item.createTime}}</view>
+              <view class="shop_integral">{{item.integral}}</view>
+            </view>
+          </view>
+           <!-- 购物车为空的样式 -->
+          <view class="not_online" wx:if="{{spendingList.list.length <= 0}}">
+            <image src="{{imgSrc}}/images/online/common/not.png"></image>
+            <view>还没有积分哦~</view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
